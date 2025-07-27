@@ -1030,40 +1030,81 @@
                 });
             }
 
-        // Navigation smooth scroll améliorée
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const target = document.querySelector(targetId);
+        // Navigation smooth scroll robuste et fiable
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
 
-                if (target) {
-                    // Calculer l'offset pour la navbar fixe
-                    const navbarHeight = document.getElementById('navbar').offsetHeight;
-                    const targetPosition = target.offsetTop - navbarHeight - 10;
+                    // Vérification spéciale pour les sections principales
+                    let target = document.querySelector(targetId);
 
-                    // Scroll avec animation fluide
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    // Si la section n'est pas trouvée, essayer des alternatives
+                    if (!target) {
+                        // Mapping des sections pour résoudre les problèmes d'ancrage
+                        const sectionMap = {
+                            '#pricing': '#pricing',
+                            '#testimonials': '#testimonials',
+                            '#home': '#home',
+                            '#services': '#services',
+                            '#about': '#about',
+                            '#team': '#team',
+                            '#contact': '#contact'
+                        };
 
-                    // Fermer le menu mobile si ouvert
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
+                        if (sectionMap[targetId]) {
+                            target = document.querySelector(sectionMap[targetId]);
+                        }
                     }
 
-                    // Mettre en surbrillance le lien actif
-                    document.querySelectorAll('.nav-link').forEach(link => {
-                        link.classList.remove('text-primary-600');
-                        link.classList.add('text-secondary-700');
-                    });
-                    this.classList.remove('text-secondary-700');
-                    this.classList.add('text-primary-600');
-                }
+                    if (target) {
+                        // Calculer l'offset pour la navbar fixe
+                        const navbar = document.getElementById('navbar');
+                        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+                        const targetPosition = target.offsetTop - navbarHeight - 10;
+
+                        // Scroll avec animation fluide
+                        window.scrollTo({
+                            top: Math.max(0, targetPosition),
+                            behavior: 'smooth'
+                        });
+
+                        // Fermer le menu mobile si ouvert
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+
+                        // Mettre en surbrillance le lien actif
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('text-primary-600');
+                            link.classList.add('text-secondary-700');
+                        });
+
+                        if (this.classList.contains('nav-link')) {
+                            this.classList.remove('text-secondary-700');
+                            this.classList.add('text-primary-600');
+                        }
+
+                        // Mettre à jour l'URL sans déclencher de rechargement
+                        history.pushState(null, null, targetId);
+
+                    } else {
+                        console.warn('Section non trouvée:', targetId);
+                        // Fallback robuste
+                        try {
+                            window.location.hash = targetId;
+                        } catch (error) {
+                            console.error('Erreur de navigation:', error);
+                        }
+                    }
+                });
             });
-        });
+        }
+
+        // Initialiser le smooth scroll
+        initSmoothScroll();
 
         // Effet de transparence de la navbar au scroll + détection section active
         window.addEventListener('scroll', function() {
