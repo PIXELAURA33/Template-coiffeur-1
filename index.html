@@ -1,20 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Salon Premium - Coiffure Professionnelle</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Configuration Tailwind personnalisée -->
     <script>
         tailwind.config = {
@@ -54,7 +53,7 @@
             }
         }
     </script>
-    
+
     <style>
         .floating-whatsapp {
             position: fixed;
@@ -63,27 +62,27 @@
             z-index: 1000;
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
-        
+
         .scroll-smooth {
             scroll-behavior: smooth;
         }
-        
+
         /* Assurer la visibilité des sections */
         section {
             position: relative;
             z-index: 1;
         }
-        
+
         /* Améliorer la lisibilité */
         .text-shadow {
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
-        
+
         /* Backgrounds personnalisés */
         .hero-bg {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.7)), url('img/intro-bg-01.jpg');
@@ -91,28 +90,28 @@
             background-position: center;
             background-attachment: fixed;
         }
-        
+
         .about-bg {
             background: linear-gradient(135deg, rgba(248, 250, 252, 0.95), rgba(241, 245, 249, 0.9)), url('img/info-bg-01.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
-        
+
         .price-bg {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8)), url('img/sec-bg-02.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
-        
+
         .testimonial-bg {
             background: linear-gradient(135deg, rgba(248, 250, 252, 0.95), rgba(241, 245, 249, 0.9)), url('img/sec-bg-03.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
-        
+
         /* Animations d'entrée */
         @keyframes fadeInUp {
             from {
@@ -124,21 +123,21 @@
                 transform: translateY(0);
             }
         }
-        
+
         .animate-fadeInUp {
             animation: fadeInUp 0.8s ease-out;
         }
-        
+
         /* Hover effects pour les cartes */
         .card-hover {
             transition: all 0.3s ease;
         }
-        
+
         .card-hover:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-        
+
         /* Gradient overlay pour améliorer la lisibilité */
         .gradient-overlay {
             background: linear-gradient(45deg, rgba(236, 112, 20, 0.1), rgba(221, 86, 10, 0.1));
@@ -166,7 +165,7 @@
                         <i class="fas fa-cut mr-2"></i>Salon Premium
                     </h1>
                 </div>
-                
+
                 <!-- Menu Desktop -->
                 <div class="hidden lg:flex space-x-8">
                     <a href="#home" class="nav-link text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">Accueil</a>
@@ -177,20 +176,20 @@
                     <a href="#testimonial" class="nav-link text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">Avis</a>
                     <a href="#contact" class="nav-link text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">Contact</a>
                 </div>
-                
+
                 <!-- Bouton de réservation -->
                 <div class="hidden lg:block">
                     <a href="#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
                         Réserver
                     </a>
                 </div>
-                
+
                 <!-- Menu Mobile -->
                 <button id="mobile-menu-btn" class="lg:hidden text-secondary-700 hover:text-primary-600 transition-colors duration-300">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
-            
+
             <!-- Menu Mobile Dropdown -->
             <div id="mobile-menu" class="lg:hidden hidden bg-white rounded-lg shadow-xl mt-2 p-4">
                 <div class="flex flex-col space-y-4">
@@ -268,7 +267,7 @@
                     Découvrez notre gamme complète de services professionnels, conçus pour révéler votre beauté naturelle avec expertise et passion
                 </p>
             </div>
-            
+
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20" data-editable="service-item">
                     <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
@@ -279,7 +278,7 @@
                         Coupe précise aux ciseaux pour un résultat parfaitement adapté à votre morphologie et style personnel
                     </p>
                 </div>
-                
+
                 <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20" data-editable="service-item">
                     <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
                         <img src="img/icons/razor-1.png" alt="Rasoir" class="w-10 h-10 filter brightness-0 invert">
@@ -289,7 +288,7 @@
                         Technique au rasoir pour des coupes texturées et un style moderne unique qui met en valeur votre personnalité
                     </p>
                 </div>
-                
+
                 <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20" data-editable="service-item">
                     <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
                         <img src="img/icons/brush.png" alt="Rasage" class="w-10 h-10 filter brightness-0 invert">
@@ -299,7 +298,7 @@
                         Rasage traditionnel à l'ancienne pour une peau parfaitement lisse avec soins personnalisés
                     </p>
                 </div>
-                
+
                 <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20" data-editable="service-item">
                     <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
                         <img src="img/icons/hair-clip.png" alt="Tondeuse" class="w-10 h-10 filter brightness-0 invert">
@@ -383,74 +382,6 @@
         </div>
     </section>
 
-    <!-- Section Tarifs -->
-    <section id="price" class="price-bg py-20" data-editable="true">
-        <div class="container mx-auto px-4 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-white mb-6" data-editable="text">
-                    Nos Tarifs Premium
-                </h2>
-                <p class="text-xl text-gray-200 max-w-3xl mx-auto" data-editable="text">
-                    Des prix transparents pour des services d'exception
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300" data-editable="price-item">
-                    <div class="text-6xl font-serif font-bold text-primary-600 mb-2" data-editable="text">39€</div>
-                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4" data-editable="text">Coupe Classique</h3>
-                    <p class="text-secondary-600 mb-6" data-editable="text">
-                        Coupe personnalisée avec shampooing et styling inclus
-                    </p>
-                    <a href="https://wa.me/22900000000?text=Je souhaite réserver une coupe classique (39€)" 
-                       class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
-                       target="_blank">
-                        Réserver
-                    </a>
-                </div>
-                
-                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300" data-editable="price-item">
-                    <div class="text-6xl font-serif font-bold text-primary-600 mb-2" data-editable="text">27€</div>
-                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4" data-editable="text">Rasage Premium</h3>
-                    <p class="text-secondary-600 mb-6" data-editable="text">
-                        Rasage traditionnel avec soins avant et après rasage
-                    </p>
-                    <a href="https://wa.me/22900000000?text=Je souhaite réserver un rasage premium (27€)" 
-                       class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
-                       target="_blank">
-                        Réserver
-                    </a>
-                </div>
-                
-                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300" data-editable="price-item">
-                    <div class="text-6xl font-serif font-bold text-primary-600 mb-2" data-editable="text">20€</div>
-                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4" data-editable="text">Moustache</h3>
-                    <p class="text-secondary-600 mb-6" data-editable="text">
-                        Taille et mise en forme de moustache avec finition soignée
-                    </p>
-                    <a href="https://wa.me/22900000000?text=Je souhaite réserver un service moustache (20€)" 
-                       class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
-                       target="_blank">
-                        Réserver
-                    </a>
-                </div>
-                
-                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300" data-editable="price-item">
-                    <div class="text-6xl font-serif font-bold text-primary-600 mb-2" data-editable="text">15€</div>
-                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4" data-editable="text">Taille Barbe</h3>
-                    <p class="text-secondary-600 mb-6" data-editable="text">
-                        Taille et structuration de barbe avec soins hydratants
-                    </p>
-                    <a href="https://wa.me/22900000000?text=Je souhaite réserver une taille de barbe (15€)" 
-                       class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
-                       target="_blank">
-                        Réserver
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Section Notre Équipe -->
     <section id="team" class="py-20 bg-secondary-900" data-editable="true">
         <div class="container mx-auto px-4 lg:px-8">
@@ -462,7 +393,7 @@
                     Rencontrez nos coiffeurs passionnés qui mettront leur expertise au service de votre beauté
                 </p>
             </div>
-            
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <!-- Membre 1 -->
                 <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20 card-hover" data-editable="team-member">
@@ -488,7 +419,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Membre 2 -->
                 <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20 card-hover" data-editable="team-member">
                     <div class="relative mb-6">
@@ -513,7 +444,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Membre 3 -->
                 <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20 card-hover" data-editable="team-member">
                     <div class="relative mb-6">
@@ -539,7 +470,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Call to action -->
             <div class="text-center mt-16">
                 <p class="text-xl text-gray-200 mb-8" data-editable="text">
@@ -560,6 +491,74 @@
         </div>
     </section>
 
+    <!-- Section Tarifs -->
+    <section id="price" class="price-bg py-20" data-editable="true">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-white mb-6" data-editable="text">
+                    Nos Tarifs Premium
+                </h2>
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto" data-editable="text">
+                    Des prix transparents pour des services d'exception
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300" data-editable="price-item">
+                    <div class="text-6xl font-serif font-bold text-primary-600 mb-2" data-editable="text">39€</div>
+                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4" data-editable="text">Coupe Classique</h3>
+                    <p class="text-secondary-600 mb-6" data-editable="text">
+                        Coupe personnalisée avec shampooing et styling inclus
+                    </p>
+                    <a href="https://wa.me/22900000000?text=Je souhaite réserver une coupe classique (39€)" 
+                       class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
+                       target="_blank">
+                        Réserver
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300" data-editable="price-item">
+                    <div class="text-6xl font-serif font-bold text-primary-600 mb-2" data-editable="text">27€</div>
+                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4" data-editable="text">Rasage Premium</h3>
+                    <p class="text-secondary-600 mb-6" data-editable="text">
+                        Rasage traditionnel avec soins avant et après rasage
+                    </p>
+                    <a href="https://wa.me/22900000000?text=Je souhaite réserver un rasage premium (27€)" 
+                       class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
+                       target="_blank">
+                        Réserver
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300" data-editable="price-item">
+                    <div class="text-6xl font-serif font-bold text-primary-600 mb-2" data-editable="text">20€</div>
+                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4" data-editable="text">Moustache</h3>
+                    <p class="text-secondary-600 mb-6" data-editable="text">
+                        Taille et mise en forme de moustache avec finition soignée
+                    </p>
+                    <a href="https://wa.me/22900000000?text=Je souhaite réserver un service moustache (20€)" 
+                       class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
+                       target="_blank">
+                        Réserver
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300" data-editable="price-item">
+                    <div class="text-6xl font-serif font-bold text-primary-600 mb-2" data-editable="text">15€</div>
+                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4" data-editable="text">Taille Barbe</h3>
+                    <p class="text-secondary-600 mb-6" data-editable="text">
+                        Taille et structuration de barbe avec soins hydratants
+                    </p>
+                    <a href="https://wa.me/22900000000?text=Je souhaite réserver une taille de barbe (15€)" 
+                       class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
+                       target="_blank">
+                        Réserver
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Section Témoignages -->
     <section id="testimonial" class="testimonial-bg py-20" data-editable="true">
         <div class="container mx-auto px-4 lg:px-8">
@@ -571,7 +570,7 @@
                     Découvrez les témoignages de nos clients satisfaits
                 </p>
             </div>
-            
+
             <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
                 <div class="bg-white rounded-3xl p-8 shadow-2xl relative" data-editable="testimonial-item">
                     <div class="text-6xl text-primary-200 absolute -top-4 -left-4">
@@ -590,7 +589,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="bg-white rounded-3xl p-8 shadow-2xl relative" data-editable="testimonial-item">
                     <div class="text-6xl text-primary-200 absolute -top-4 -left-4">
                         <i class="fas fa-quote-left"></i>
@@ -623,7 +622,7 @@
                     <p class="text-xl text-gray-300 leading-relaxed" data-editable="text">
                         Prêt pour une transformation ? Contactez-nous dès maintenant pour réserver votre rendez-vous dans notre salon premium.
                     </p>
-                    
+
                     <div class="space-y-6">
                         <div class="flex items-center">
                             <div class="bg-primary-600 w-12 h-12 rounded-full flex items-center justify-center mr-4">
@@ -634,7 +633,7 @@
                                 <p class="text-gray-300" data-editable="text">123 Avenue des Champs, 75001 Paris</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-center">
                             <div class="bg-primary-600 w-12 h-12 rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-phone text-white"></i>
@@ -644,7 +643,7 @@
                                 <p class="text-gray-300" data-editable="text">+229 00 00 00 00</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-center">
                             <div class="bg-primary-600 w-12 h-12 rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-clock text-white"></i>
@@ -655,7 +654,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="https://wa.me/22900000000?text=Bonjour, je souhaite prendre rendez-vous dans votre salon premium." 
                            class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl text-center" 
@@ -668,13 +667,13 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="bg-white rounded-3xl p-8 shadow-2xl">
                     <form class="space-y-6" id="contact-form">
                         <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-6">
                             Réservez votre RDV
                         </h3>
-                        
+
                         <div class="grid md:grid-cols-2 gap-4">
                             <div>
                                 <input type="text" 
@@ -691,7 +690,7 @@
                                        class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary-600 focus:ring-2 focus:ring-primary-200 transition-all duration-300">
                             </div>
                         </div>
-                        
+
                         <div class="grid md:grid-cols-2 gap-4">
                             <div>
                                 <input type="email" 
@@ -710,14 +709,14 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div>
                             <textarea name="message"
                                       placeholder="Message (optionnel)" 
                                       rows="4" 
                                       class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary-600 focus:ring-2 focus:ring-primary-200 transition-all duration-300"></textarea>
                         </div>
-                        
+
                         <button type="submit" 
                                 class="w-full bg-primary-600 hover:bg-primary-700 text-white py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                             Envoyer la demande
@@ -773,7 +772,7 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
-                    
+
                     // Fermer le menu mobile si ouvert
                     const mobileMenu = document.getElementById('mobile-menu');
                     mobileMenu.classList.add('hidden');
@@ -819,22 +818,22 @@
         // Gestion du formulaire de contact
         document.querySelector('#contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             // Récupérer les données du formulaire
             const formData = new FormData(this);
             const name = formData.get('name');
             const phone = formData.get('phone');
             const service = formData.get('service');
             const message = formData.get('message');
-            
+
             // Créer le message WhatsApp
             const whatsappMessage = `Bonjour, je souhaite prendre rendez-vous :
-            
+
 Nom: ${name}
 Téléphone: ${phone}
 Service: ${service}
 Message: ${message || 'Aucun message supplémentaire'}`;
-            
+
             // Rediriger vers WhatsApp
             const whatsappUrl = `https://wa.me/22900000000?text=${encodeURIComponent(whatsappMessage)}`;
             window.open(whatsappUrl, '_blank');
@@ -844,7 +843,7 @@ Message: ${message || 'Aucun message supplémentaire'}`;
         window.addEventListener('scroll', function() {
             const scrolled = window.pageYOffset;
             const parallaxElements = document.querySelectorAll('.hero-bg, .service-bg, .price-bg');
-            
+
             parallaxElements.forEach(el => {
                 const speed = 0.5;
                 el.style.transform = `translateY(${scrolled * speed}px)`;
