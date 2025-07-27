@@ -233,6 +233,30 @@
             border: 2px solid #fff;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
+
+        .logo-container {
+            flex-shrink: 0;
+        }
+
+        .main-logo {
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .main-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .slogan-container {
+            border-left: 2px solid var(--primary-color);
+            padding-left: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .slogan-container {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -249,12 +273,17 @@
     <!-- Navigation -->
     <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm shadow-lg transition-all duration-300">
         <div class="container mx-auto px-4 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <h1 id="logo-text" class="text-2xl lg:text-3xl font-serif font-bold text-primary-dynamic">
-                        <i class="fas fa-cut mr-2"></i><span class="editable" data-field="logo_text">Salon Premium</span>
-                    </h1>
+            <div class="flex justify-between items-center py-6">
+                <!-- Logo et Slogan -->
+                <div class="flex items-center space-x-4">
+                    <div class="logo-container">
+                        <img id="main-logo" src="./img/logo.png" alt="Logo" class="h-16 w-auto object-contain main-logo">
+                    </div>
+                    <div class="slogan-container hidden lg:block">
+                        <p class="text-sm italic text-gray-600 max-w-xs leading-relaxed editable" data-field="main_slogan">
+                            Le style, c'est une signature. La vôtre commence ici.
+                        </p>
+                    </div>
                 </div>
 
                 <!-- Menu Desktop -->
@@ -878,6 +907,28 @@
                         </div>
                     </div>
 
+                    <!-- Logo et Slogan -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-3 text-gray-700">
+                            <i class="fas fa-image mr-2"></i>Logo et Slogan
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-2">Logo principal</label>
+                                <div class="image-upload-preview" data-target="main-logo">
+                                    <img src="./img/logo.png" alt="Logo actuel" class="w-full h-full object-contain">
+                                </div>
+                                <input type="file" id="main_logo_upload" accept="image/*" class="hidden">
+                                <p class="text-xs text-gray-500 mt-1">Taille recommandée: 200x60px</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Slogan</label>
+                                <textarea id="edit_main_slogan" rows="2" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="Le style, c'est une signature. La vôtre commence ici."></textarea>
+                                <p class="text-xs text-gray-500 mt-1">Phrase d'accroche affichée à côté du logo</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Images de fond -->
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <h3 class="font-semibold mb-3 text-gray-700">
@@ -995,10 +1046,6 @@
                             <i class="fas fa-edit mr-2"></i>Contenu textuel
                         </h3>
                         <div class="space-y-3">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Nom du salon</label>
-                                <input type="text" id="edit_logo_text" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="Salon Premium">
-                            </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-600 mb-1">Titre principal</label>
                                 <input type="text" id="edit_hero_title" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="L'Excellence en Coiffure">
@@ -1203,6 +1250,7 @@
             });
 
             // Gestionnaires d'upload
+            setupImageUpload('main_logo_upload', updateMainLogo);
             setupImageUpload('hero_bg_upload', updateHeroBackground);
             setupImageUpload('services_bg_upload', updateServicesBackground);
             setupImageUpload('about_bg_upload', updateAboutBackground);
@@ -1235,6 +1283,18 @@
         }
 
         // Fonctions de mise à jour des images
+        function updateMainLogo(src) {
+            const mainLogo = document.getElementById('main-logo');
+            if (mainLogo) {
+                mainLogo.src = src;
+                // Mettre à jour aussi l'aperçu dans le panneau d'édition
+                const preview = document.querySelector('.image-upload-preview[data-target="main-logo"] img');
+                if (preview) {
+                    preview.src = src;
+                }
+            }
+        }
+
         function updateHeroBackground(src) {
             const heroSection = document.getElementById('home');
             if (heroSection) {
@@ -1341,10 +1401,10 @@
         // Charger les valeurs actuelles
         function loadCurrentValues() {
             // Charger les valeurs des champs de texte
-            const logoText = document.querySelector('[data-field="logo_text"]');
-            if (logoText) {
-                const logoInput = document.getElementById('edit_logo_text');
-                if (logoInput) logoInput.value = logoText.textContent;
+            const mainSlogan = document.querySelector('[data-field="main_slogan"]');
+            if (mainSlogan) {
+                const sloganInput = document.getElementById('edit_main_slogan');
+                if (sloganInput) sloganInput.value = mainSlogan.textContent;
             }
 
             const heroTitle = document.querySelector('[data-field="hero_title"]');
@@ -1390,10 +1450,10 @@
 
         // Appliquer les modifications de texte
         function applyTextChanges() {
-            const logoInput = document.getElementById('edit_logo_text');
-            if (logoInput && logoInput.value.trim()) {
-                const logoElements = document.querySelectorAll('[data-field="logo_text"]');
-                logoElements.forEach(el => el.textContent = logoInput.value.trim());
+            const sloganInput = document.getElementById('edit_main_slogan');
+            if (sloganInput && sloganInput.value.trim()) {
+                const sloganElements = document.querySelectorAll('[data-field="main_slogan"]');
+                sloganElements.forEach(el => el.textContent = sloganInput.value.trim());
             }
 
             const heroInput = document.getElementById('edit_hero_title');
