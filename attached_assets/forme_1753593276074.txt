@@ -1,0 +1,96 @@
+Tu es un développeur web expert en création d’interfaces éditables no-code. Je travaille sur un template HTML/CSS (déjà modernisé avec Tailwind CSS), et je veux le rendre **entièrement éditable sans perturber sa structure ou son design**.
+
+Ton objectif est de transformer ce template en une version modifiable **par formulaire ou par interface graphique**, pour que je puisse modifier :
+- Les textes
+- Les images
+- Le logo
+- Les couleurs
+- Les liens (ex : bouton WhatsApp)
+
+Voici exactement ce que je veux que tu mettes en place :
+
+---
+
+### 🧱 1. Rendre chaque section éditable
+- Chaque section du site (header, hero, services, contact, etc.) doit avoir un `id` ou `data-section`
+  Exemple : `<section id="hero" data-editable="true">`
+- Les éléments texte (titres, paragraphes, boutons) doivent avoir un attribut unique comme :
+  - `data-field="hero_title"`
+  - `data-field="cta_button_text"`
+- Les images doivent avoir un `data-field` également :
+  - `data-field="hero_image"`
+
+---
+
+### 📄 2. Créer un fichier `content.json` qui contient toutes les données à injecter dynamiquement
+Exemple de structure JSON :
+
+```json
+{
+  "logo": "img/logo1.png",
+  "theme": {
+    "primaryColor": "#ff6600",
+    "secondaryColor": "#ffffff",
+    "font": "Inter"
+  },
+  "hero": {
+    "title": "Bienvenue chez Coiffure Express",
+    "subtitle": "Tresses, coupes et soins capillaires à petit prix",
+    "image": "img/hero.jpg",
+    "button": {
+      "text": "Réserver sur WhatsApp",
+      "link": "https://wa.me/22900000000"
+    }
+  }
+}
+
+
+🧠 3. Créer un script JavaScript qui charge dynamiquement ce contenu JSON dans le HTML
+Le script lit content.json et insère chaque valeur dans l’élément HTML correspondant (data-field)
+
+Pour les images, le script remplace le src tout en conservant les classes CSS existantes (arrondis, filtres, etc.)
+
+🧪 4. Ajouter une interface simple d’édition dans le navigateur (ou dans une autre page)
+Crée une page editor.html ou une sidebar flottante
+
+Cette interface doit afficher un formulaire avec :
+
+Texte éditable pour chaque champ
+
+Upload de fichier pour images (logo, slide)
+
+Sélecteur de couleur pour les couleurs de thème
+
+Aperçu en live de la modification (dans une iframe ou div à droite)
+
+🎨 5. Appliquer automatiquement les styles définis dans le JSON
+primaryColor et secondaryColor doivent être injectés dans des classes dynamiques
+Exemple : appliquer bg-[primaryColor], text-[primaryColor], etc.
+
+Les changements de police ou d'image doivent conserver les classes Tailwind existantes
+
+Si une image est remplacée, le style visuel doit rester (ex: rounded-lg, filter, etc.)
+
+📤 6. Ajouter un bouton pour télécharger le site personnalisé
+Le bouton “Exporter” doit générer un ZIP contenant :
+
+index.html mis à jour
+
+content.json
+
+Images utilisées
+
+CSS/JS nécessaires
+
+Optionnel : bouton “Publier sur Netlify” (avec lien ou instructions)
+
+📌 Résultat attendu :
+Le template devient éditable sans coder
+
+Toute modification se fait via un JSON ou interface visuelle
+
+Le rendu reste propre, cohérent, design intact
+
+Le site peut être exporté ou publié très facilement
+
+Travaille d'abord sur une ou deux sections (hero + header), pour valider le système. N’utilise pas de librairie externe complexe sauf si nécessaire. Utilise Vanilla JS si possible. Si tu veux prévisualiser dans la même page, tu peux utiliser une iframe ou modifier le DOM en direct.
