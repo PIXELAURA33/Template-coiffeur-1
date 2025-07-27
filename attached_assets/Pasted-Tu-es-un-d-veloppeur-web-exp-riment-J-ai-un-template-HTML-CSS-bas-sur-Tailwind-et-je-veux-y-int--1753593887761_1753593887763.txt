@@ -1,0 +1,60 @@
+Tu es un développeur web expérimenté. J’ai un template HTML/CSS basé sur Tailwind, et je veux y intégrer un système d’édition **invisible pour le visiteur**, que **seul moi (l’administrateur)** pourra activer.
+
+Voici ce que je veux exactement :
+
+---
+
+### 🔒 1. Mode édition uniquement accessible via un mot-clé spécial
+- Par défaut, le site s’affiche normalement (landing page publique)
+- Le mode édition ne doit **pas être visible**
+- Il s’active seulement si l’URL contient un paramètre spécial :
+  Exemple : `?edit=okadmin`
+- Quand ce paramètre est présent :
+  - Affiche un **bouton “✏️ Modifier le contenu”** (flottant en bas à droite)
+  - Ce bouton déclenche l’affichage d’un **panneau latéral (ou modal)** avec tous les champs éditables
+
+---
+
+### ✍️ 2. Interface d’édition dans le site (uniquement visible en mode admin)
+- Lorsqu’on clique sur “Modifier le contenu”, un **formulaire flottant** s’ouvre :
+  - Champs pour modifier les textes (ex : titre, description, bouton)
+  - Upload pour logo et images
+  - Sélecteur de couleurs (primaire, secondaire)
+- Le contenu modifié est appliqué **en live** sur la page (DOM manipulé en JS)
+- Les images remplacées doivent **garder le style existant** (coins arrondis, filtres)
+
+---
+
+### ✅ 3. Bouton “Valider” et “Télécharger la version finale”
+- Après modification, affiche deux boutons :
+  - ✅ `Valider les changements`
+  - 📥 `Télécharger le site`
+- Le bouton “Télécharger” génère un ZIP contenant :
+  - Un `index.html` propre (avec le contenu final)
+  - Les images utilisées
+  - Le CSS et JS nécessaires
+  - Sans aucun script d’édition, ni bouton modifier
+- Le code final doit être propre et **utilisable immédiatement** (hébergement ou livraison client)
+
+---
+
+### 📄 4. Structure recommandée
+- `index.html` : page publique + édition activable par paramètre
+- `editor.js` : logique de modification et d’export
+- `content.json` (optionnel) : pour stocker temporairement les données modifiées
+- `style.css` ou Tailwind intégré
+
+---
+
+### 🔐 Résumé impératif :
+- Le système d’édition **ne doit jamais être visible sans le paramètre ?edit=okadmin**
+- Le site exporté doit être **propre, sans script ni trace d’édition**
+- Tu dois me proposer un code simple, clair, et maintenable
+- Utilise uniquement JavaScript natif ou bibliothèques légères (pas React ou framework complexe)
+
+Commence par une version avec :  
+- Une section `hero` (titre, image, bouton WhatsApp)  
+- Un logo modifiable  
+- Un thème couleur personnalisable
+
+Fais en sorte que tout fonctionne **dans une seule page HTML**. Je veux garder le projet simple à copier, éditer et exporter.
