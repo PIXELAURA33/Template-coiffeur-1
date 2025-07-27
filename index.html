@@ -239,14 +239,21 @@
 
         .main-logo {
             transition: all 0.3s ease;
-            filter: sepia(100%) saturate(200%) hue-rotate(25deg) brightness(1.2) drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-            max-height: 80px;
+            filter: brightness(1.1) contrast(1.1) drop-shadow(0 2px 8px rgba(236, 112, 20, 0.3));
+            max-height: 64px;
             width: auto;
             object-fit: contain;
         }
 
         .main-logo:hover {
             transform: scale(1.05);
+            filter: brightness(1.2) contrast(1.2) drop-shadow(0 4px 12px rgba(236, 112, 20, 0.4));
+        }
+
+        .backup-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .slogan-container {
@@ -312,9 +319,10 @@
                 <!-- Logo et Slogan -->
                 <div class="flex items-center space-x-6">
                     <div class="logo-container">
-                        <img id="main-logo" src="./img/logo.png" alt="Logo Salon Premium" class="h-20 w-auto object-contain main-logo" style="filter: sepia(100%) saturate(200%) hue-rotate(25deg) brightness(1.2); max-width: 200px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <div class="backup-logo" style="display: none; color: var(--primary-color); font-size: 2rem; font-weight: bold; font-family: serif;">
-                            <i class="fas fa-cut mr-2"></i>Salon Premium
+                        <img id="main-logo" src="./img/logo.png" alt="Logo Salon Premium" class="h-16 lg:h-20 w-auto object-contain main-logo" style="filter: brightness(1) saturate(1) hue-rotate(0deg); max-width: 180px; max-height: 64px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="backup-logo" style="display: none; color: var(--primary-color); font-size: 1.8rem; font-weight: bold; font-family: serif; align-items: center;">
+                            <i class="fas fa-cut mr-2 text-2xl"></i>
+                            <span>Salon Premium</span>
                         </div>
                     </div>
                     <div class="slogan-container hidden lg:block">
@@ -1325,8 +1333,14 @@
             const mainLogo = document.getElementById('main-logo');
             if (mainLogo) {
                 mainLogo.src = src;
-                // Appliquer le filtre couleur orange
-                mainLogo.style.filter = 'sepia(100%) saturate(200%) hue-rotate(25deg) brightness(1.2) drop-shadow(0 2px 4px rgba(0,0,0,0.1))';
+                mainLogo.style.display = 'block';
+                // Appliquer un filtre plus subtil
+                mainLogo.style.filter = 'brightness(1.1) contrast(1.1) drop-shadow(0 2px 8px rgba(236, 112, 20, 0.3))';
+                // Cacher le logo de secours
+                const backupLogo = mainLogo.nextElementSibling;
+                if (backupLogo) {
+                    backupLogo.style.display = 'none';
+                }
                 // Mettre à jour aussi l'aperçu dans le panneau d'édition
                 const preview = document.querySelector('.image-upload-preview[data-target="main-logo"] img');
                 if (preview) {
@@ -1641,6 +1655,22 @@
                 } catch (e) {
                     console.error('Erreur lors du chargement des paramètres:', e);
                 }
+            }
+
+            // Vérifier si le logo se charge correctement
+            const mainLogo = document.getElementById('main-logo');
+            if (mainLogo) {
+                mainLogo.onload = function() {
+                    console.log('✅ Logo chargé avec succès');
+                    this.style.display = 'block';
+                    this.nextElementSibling.style.display = 'none';
+                };
+                
+                mainLogo.onerror = function() {
+                    console.log('⚠️ Erreur de chargement du logo, affichage du logo de secours');
+                    this.style.display = 'none';
+                    this.nextElementSibling.style.display = 'flex';
+                };
             }
         });
 
