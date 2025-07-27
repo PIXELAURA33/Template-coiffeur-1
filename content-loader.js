@@ -16,11 +16,14 @@
     function loadContent() {
         try {
             const savedContent = localStorage.getItem('salon_content');
-            if (savedContent) {
-                return JSON.parse(savedContent);
+            if (savedContent && savedContent.trim() !== '') {
+                const parsed = JSON.parse(savedContent);
+                return parsed && typeof parsed === 'object' ? parsed : defaultContent;
             }
         } catch (error) {
             console.warn('Erreur lors du chargement du contenu sauvegardé:', error);
+            // Nettoyer le localStorage en cas d'erreur
+            localStorage.removeItem('salon_content');
         }
         return defaultContent;
     }

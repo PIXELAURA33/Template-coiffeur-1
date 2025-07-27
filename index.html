@@ -513,7 +513,7 @@
                         <a href="#" class="w-10 h-10 bg-primary-600 hover:bg-primary-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
                             <i class="fab fa-instagram text-white text-sm"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-primary-600 hover:bg-primary-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                        <a href="#" class="w-10 h-10 bg-primary-600 hover:bg-primary-700 rounded-full flex items-center justify-justify transition-all duration-300 transform hover:scale-110">
                             <i class="fab fa-facebook-f text-white text-sm"></i>
                         </a>
                     </div>
@@ -1078,14 +1078,13 @@
 
                         // Mettre en surbrillance le lien actif
                         document.querySelectorAll('.nav-link').forEach(link => {
-                            link.classList.remove('text-primary-600');
-                            link.classList.add('text-secondary-700');
-                        });
+                            link.classList.remove('text-primary-600');• The code contains multiple instances of incorrect Javascript code and malformed loops that need to be fixed.                        link.classList.add('text-secondary-700');
+                    });
 
-                        if (this.classList.contains('nav-link')) {
-                            this.classList.remove('text-secondary-700');
-                            this.classList.add('text-primary-600');
-                        }
+                    if (this.classList.contains('nav-link')) {
+                        this.classList.remove('text-secondary-700');
+                        this.classList.add('text-primary-600');
+                    }
 
                         // Mettre à jour l'URL sans déclencher de rechargement
                         history.pushState(null, null, targetId);
