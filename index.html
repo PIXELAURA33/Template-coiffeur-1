@@ -741,6 +741,130 @@
     <!-- Chargement du contenu dynamique -->
     <script src="content-loader.js"></script>
 
+    <!-- Système d'édition intégré (invisible par défaut) -->
+    <div id="adminMode" class="hidden">
+        <!-- Bouton flottant d'édition -->
+        <button id="editModeBtn" class="fixed bottom-20 right-4 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-2xl z-50 transition-all duration-300 transform hover:scale-110">
+            <i class="fas fa-edit text-xl"></i>
+        </button>
+
+        <!-- Panneau d'édition -->
+        <div id="editPanel" class="fixed top-0 right-0 w-96 h-full bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto hidden">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-gray-800">
+                        <i class="fas fa-edit mr-2"></i>Mode Édition
+                    </h2>
+                    <button id="closeEditPanel" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Site Info -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-3 text-gray-700">
+                            <i class="fas fa-globe mr-2"></i>Informations du Site
+                        </h3>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Titre du site</label>
+                                <input type="text" id="edit_site_title" class="w-full px-3 py-2 border rounded-md text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Nom du salon (logo)</label>
+                                <input type="text" id="edit_logo_text" class="w-full px-3 py-2 border rounded-md text-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Thème -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-3 text-gray-700">
+                            <i class="fas fa-palette mr-2"></i>Couleurs du Thème
+                        </h3>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Couleur principale</label>
+                                <input type="color" id="edit_primary_color" class="w-full h-10 border rounded-md">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Couleur WhatsApp</label>
+                                <input type="color" id="edit_accent_color" class="w-full h-10 border rounded-md">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero Section -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-3 text-gray-700">
+                            <i class="fas fa-star mr-2"></i>Section Principale
+                        </h3>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Titre principal</label>
+                                <input type="text" id="edit_hero_title" class="w-full px-3 py-2 border rounded-md text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Description</label>
+                                <textarea id="edit_hero_subtitle" rows="3" class="w-full px-3 py-2 border rounded-md text-sm"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Texte bouton principal</label>
+                                <input type="text" id="edit_cta_button" class="w-full px-3 py-2 border rounded-md text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Texte bouton WhatsApp</label>
+                                <input type="text" id="edit_whatsapp_button" class="w-full px-3 py-2 border rounded-md text-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-3 text-gray-700">
+                            <i class="fas fa-phone mr-2"></i>Contact
+                        </h3>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Numéro WhatsApp</label>
+                                <input type="text" id="edit_whatsapp_number" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="22900000000">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Téléphone</label>
+                                <input type="text" id="edit_phone" class="w-full px-3 py-2 border rounded-md text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Adresse</label>
+                                <input type="text" id="edit_address" class="w-full px-3 py-2 border rounded-md text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Horaires</label>
+                                <input type="text" id="edit_hours" class="w-full px-3 py-2 border rounded-md text-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="mt-8 space-y-3">
+                    <button id="applyChanges" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold">
+                        <i class="fas fa-check mr-2"></i>Appliquer les Modifications
+                    </button>
+                    <button id="exportSite" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold">
+                        <i class="fas fa-download mr-2"></i>Télécharger le Site Final
+                    </button>
+                    <button id="resetChanges" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold">
+                        <i class="fas fa-undo mr-2"></i>Réinitialiser
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overlay -->
+        <div id="editOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+    </div>
+
     <!-- JavaScript pour le menu mobile et les animations -->
     <script>
         // Attendre que le DOM soit complètement chargé
@@ -835,6 +959,323 @@ Message: ${message || 'Aucun message supplémentaire'}`;
                 window.open(whatsappUrl, '_blank');
             });
         }
+
+        // SYSTÈME D'ÉDITION INTÉGRÉ
+        class InlineEditor {
+            constructor() {
+                this.content = {
+                    site: { title: "Salon Premium", logo: { text: "Salon Premium" } },
+                    theme: { primaryColor: "#ec7014", accentColor: "#22c55e" },
+                    hero: { 
+                        title: "L'Excellence en Coiffure", 
+                        subtitle: "Découvrez une expérience unique dans notre salon premium. Nos experts transforment votre vision en réalité avec passion et professionnalisme.",
+                        ctaButton: "Prendre RDV",
+                        whatsappButton: "WhatsApp"
+                    },
+                    contact: { 
+                        whatsappNumber: "22900000000", 
+                        phone: "+229 00 00 00 00", 
+                        address: "123 Avenue des Champs, 75001 Paris",
+                        hours: "Lun-Sam: 9h-19h | Dim: 10h-16h"
+                    }
+                };
+                this.init();
+            }
+
+            init() {
+                // Vérifier si le mode admin est activé
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('edit') === 'okadmin') {
+                    this.enableAdminMode();
+                }
+            }
+
+            enableAdminMode() {
+                document.getElementById('adminMode').classList.remove('hidden');
+                this.loadCurrentContent();
+                this.bindEvents();
+            }
+
+            loadCurrentContent() {
+                // Charger le contenu actuel dans les champs d'édition
+                document.getElementById('edit_site_title').value = this.content.site.title;
+                document.getElementById('edit_logo_text').value = this.content.site.logo.text;
+                document.getElementById('edit_primary_color').value = this.content.theme.primaryColor;
+                document.getElementById('edit_accent_color').value = this.content.theme.accentColor;
+                document.getElementById('edit_hero_title').value = this.content.hero.title;
+                document.getElementById('edit_hero_subtitle').value = this.content.hero.subtitle;
+                document.getElementById('edit_cta_button').value = this.content.hero.ctaButton;
+                document.getElementById('edit_whatsapp_button').value = this.content.hero.whatsappButton;
+                document.getElementById('edit_whatsapp_number').value = this.content.contact.whatsappNumber;
+                document.getElementById('edit_phone').value = this.content.contact.phone;
+                document.getElementById('edit_address').value = this.content.contact.address;
+                document.getElementById('edit_hours').value = this.content.contact.hours;
+            }
+
+            bindEvents() {
+                // Bouton d'ouverture du panneau
+                document.getElementById('editModeBtn').addEventListener('click', () => {
+                    this.openEditPanel();
+                });
+
+                // Bouton de fermeture
+                document.getElementById('closeEditPanel').addEventListener('click', () => {
+                    this.closeEditPanel();
+                });
+
+                // Overlay
+                document.getElementById('editOverlay').addEventListener('click', () => {
+                    this.closeEditPanel();
+                });
+
+                // Appliquer les modifications
+                document.getElementById('applyChanges').addEventListener('click', () => {
+                    this.applyChanges();
+                });
+
+                // Exporter le site
+                document.getElementById('exportSite').addEventListener('click', () => {
+                    this.exportSite();
+                });
+
+                // Réinitialiser
+                document.getElementById('resetChanges').addEventListener('click', () => {
+                    if (confirm('Êtes-vous sûr de vouloir réinitialiser ?')) {
+                        this.resetChanges();
+                    }
+                });
+
+                // Aperçu en temps réel
+                const inputs = document.querySelectorAll('#editPanel input, #editPanel textarea');
+                inputs.forEach(input => {
+                    input.addEventListener('input', () => {
+                        this.previewChanges();
+                    });
+                });
+            }
+
+            openEditPanel() {
+                document.getElementById('editPanel').classList.remove('hidden');
+                document.getElementById('editOverlay').classList.remove('hidden');
+                setTimeout(() => {
+                    document.getElementById('editPanel').classList.remove('translate-x-full');
+                }, 10);
+            }
+
+            closeEditPanel() {
+                document.getElementById('editPanel').classList.add('translate-x-full');
+                document.getElementById('editOverlay').classList.add('hidden');
+                setTimeout(() => {
+                    document.getElementById('editPanel').classList.add('hidden');
+                }, 300);
+            }
+
+            previewChanges() {
+                this.updateContentFromForm();
+                this.applyToDOM();
+            }
+
+            updateContentFromForm() {
+                this.content.site.title = document.getElementById('edit_site_title').value;
+                this.content.site.logo.text = document.getElementById('edit_logo_text').value;
+                this.content.theme.primaryColor = document.getElementById('edit_primary_color').value;
+                this.content.theme.accentColor = document.getElementById('edit_accent_color').value;
+                this.content.hero.title = document.getElementById('edit_hero_title').value;
+                this.content.hero.subtitle = document.getElementById('edit_hero_subtitle').value;
+                this.content.hero.ctaButton = document.getElementById('edit_cta_button').value;
+                this.content.hero.whatsappButton = document.getElementById('edit_whatsapp_button').value;
+                this.content.contact.whatsappNumber = document.getElementById('edit_whatsapp_number').value;
+                this.content.contact.phone = document.getElementById('edit_phone').value;
+                this.content.contact.address = document.getElementById('edit_address').value;
+                this.content.contact.hours = document.getElementById('edit_hours').value;
+            }
+
+            applyToDOM() {
+                // Titre du site
+                document.title = this.content.site.title;
+
+                // Logo
+                const navLogo = document.querySelector('nav h1');
+                if (navLogo) {
+                    navLogo.innerHTML = `<i class="fas fa-cut mr-2"></i>${this.content.site.logo.text}`;
+                }
+
+                // Titre héro
+                const heroTitle = document.querySelector('#home h1');
+                if (heroTitle) {
+                    const parts = this.content.hero.title.split(' ');
+                    const lastWord = parts.pop();
+                    heroTitle.innerHTML = `${parts.join(' ')} <span class="text-primary-400">${lastWord}</span>`;
+                }
+
+                // Sous-titre héro
+                const heroSubtitle = document.querySelector('#home p[data-editable="text"]');
+                if (heroSubtitle) {
+                    heroSubtitle.textContent = this.content.hero.subtitle;
+                }
+
+                // Boutons
+                const ctaButtons = document.querySelectorAll('a[href="#contact"]:not([target="_blank"])');
+                ctaButtons.forEach(btn => {
+                    if (btn.textContent.includes('Prendre RDV') || btn.textContent.includes('Réserver')) {
+                        btn.innerHTML = btn.innerHTML.replace(/Prendre RDV|Réserver/g, this.content.hero.ctaButton);
+                    }
+                });
+
+                // Couleurs
+                this.applyTheme();
+
+                // Contact
+                this.applyContactInfo();
+
+                this.showNotification('Aperçu mis à jour !', 'info');
+            }
+
+            applyTheme() {
+                const { primaryColor, accentColor } = this.content.theme;
+                
+                // Appliquer aux éléments avec classes Tailwind
+                const primaryElements = document.querySelectorAll('.bg-primary-600, .hover\\:bg-primary-700');
+                primaryElements.forEach(el => {
+                    el.style.backgroundColor = primaryColor;
+                });
+
+                const accentElements = document.querySelectorAll('.bg-green-500, .hover\\:bg-green-600');
+                accentElements.forEach(el => {
+                    el.style.backgroundColor = accentColor;
+                });
+            }
+
+            applyContactInfo() {
+                // WhatsApp
+                const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+                whatsappLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    const newHref = href.replace(/wa\.me\/\d+/, `wa.me/${this.content.contact.whatsappNumber}`);
+                    link.setAttribute('href', newHref);
+                });
+
+                // Téléphone dans le contenu
+                const phoneElements = document.querySelectorAll('#contact p');
+                phoneElements.forEach(el => {
+                    if (el.textContent.includes('+229')) {
+                        el.textContent = this.content.contact.phone;
+                    }
+                    if (el.textContent.includes('Avenue') || el.textContent.includes('Paris')) {
+                        el.textContent = this.content.contact.address;
+                    }
+                    if (el.textContent.includes('Lun-Sam')) {
+                        el.textContent = this.content.contact.hours;
+                    }
+                });
+            }
+
+            applyChanges() {
+                this.updateContentFromForm();
+                this.applyToDOM();
+                this.closeEditPanel();
+                this.showNotification('Modifications appliquées avec succès !', 'success');
+            }
+
+            exportSite() {
+                this.updateContentFromForm();
+
+                // Générer le HTML propre
+                const cleanHTML = this.generateCleanHTML();
+                
+                // Créer et télécharger le fichier
+                const blob = new Blob([cleanHTML], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'salon-premium-final.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                this.showNotification('Site exporté avec succès !', 'success');
+            }
+
+            generateCleanHTML() {
+                // Cloner le document actuel
+                const docClone = document.cloneNode(true);
+                
+                // Supprimer tous les éléments d'édition
+                const adminMode = docClone.getElementById('adminMode');
+                if (adminMode) adminMode.remove();
+
+                // Supprimer les scripts d'édition
+                const scripts = docClone.querySelectorAll('script');
+                scripts.forEach(script => {
+                    if (script.textContent.includes('InlineEditor') || script.textContent.includes('SYSTÈME D\'ÉDITION')) {
+                        script.remove();
+                    }
+                });
+
+                // Appliquer le contenu final dans le HTML
+                this.applyContentToClone(docClone);
+
+                return '<!DOCTYPE html>\n' + docClone.documentElement.outerHTML;
+            }
+
+            applyContentToClone(docClone) {
+                // Titre
+                docClone.title = this.content.site.title;
+
+                // Logo
+                const navLogo = docClone.querySelector('nav h1');
+                if (navLogo) {
+                    navLogo.innerHTML = `<i class="fas fa-cut mr-2"></i>${this.content.site.logo.text}`;
+                }
+
+                // Héro
+                const heroTitle = docClone.querySelector('#home h1');
+                if (heroTitle) {
+                    const parts = this.content.hero.title.split(' ');
+                    const lastWord = parts.pop();
+                    heroTitle.innerHTML = `${parts.join(' ')} <span class="text-primary-400">${lastWord}</span>`;
+                }
+
+                const heroSubtitle = docClone.querySelector('#home p[data-editable="text"]');
+                if (heroSubtitle) {
+                    heroSubtitle.textContent = this.content.hero.subtitle;
+                }
+
+                // Contact
+                const whatsappLinks = docClone.querySelectorAll('a[href*="wa.me"]');
+                whatsappLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    const newHref = href.replace(/wa\.me\/\d+/, `wa.me/${this.content.contact.whatsappNumber}`);
+                    link.setAttribute('href', newHref);
+                });
+            }
+
+            resetChanges() {
+                this.loadCurrentContent();
+                this.showNotification('Modifications réinitialisées', 'info');
+            }
+
+            showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = `fixed top-4 left-1/2 transform -translate-x-1/2 z-50 p-4 rounded-lg text-white max-w-sm ${
+                    type === 'success' ? 'bg-green-500' :
+                    type === 'error' ? 'bg-red-500' : 'bg-blue-500'
+                }`;
+                notification.innerHTML = `
+                    <div class="flex items-center">
+                        <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'} mr-2"></i>
+                        ${message}
+                    </div>
+                `;
+                
+                document.body.appendChild(notification);
+                setTimeout(() => notification.remove(), 3000);
+            }
+        }
+
+        // Initialize inline editor
+        window.inlineEditor = new InlineEditor();
 
         // Effet de parallaxe subtil pour les sections avec background
         window.addEventListener('scroll', function() {
