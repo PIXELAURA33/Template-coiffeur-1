@@ -1,0 +1,37 @@
+Tu es un expert en intégration web HTML/CSS et tu vas m’aider à transformer un template gratuit HTML/CSS (freemium) en une version premium, moderne et professionnelle, sans casser sa structure. Voici ce que je veux que tu fasses précisément :
+
+### 🔧 1. Modernisation du style avec Tailwind CSS :
+- Remplace ou intègre les classes CSS existantes avec des classes Tailwind.
+- Si certains éléments utilisent des fichiers `.css` personnalisés, convertis-les avec les équivalents Tailwind.
+- Supprime les styles inutiles ou redondants.
+- Assure-toi que le site reste **responsive** (mobile-first).
+- Préserve les animations ou transitions s’il y en a, ou propose des améliorations via Tailwind.
+
+### 🎨 2. Harmonisation du design :
+- Choisis une **palette de couleurs professionnelle** (par défaut) pour le fond, les textes, les boutons.
+- Applique des ombres (`shadow-*`), bordures arrondies (`rounded-*`) et padding (`p-*`) adaptés pour chaque section.
+- Utilise des polices modernes de Google Fonts (ou via Tailwind `font-*`).
+
+### 🧱 3. Rendre chaque section facilement personnalisable :
+- Structure bien le HTML pour identifier les sections : header, hero, à propos, services, contact, etc.
+- Ajoute des `id` ou `data-attributes` clairs à chaque bloc pour les rendre ciblables par un futur éditeur JS.
+  Exemple : `<section id="hero" data-editable="true">`
+- Chaque image ou texte doit pouvoir être facilement remplacé sans affecter la mise en page.
+
+### 📞 4. Ajouter un bouton WhatsApp personnalisé :
+- Ajoute un bouton d’appel à l’action (CTA) dans la section "hero" ou "contact".
+- Le bouton doit rediriger vers WhatsApp avec un lien de type :
+  `https://wa.me/22900000000?text=Bonjour, je suis intéressé par vos services.`
+- Style ce bouton pour qu’il soit bien visible (`bg-green-500`, `text-white`, `rounded-full`, `hover:bg-green-600`)
+
+### 📱 5. Optimisation mobile :
+- Utilise les breakpoints Tailwind (`sm:`, `md:`, `lg:`) pour ajuster la taille des textes, paddings, et disposition des blocs.
+- Vérifie que le menu de navigation fonctionne bien en version mobile (burger menu si besoin).
+
+### ✅ Résultat attendu :
+- Un template visuellement amélioré, moderne, 100% responsive, basé sur Tailwind CSS.
+- Prêt à être modifié (contenu, image, couleurs) sans toucher à la structure.
+- Bouton WhatsApp visible et fonctionnel.
+- Code propre, bien indenté et commenté si nécessaire.
+
+Travaille sur le fichier `index.html` principal et les fichiers liés. Ne change pas la logique du site, mais améliore son apparence, sa structure et sa flexibilité.
