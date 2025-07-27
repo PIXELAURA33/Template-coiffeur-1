@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -55,6 +56,12 @@
     </script>
 
     <style>
+        :root {
+            --primary-color: #ec7014;
+            --primary-dark: #dd560a;
+            --whatsapp-color: #25d366;
+        }
+
         .floating-whatsapp {
             position: fixed;
             bottom: 2rem;
@@ -72,18 +79,15 @@
             scroll-behavior: smooth;
         }
 
-        /* Assurer la visibilité des sections */
         section {
             position: relative;
             z-index: 1;
         }
 
-        /* Améliorer la lisibilité */
         .text-shadow {
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* Backgrounds personnalisés */
         .hero-bg {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.7)), url('./img/intro-bg-01.jpg');
             background-size: cover;
@@ -112,14 +116,12 @@
             background-attachment: scroll;
         }
 
-        /* Amélioration responsive */
         @media (max-width: 768px) {
             .hero-bg, .about-bg, .price-bg, .testimonial-bg {
                 background-attachment: scroll;
             }
         }
 
-        /* Animations d'entrée */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -135,7 +137,6 @@
             animation: fadeInUp 0.8s ease-out;
         }
 
-        /* Hover effects pour les cartes */
         .card-hover {
             transition: all 0.3s ease;
         }
@@ -145,12 +146,6 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        /* Gradient overlay pour améliorer la lisibilité */
-        .gradient-overlay {
-            background: linear-gradient(45deg, rgba(236, 112, 20, 0.1), rgba(221, 86, 10, 0.1));
-        }
-
-        /* Styles pour les effets de verre et de survol élégant */
         .glass-effect {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -167,10 +162,9 @@
         }
 
         .elegant-gradient {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.7)); /* Ajustez les couleurs selon vos besoins */
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.7));
         }
 
-        /* Animation de slide-up */
         .animate-slide-up {
             animation: slideUp 0.5s ease-out;
         }
@@ -185,6 +179,60 @@
                 transform: translateY(0);
             }
         }
+
+        /* Variables CSS pour les couleurs dynamiques */
+        .bg-primary-dynamic {
+            background-color: var(--primary-color);
+        }
+
+        .text-primary-dynamic {
+            color: var(--primary-color);
+        }
+
+        .border-primary-dynamic {
+            border-color: var(--primary-color);
+        }
+
+        .bg-whatsapp-dynamic {
+            background-color: var(--whatsapp-color);
+        }
+
+        /* Styles pour le panneau d'édition élargi */
+        #editPanel {
+            width: 500px;
+        }
+
+        .image-upload-preview {
+            width: 100px;
+            height: 100px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .image-upload-preview:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(236, 112, 20, 0.1);
+        }
+
+        .image-upload-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .color-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 
@@ -192,7 +240,7 @@
 
     <!-- Bouton WhatsApp flottant -->
     <a href="https://wa.me/22900000000?text=Bonjour, je suis intéressé par vos services de coiffure premium." 
-       class="floating-whatsapp bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110" 
+       class="floating-whatsapp bg-whatsapp-dynamic hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110" 
        target="_blank" 
        aria-label="Contactez-nous sur WhatsApp">
         <i class="fab fa-whatsapp text-2xl"></i>
@@ -204,31 +252,31 @@
             <div class="flex justify-between items-center py-4">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <h1 class="text-2xl lg:text-3xl font-serif font-bold text-primary-600">
-                        <i class="fas fa-cut mr-2"></i>Salon Premium
+                    <h1 id="logo-text" class="text-2xl lg:text-3xl font-serif font-bold text-primary-dynamic">
+                        <i class="fas fa-cut mr-2"></i><span class="editable" data-field="logo_text">Salon Premium</span>
                     </h1>
                 </div>
 
                 <!-- Menu Desktop -->
                 <div class="hidden lg:flex space-x-8">
-                    <a href="#home" class="nav-link text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">Accueil</a>
-                    <a href="#services" class="nav-link text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">Services</a>
-                    <a href="#about" class="nav-link text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">À propos</a>
-                    <a href="#team" class="nav-link text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">Équipe</a>
-                    <a href="#pricing" class="nav-link text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">Tarifs</a>
-                    <a href="#testimonials" class="nav-link text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">Avis</a>
-                    <a href="#contact" class="nav-link text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">Contact</a>
+                    <a href="#home" class="nav-link text-secondary-700 hover:text-primary-dynamic font-medium transition-colors duration-300">Accueil</a>
+                    <a href="#services" class="nav-link text-secondary-700 hover:text-primary-dynamic font-medium transition-colors duration-300">Services</a>
+                    <a href="#about" class="nav-link text-secondary-700 hover:text-primary-dynamic font-medium transition-colors duration-300">À propos</a>
+                    <a href="#team" class="nav-link text-secondary-700 hover:text-primary-dynamic font-medium transition-colors duration-300">Équipe</a>
+                    <a href="#pricing" class="nav-link text-secondary-700 hover:text-primary-dynamic font-medium transition-colors duration-300">Tarifs</a>
+                    <a href="#testimonials" class="nav-link text-secondary-700 hover:text-primary-dynamic font-medium transition-colors duration-300">Avis</a>
+                    <a href="#contact" class="nav-link text-secondary-700 hover:text-primary-dynamic font-medium transition-colors duration-300">Contact</a>
                 </div>
 
                 <!-- Bouton de réservation -->
                 <div class="hidden lg:block">
-                    <a href="#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
-                        Réserver
+                    <a href="#contact" class="bg-primary-dynamic hover:opacity-90 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        <span class="editable" data-field="cta_button">Réserver</span>
                     </a>
                 </div>
 
                 <!-- Menu Mobile -->
-                <button id="mobile-menu-btn" class="lg:hidden text-secondary-700 hover:text-primary-600 transition-colors duration-300">
+                <button id="mobile-menu-btn" class="lg:hidden text-secondary-700 hover:text-primary-dynamic transition-colors duration-300">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
@@ -236,61 +284,63 @@
             <!-- Menu Mobile Dropdown -->
             <div id="mobile-menu" class="lg:hidden hidden bg-white rounded-lg shadow-xl mt-2 p-4">
                 <div class="flex flex-col space-y-4">
-                    <a href="#home" class="text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">Accueil</a>
-                    <a href="#services" class="text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">Services</a>
-                    <a href="#about" class="text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">À propos</a>
-                    <a href="#team" class="text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">Équipe</a>
-                    <a href="#pricing" class="text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">Tarifs</a>
-                    <a href="#testimonials" class="text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">Avis</a>
-                    <a href="#contact" class="text-secondary-700 hover:text-primary-600 font-medium transition-colors duration-300">Contact</a>
-                    <a href="#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold text-center transition-all duration-300">Réserver</a>
+                    <a href="#home" class="text-secondary-700 hover:text-primary-dynamic font-medium transition-colors duration-300">Accueil</a>
+                    <a href="#services" class="text-secondary-700 hover:text-primary-dynamic font-medium transition-colors duration-300">Services</a>
+                    <a href="#about" class="text-secondary-700 hover:text-primary-dynamic font-medium transition-colors duration-300">À propos</a>
+                    <a href="#team" class="text-secondary-700 hover:text-primary-dynamic font-medium transition-colors duration-300">Équipe</a>
+                    <a href="#pricing" class="text-secondary-700 hover:text-primary-dynamic font-medium transition-colors duration-300">Tarifs</a>
+                    <a href="#testimonials" class="text-secondary-700 hover:text-primary-dynamic font-medium transition-colors duration-300">Avis</a>
+                    <a href="#contact" class="text-secondary-700 hover:text-primary-dynamic font-medium transition-colors duration-300">Contact</a>
+                    <a href="#contact" class="bg-primary-dynamic hover:opacity-90 text-white px-6 py-3 rounded-full font-semibold text-center transition-all duration-300">
+                        <span class="editable" data-field="cta_button">Réserver</span>
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Section Hero -->
-    <section id="home" class="hero-bg min-h-screen flex items-center relative">
+    <section id="home" class="hero-bg min-h-screen flex items-center relative" data-bg-image="./img/intro-bg-01.jpg">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="text-white space-y-8">
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight">
-                        L'Excellence en 
-                        <span class="text-primary-400">Coiffure</span>
+                        <span class="editable" data-field="hero_title">L'Excellence en </span>
+                        <span class="text-primary-400 editable" data-field="hero_subtitle">Coiffure</span>
                     </h1>
-                    <p class="text-xl lg:text-2xl text-gray-200 leading-relaxed" data-editable="text">
+                    <p class="text-xl lg:text-2xl text-gray-200 leading-relaxed editable" data-field="hero_description">
                         Découvrez une expérience unique dans notre salon premium. Nos experts transforment votre vision en réalité avec passion et professionnalisme.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl text-center">
-                            Prendre RDV
+                        <a href="#contact" class="bg-primary-dynamic hover:opacity-90 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl text-center">
+                            <span class="editable" data-field="cta_button">Prendre RDV</span>
                         </a>
                         <a href="https://wa.me/22900000000?text=Bonjour, je souhaite découvrir vos services premium." 
-                           class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl text-center" 
+                           class="bg-whatsapp-dynamic hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl text-center" 
                            target="_blank">
-                            <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+                            <i class="fab fa-whatsapp mr-2"></i><span class="editable" data-field="whatsapp_button">WhatsApp</span>
                         </a>
                     </div>
                 </div>
                 <div class="hidden lg:block">
                     <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
-                        <h3 class="text-2xl font-serif font-bold text-white mb-6">Nos Spécialités</h3>
+                        <h3 class="text-2xl font-serif font-bold text-white mb-6 editable" data-field="specialties_title">Nos Spécialités</h3>
                         <div class="space-y-4">
                             <div class="flex items-center text-white">
                                 <i class="fas fa-check-circle text-primary-400 mr-3"></i>
-                                <span>Coupe sur mesure</span>
+                                <span class="editable" data-field="specialty_1">Coupe sur mesure</span>
                             </div>
                             <div class="flex items-center text-white">
                                 <i class="fas fa-check-circle text-primary-400 mr-3"></i>
-                                <span>Coloration premium</span>
+                                <span class="editable" data-field="specialty_2">Coloration premium</span>
                             </div>
                             <div class="flex items-center text-white">
                                 <i class="fas fa-check-circle text-primary-400 mr-3"></i>
-                                <span>Soins capillaires</span>
+                                <span class="editable" data-field="specialty_3">Soins capillaires</span>
                             </div>
                             <div class="flex items-center text-white">
                                 <i class="fas fa-check-circle text-primary-400 mr-3"></i>
-                                <span>Styling professionnel</span>
+                                <span class="editable" data-field="specialty_4">Styling professionnel</span>
                             </div>
                         </div>
                     </div>
@@ -300,54 +350,54 @@
     </section>
 
     <!-- Section Services -->
-    <section id="services" class="py-20 relative" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)), url('./img/sec-bg-01.jpg'); background-size: cover; background-position: center; background-attachment: fixed;" data-editable="true">
+    <section id="services" class="py-20 relative" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)), url('./img/sec-bg-01.jpg'); background-size: cover; background-position: center; background-attachment: fixed;" data-bg-image="./img/sec-bg-01.jpg">
         <div class="container mx-auto px-4 lg:px-8 relative z-10">
             <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-white mb-6" data-editable="text">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-white mb-6 editable" data-field="services_title">
                     Nos Services Premium
                 </h2>
-                <p class="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed" data-editable="text">
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed editable" data-field="services_description">
                     Découvrez notre gamme complète de services professionnels, conçus pour révéler votre beauté naturelle avec expertise et passion
                 </p>
             </div>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20" data-editable="service-item">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20">
                     <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
-                        <img src="./img/icons/scissors.png" alt="Coupe" class="w-10 h-10 filter brightness-0 invert">
+                        <img src="./img/icons/scissors.png" alt="Coupe" class="w-10 h-10 filter brightness-0 invert service-icon" data-icon="scissors">
                     </div>
-                    <h3 class="text-2xl font-serif font-bold text-white mb-4" data-editable="text">Coupe Scissor</h3>
-                    <p class="text-gray-200 leading-relaxed text-base" data-editable="text">
+                    <h3 class="text-2xl font-serif font-bold text-white mb-4 editable" data-field="service1_name">Coupe Scissor</h3>
+                    <p class="text-gray-200 leading-relaxed text-base editable" data-field="service1_description">
                         Coupe précise aux ciseaux pour un résultat parfaitement adapté à votre morphologie et style personnel
                     </p>
                 </div>
 
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20" data-editable="service-item">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20">
                     <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
-                        <img src="./img/icons/razor-1.png" alt="Rasoir" class="w-10 h-10 filter brightness-0 invert">
+                        <img src="./img/icons/razor-1.png" alt="Rasoir" class="w-10 h-10 filter brightness-0 invert service-icon" data-icon="razor">
                     </div>
-                    <h3 class="text-2xl font-serif font-bold text-white mb-4" data-editable="text">Coupe Razor</h3>
-                    <p class="text-gray-200 leading-relaxed text-base" data-editable="text">
+                    <h3 class="text-2xl font-serif font-bold text-white mb-4 editable" data-field="service2_name">Coupe Razor</h3>
+                    <p class="text-gray-200 leading-relaxed text-base editable" data-field="service2_description">
                         Technique au rasoir pour des coupes texturées et un style moderne unique qui met en valeur votre personnalité
                     </p>
                 </div>
 
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20" data-editable="service-item">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20">
                     <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
-                        <img src="./img/icons/brush.png" alt="Rasage" class="w-10 h-10 filter brightness-0 invert">
+                        <img src="./img/icons/brush.png" alt="Rasage" class="w-10 h-10 filter brightness-0 invert service-icon" data-icon="brush">
                     </div>
-                    <h3 class="text-2xl font-serif font-bold text-white mb-4" data-editable="text">Rasage Complet</h3>
-                    <p class="text-gray-200 leading-relaxed text-base" data-editable="text">
+                    <h3 class="text-2xl font-serif font-bold text-white mb-4 editable" data-field="service3_name">Rasage Complet</h3>
+                    <p class="text-gray-200 leading-relaxed text-base editable" data-field="service3_description">
                         Rasage traditionnel à l'ancienne pour une peau parfaitement lisse avec soins personnalisés
                     </p>
                 </div>
 
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20" data-editable="service-item">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20">
                     <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
-                        <img src="./img/icons/hair-clip.png" alt="Tondeuse" class="w-10 h-10 filter brightness-0 invert">
+                        <img src="./img/icons/hair-clip.png" alt="Tondeuse" class="w-10 h-10 filter brightness-0 invert service-icon" data-icon="clipper">
                     </div>
-                    <h3 class="text-2xl font-serif font-bold text-white mb-4" data-editable="text">Coupe Clipper</h3>
-                    <p class="text-gray-200 leading-relaxed text-base" data-editable="text">
+                    <h3 class="text-2xl font-serif font-bold text-white mb-4 editable" data-field="service4_name">Coupe Clipper</h3>
+                    <p class="text-gray-200 leading-relaxed text-base editable" data-field="service4_description">
                         Dégradés précis et coupes modernes réalisés avec expertise et attention aux détails
                     </p>
                 </div>
@@ -356,66 +406,66 @@
     </section>
 
     <!-- Section À propos -->
-    <section id="about" class="about-bg py-20" data-editable="true">
+    <section id="about" class="about-bg py-20" data-bg-image="./img/info-bg-01.jpg">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="space-y-8">
-                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-secondary-900 mb-6" data-editable="text">
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-secondary-900 mb-6 editable" data-field="about_title">
                         Qui Sommes-Nous
                     </h2>
-                    <p class="text-xl text-secondary-600 leading-relaxed" data-editable="text">
+                    <p class="text-xl text-secondary-600 leading-relaxed editable" data-field="about_description1">
                         Depuis plus de 15 ans, notre salon incarne l'excellence dans l'art de la coiffure. Notre équipe de professionnels passionnés vous offre une expérience unique, alliant savoir-faire traditionnel et techniques modernes.
                     </p>
-                    <p class="text-lg text-secondary-600 leading-relaxed" data-editable="text">
+                    <p class="text-lg text-secondary-600 leading-relaxed editable" data-field="about_description2">
                         Chaque coupe, chaque couleur, chaque soin est réalisé avec la plus grande attention aux détails. Nous utilisons exclusivement des produits haut de gamme pour garantir des résultats exceptionnels qui respectent la santé de vos cheveux.
                     </p>
                     <div class="flex items-center space-x-8">
                         <div class="text-center">
-                            <div class="text-3xl font-bold text-primary-600" data-editable="text">15+</div>
-                            <div class="text-secondary-600" data-editable="text">Années d'expérience</div>
+                            <div class="text-3xl font-bold text-primary-dynamic editable" data-field="stat1_number">15+</div>
+                            <div class="text-secondary-600 editable" data-field="stat1_label">Années d'expérience</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-3xl font-bold text-primary-600" data-editable="text">5000+</div>
-                            <div class="text-secondary-600" data-editable="text">Clients satisfaits</div>
+                            <div class="text-3xl font-bold text-primary-dynamic editable" data-field="stat2_number">5000+</div>
+                            <div class="text-secondary-600 editable" data-field="stat2_label">Clients satisfaits</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-3xl font-bold text-primary-600" data-editable="text">98%</div>
-                            <div class="text-secondary-600" data-editable="text">Taux de satisfaction</div>
+                            <div class="text-3xl font-bold text-primary-dynamic editable" data-field="stat3_number">98%</div>
+                            <div class="text-secondary-600 editable" data-field="stat3_label">Taux de satisfaction</div>
                         </div>
                     </div>
-                    <a href="#contact" class="inline-block bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
-                        En savoir plus
+                    <a href="#contact" class="inline-block bg-primary-dynamic hover:opacity-90 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        <span class="editable" data-field="about_cta">En savoir plus</span>
                     </a>
                 </div>
                 <div class="relative">
                     <div class="bg-white rounded-3xl p-8 shadow-2xl">
-                        <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-6">Nos Valeurs</h3>
+                        <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-6 editable" data-field="values_title">Nos Valeurs</h3>
                         <div class="space-y-4">
                             <div class="flex items-center">
                                 <div class="bg-primary-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-star text-primary-600"></i>
+                                    <i class="fas fa-star text-primary-dynamic"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-secondary-900">Excellence</h4>
-                                    <p class="text-secondary-600">Qualité irréprochable dans chaque service</p>
+                                    <h4 class="font-semibold text-secondary-900 editable" data-field="value1_title">Excellence</h4>
+                                    <p class="text-secondary-600 editable" data-field="value1_description">Qualité irréprochable dans chaque service</p>
                                 </div>
                             </div>
                             <div class="flex items-center">
                                 <div class="bg-primary-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-heart text-primary-600"></i>
+                                    <i class="fas fa-heart text-primary-dynamic"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-secondary-900">Passion</h4>
-                                    <p class="text-secondary-600">Amour du métier et de l'art capillaire</p>
+                                    <h4 class="font-semibold text-secondary-900 editable" data-field="value2_title">Passion</h4>
+                                    <p class="text-secondary-600 editable" data-field="value2_description">Amour du métier et de l'art capillaire</p>
                                 </div>
                             </div>
                             <div class="flex items-center">
                                 <div class="bg-primary-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-users text-primary-600"></i>
+                                    <i class="fas fa-users text-primary-dynamic"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-secondary-900">Écoute</h4>
-                                    <p class="text-secondary-600">À l'écoute de vos désirs et besoins</p>
+                                    <h4 class="font-semibold text-secondary-900 editable" data-field="value3_title">Écoute</h4>
+                                    <p class="text-secondary-600 editable" data-field="value3_description">À l'écoute de vos désirs et besoins</p>
                                 </div>
                             </div>
                         </div>
@@ -426,139 +476,111 @@
     </section>
 
     <!-- Section Notre Équipe -->
-    <section id="team" class="py-20 bg-secondary-900" data-editable="true">
+    <section id="team" class="py-20 bg-secondary-900">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-white mb-6" data-editable="text">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-white mb-6 editable" data-field="team_title">
                     Notre Équipe d'Experts
                 </h2>
-                <p class="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed" data-editable="text">
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed editable" data-field="team_description">
                     Rencontrez nos coiffeurs passionnés qui mettront leur expertise au service de votre beauté
                 </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <!-- Membre 1 -->
-                <div class="glass-effect rounded-3xl p-8 text-center elegant-hover shadow-2xl elegant-border animate-slide-up" data-editable="team-member">
+                <div class="glass-effect rounded-3xl p-8 text-center elegant-hover shadow-2xl elegant-border animate-slide-up">
                     <div class="relative mb-6 group">
-                        <div class="w-32 h-32 mx-auto rounded-full elegant-gradient flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300">
+                        <div class="w-32 h-32 mx-auto rounded-full elegant-gradient flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 team-photo" data-member="1">
                             <i class="fas fa-user text-5xl text-white group-hover:scale-110 transition-transform duration-300"></i>
                         </div>
-                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary-600 rounded-full p-2 elegant-hover">
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary-dynamic rounded-full p-2 elegant-hover">
                             <i class="fas fa-cut text-white text-sm"></i>
                         </div>
-                        <!-- Effet de brillance au hover -->
                         <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    <h3 class="text-2xl font-serif font-bold text-white mb-2" data-editable="text">Sophie Martin</h3>
-                    <p class="text-primary-400 font-medium mb-4" data-editable="text">Coiffeuse Senior</p>
-                    <p class="text-gray-200 text-sm leading-relaxed" data-editable="text">
+                    <h3 class="text-2xl font-serif font-bold text-white mb-2 editable" data-field="member1_name">Sophie Martin</h3>
+                    <p class="text-primary-400 font-medium mb-4 editable" data-field="member1_role">Coiffeuse Senior</p>
+                    <p class="text-gray-200 text-sm leading-relaxed editable" data-field="member1_description">
                         15 ans d'expérience dans la coiffure haut de gamme. Spécialisée en coupes tendances et colorations créatives.
                     </p>
                     <div class="flex justify-center space-x-3 mt-6">
-                        <a href="#" class="w-10 h-10 bg-primary-600 hover:bg-primary-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                        <a href="#" class="w-10 h-10 bg-primary-dynamic hover:opacity-90 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
                             <i class="fab fa-instagram text-white text-sm"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-primary-600 hover:bg-primary-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                        <a href="#" class="w-10 h-10 bg-primary-dynamic hover:opacity-90 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
                             <i class="fab fa-facebook-f text-white text-sm"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Membre 2 -->
-                <div class="glass-effect rounded-3xl p-8 text-center elegant-hover shadow-2xl elegant-border animate-slide-up" data-editable="team-member">
+                <div class="glass-effect rounded-3xl p-8 text-center elegant-hover shadow-2xl elegant-border animate-slide-up">
                     <div class="relative mb-6 group">
-                        <div class="w-32 h-32 mx-auto rounded-full elegant-gradient flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300">
+                        <div class="w-32 h-32 mx-auto rounded-full elegant-gradient flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 team-photo" data-member="2">
                             <i class="fas fa-user text-5xl text-white group-hover:scale-110 transition-transform duration-300"></i>
                         </div>
-                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary-600 rounded-full p-2 elegant-hover">
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary-dynamic rounded-full p-2 elegant-hover">
                             <i class="fas fa-cut text-white text-sm"></i>
                         </div>
-                        <!-- Effet de brillance au hover -->
                         <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    <h3 class="text-2xl font-serif font-bold text-white mb-2" data-editable="text">Alexandre Durand</h3>
-                    <p class="text-primary-400 font-medium mb-4" data-editable="text">Barbier Expert</p>
-                    <p class="text-gray-200 text-sm leading-relaxed" data-editable="text">
+                    <h3 class="text-2xl font-serif font-bold text-white mb-2 editable" data-field="member2_name">Alexandre Durand</h3>
+                    <p class="text-primary-400 font-medium mb-4 editable" data-field="member2_role">Barbier Expert</p>
+                    <p class="text-gray-200 text-sm leading-relaxed editable" data-field="member2_description">
                         Maître barbier formé aux techniques traditionnelles. Expert en rasage classique et soins de barbe.
                     </p>
                     <div class="flex justify-center space-x-3 mt-6">
-                        <a href="#" class="w-10 h-10 bg-primary-600 hover:bg-primary-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                        <a href="#" class="w-10 h-10 bg-primary-dynamic hover:opacity-90 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
                             <i class="fab fa-instagram text-white text-sm"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-primary-600 hover:bg-primary-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                        <a href="#" class="w-10 h-10 bg-primary-dynamic hover:opacity-90 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
                             <i class="fab fa-facebook-f text-white text-sm"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Membre 3 -->
-                <div class="glass-effect rounded-3xl p-8 text-center elegant-hover shadow-2xl elegant-border animate-slide-up" data-editable="team-member">
+                <div class="glass-effect rounded-3xl p-8 text-center elegant-hover shadow-2xl elegant-border animate-slide-up">
                     <div class="relative mb-6 group">
-                        <div class="w-32 h-32 mx-auto rounded-full elegant-gradient flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300">
+                        <div class="w-32 h-32 mx-auto rounded-full elegant-gradient flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 team-photo" data-member="3">
                             <i class="fas fa-user text-5xl text-white group-hover:scale-110 transition-transform duration-300"></i>
                         </div>
-                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary-600 rounded-full p-2 elegant-hover">
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary-dynamic rounded-full p-2 elegant-hover">
                             <i class="fas fa-cut text-white text-sm"></i>
                         </div>
-                        <!-- Effet de brillance au hover -->
                         <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    <h3 class="text-2xl font-serif font-bold text-white mb-2" data-editable="text">Émilie Rousseau</h3>
-                    <p class="text-primary-400 font-medium mb-4" data-editable="text">Styliste Coloriste</p>
-                    <p class="text-gray-200 text-sm leading-relaxed" data-editable="text">
+                    <h3 class="text-2xl font-serif font-bold text-white mb-2 editable" data-field="member3_name">Émilie Rousseau</h3>
+                    <p class="text-primary-400 font-medium mb-4 editable" data-field="member3_role">Styliste Coloriste</p>
+                    <p class="text-gray-200 text-sm leading-relaxed editable" data-field="member3_description">
                         Spécialiste en coloration avancée et soins capillaires. Passionnée par les tendances et l'innovation.
                     </p>
                     <div class="flex justify-center space-x-3 mt-6">
-                        <a href="#" class="w-10 h-10 bg-primary-600 hover:bg-primary-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                        <a href="#" class="w-10 h-10 bg-primary-dynamic hover:opacity-90 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
                             <i class="fab fa-instagram text-white text-sm"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-primary-600 hover:bg-primary-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                        <a href="#" class="w-10 h-10 bg-primary-dynamic hover:opacity-90 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
                             <i class="fab fa-facebook-f text-white text-sm"></i>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Statistiques de l'équipe -->
-            <div class="grid md:grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto">
-                <div class="text-center">
-                    <div class="bg-primary-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-award text-white text-2xl"></i>
-                    </div>
-                    <div class="text-3xl font-bold text-primary-400 mb-2">25+</div>
-                    <div class="text-gray-200">Années d'expérience combinées</div>
-                </div>
-                <div class="text-center">
-                    <div class="bg-primary-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-certificate text-white text-2xl"></i>
-                    </div>
-                    <div class="text-3xl font-bold text-primary-400 mb-2">12</div>
-                    <div class="text-gray-200">Certifications professionnelles</div>
-                </div>
-                <div class="text-center">
-                    <div class="bg-primary-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-star text-white text-2xl"></i>
-                    </div>
-                    <div class="text-3xl font-bold text-primary-400 mb-2">4.9</div>
-                    <div class="text-gray-200">Note moyenne clients</div>
-                </div>
-            </div>
-
             <!-- Call to action -->
             <div class="text-center mt-16">
-                <p class="text-xl text-gray-200 mb-8" data-editable="text">
+                <p class="text-xl text-gray-200 mb-8 editable" data-field="team_cta_text">
                     Envie de rencontrer notre équipe ? Prenez rendez-vous dès maintenant !
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="https://wa.me/22900000000?text=Bonjour, j'aimerais rencontrer votre équipe et prendre rendez-vous." 
-                       class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl" 
+                       class="bg-whatsapp-dynamic hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl" 
                        target="_blank">
-                        <i class="fab fa-whatsapp mr-2"></i>Contacter l'équipe
+                        <i class="fab fa-whatsapp mr-2"></i><span class="editable" data-field="team_whatsapp_button">Contacter l'équipe</span>
                     </a>
                     <a href="#contact" 
-                       class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl">
-                        <i class="fas fa-calendar-alt mr-2"></i>Prendre RDV
+                       class="bg-primary-dynamic hover:opacity-90 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl">
+                        <i class="fas fa-calendar-alt mr-2"></i><span class="editable" data-field="team_rdv_button">Prendre RDV</span>
                     </a>
                 </div>
             </div>
@@ -566,65 +588,65 @@
     </section>
 
     <!-- Section Tarifs -->
-    <section id="pricing" class="price-bg py-20" data-editable="true">
+    <section id="pricing" class="price-bg py-20" data-bg-image="./img/sec-bg-02.jpg">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-white mb-6" data-editable="text">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-white mb-6 editable" data-field="pricing_title">
                     Nos Tarifs Premium
                 </h2>
-                <p class="text-xl text-gray-200 max-w-3xl mx-auto" data-editable="text">Des prix transparents pour des services d'exception</p>
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto editable" data-field="pricing_description">Des prix transparents pour des services d'exception</p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300" data-editable="price-item">
-                    <div class="text-6xl font-serif font-bold text-primary-600 mb-2" data-editable="text">39€</div>
-                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4" data-editable="text">Coupe Classique</h3>
-                    <p class="text-secondary-600 mb-6" data-editable="text">
+                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <div class="text-6xl font-serif font-bold text-primary-dynamic mb-2 editable" data-field="price1_amount">39€</div>
+                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4 editable" data-field="price1_name">Coupe Classique</h3>
+                    <p class="text-secondary-600 mb-6 editable" data-field="price1_description">
                         Coupe personnalisée avec shampooing et styling inclus
                     </p>
                     <a href="https://wa.me/22900000000?text=Je souhaite réserver une coupe classique (39€)" 
-                       class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
+                       class="bg-primary-dynamic hover:opacity-90 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
                        target="_blank">
-                        Réserver
+                        <span class="editable" data-field="price_button">Réserver</span>
                     </a>
                 </div>
 
-                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300" data-editable="price-item">
-                    <div class="text-6xl font-serif font-bold text-primary-600 mb-2" data-editable="text">27€</div>
-                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4" data-editable="text">Rasage Premium</h3>
-                    <p class="text-secondary-600 mb-6" data-editable="text">
+                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <div class="text-6xl font-serif font-bold text-primary-dynamic mb-2 editable" data-field="price2_amount">27€</div>
+                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4 editable" data-field="price2_name">Rasage Premium</h3>
+                    <p class="text-secondary-600 mb-6 editable" data-field="price2_description">
                         Rasage traditionnel avec soins avant et après rasage
                     </p>
                     <a href="https://wa.me/22900000000?text=Je souhaite réserver un rasage premium (27€)" 
-                       class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
+                       class="bg-primary-dynamic hover:opacity-90 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
                        target="_blank">
-                        Réserver
+                        <span class="editable" data-field="price_button">Réserver</span>
                     </a>
                 </div>
 
-                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300" data-editable="price-item">
-                    <div class="text-6xl font-serif font-bold text-primary-600 mb-2" data-editable="text">20€</div>
-                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4" data-editable="text">Moustache</h3>
-                    <p class="text-secondary-600 mb-6" data-editable="text">
+                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <div class="text-6xl font-serif font-bold text-primary-dynamic mb-2 editable" data-field="price3_amount">20€</div>
+                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4 editable" data-field="price3_name">Moustache</h3>
+                    <p class="text-secondary-600 mb-6 editable" data-field="price3_description">
                         Taille et mise en forme de moustache avec finition soignée
                     </p>
                     <a href="https://wa.me/22900000000?text=Je souhaite réserver un service moustache (20€)" 
-                       class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
+                       class="bg-primary-dynamic hover:opacity-90 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
                        target="_blank">
-                        Réserver
+                        <span class="editable" data-field="price_button">Réserver</span>
                     </a>
                 </div>
 
-                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300" data-editable="price-item">
-                    <div class="text-6xl font-serif font-bold text-primary-600 mb-2" data-editable="text">15€</div>
-                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4" data-editable="text">Taille Barbe</h3>
-                    <p class="text-secondary-600 mb-6" data-editable="text">
+                <div class="bg-white rounded-3xl p-8 text-center shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <div class="text-6xl font-serif font-bold text-primary-dynamic mb-2 editable" data-field="price4_amount">15€</div>
+                    <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-4 editable" data-field="price4_name">Taille Barbe</h3>
+                    <p class="text-secondary-600 mb-6 editable" data-field="price4_description">
                         Taille et structuration de barbe avec soins hydratants
                     </p>
                     <a href="https://wa.me/22900000000?text=Je souhaite réserver une taille de barbe (15€)" 
-                       class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
+                       class="bg-primary-dynamic hover:opacity-90 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105" 
                        target="_blank">
-                        Réserver
+                        <span class="editable" data-field="price_button">Réserver</span>
                     </a>
                 </div>
             </div>
@@ -632,50 +654,50 @@
     </section>
 
     <!-- Section Témoignages -->
-    <section id="testimonials" class="testimonial-bg py-20" data-editable="true">
+    <section id="testimonials" class="testimonial-bg py-20" data-bg-image="./img/sec-bg-03.jpg">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-secondary-900 mb-6" data-editable="text">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-secondary-900 mb-6 editable" data-field="testimonials_title">
                     Ce Que Disent Nos Clients
                 </h2>
-                <p class="text-xl text-secondary-600 max-w-3xl mx-auto" data-editable="text">
+                <p class="text-xl text-secondary-600 max-w-3xl mx-auto editable" data-field="testimonials_description">
                     Découvrez les témoignages de nos clients satisfaits
                 </p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                <div class="bg-white rounded-3xl p-8 shadow-2xl relative" data-editable="testimonial-item">
+                <div class="bg-white rounded-3xl p-8 shadow-2xl relative">
                     <div class="text-6xl text-primary-200 absolute -top-4 -left-4">
                         <i class="fas fa-quote-left"></i>
                     </div>
-                    <p class="text-lg text-secondary-600 leading-relaxed mb-6 relative z-10" data-editable="text">
+                    <p class="text-lg text-secondary-600 leading-relaxed mb-6 relative z-10 editable" data-field="testimonial1_text">
                         "Une expérience exceptionnelle ! L'équipe est professionnelle et à l'écoute. Ma coupe est parfaite et le service impeccable. Je recommande vivement ce salon premium."
                     </p>
                     <div class="flex items-center">
-                        <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                        <div class="w-12 h-12 bg-primary-dynamic rounded-full flex items-center justify-center text-white font-bold mr-4 testimonial-photo" data-testimonial="1">
                             GM
                         </div>
                         <div>
-                            <h4 class="font-semibold text-secondary-900" data-editable="text">Gerald Montgomery</h4>
-                            <p class="text-secondary-500" data-editable="text">Client régulier</p>
+                            <h4 class="font-semibold text-secondary-900 editable" data-field="testimonial1_name">Gerald Montgomery</h4>
+                            <p class="text-secondary-500 editable" data-field="testimonial1_role">Client régulier</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-3xl p-8 shadow-2xl relative" data-editable="testimonial-item">
+                <div class="bg-white rounded-3xl p-8 shadow-2xl relative">
                     <div class="text-6xl text-primary-200 absolute -top-4 -left-4">
                         <i class="fas fa-quote-left"></i>
                     </div>
-                    <p class="text-lg text-secondary-600 leading-relaxed mb-6 relative z-10" data-editable="text">
+                    <p class="text-lg text-secondary-600 leading-relaxed mb-6 relative z-10 editable" data-field="testimonial2_text">
                         "Service de qualité supérieure dans un cadre élégant. Les coiffeurs sont de vrais artistes qui comprennent parfaitement nos attentes. Un salon à la hauteur de sa réputation."
                     </p>
                     <div class="flex items-center">
-                        <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                        <div class="w-12 h-12 bg-primary-dynamic rounded-full flex items-center justify-center text-white font-bold mr-4 testimonial-photo" data-testimonial="2">
                             HR
                         </div>
                         <div>
-                            <h4 class="font-semibold text-secondary-900" data-editable="text">Harper Robertson</h4>
-                            <p class="text-secondary-500" data-editable="text">Cliente fidèle</p>
+                            <h4 class="font-semibold text-secondary-900 editable" data-field="testimonial2_name">Harper Robertson</h4>
+                            <p class="text-secondary-500 editable" data-field="testimonial2_role">Cliente fidèle</p>
                         </div>
                     </div>
                 </div>
@@ -684,97 +706,92 @@
     </section>
 
     <!-- Section Contact -->
-    <section id="contact" class="bg-secondary-900 py-20" data-editable="true">
+    <section id="contact" class="bg-secondary-900 py-20">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="space-y-8">
-                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-white mb-6" data-editable="text">
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-white mb-6 editable" data-field="contact_title">
                         Contactez-Nous
                     </h2>
-                    <p class="text-xl text-gray-300 leading-relaxed" data-editable="text">
+                    <p class="text-xl text-gray-300 leading-relaxed editable" data-field="contact_description">
                         Prêt pour une transformation ? Contactez-nous dès maintenant pour réserver votre rendez-vous dans notre salon premium.
                     </p>
 
                     <div class="space-y-6">
                         <div class="flex items-center">
-                            <div class="bg-primary-600 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <div class="bg-primary-dynamic w-12 h-12 rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-map-marker-alt text-white"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-white" data-editable="text">Adresse</h4>
-                                <p class="text-gray-300" data-editable="text">123 Avenue des Champs, 75001 Paris</p>
+                                <h4 class="font-semibold text-white editable" data-field="contact_address_label">Adresse</h4>
+                                <p class="text-gray-300 editable" data-field="contact_address">123 Avenue des Champs, 75001 Paris</p>
                             </div>
                         </div>
 
                         <div class="flex items-center">
-                            <div class="bg-primary-600 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <div class="bg-primary-dynamic w-12 h-12 rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-phone text-white"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-white" data-editable="text">Téléphone</h4>
-                                <p class="text-gray-300" data-editable="text">+229 00 00 00 00</p>
+                                <h4 class="font-semibold text-white editable" data-field="contact_phone_label">Téléphone</h4>
+                                <p class="text-gray-300 editable" data-field="contact_phone">+229 00 00 00 00</p>
                             </div>
                         </div>
 
                         <div class="flex items-center">
-                            <div class="bg-primary-600 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <div class="bg-primary-dynamic w-12 h-12 rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-clock text-white"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-white" data-editable="text">Horaires</h4>
-                                <p class="text-gray-300" data-editable="text">Lun-Sam: 9h-19h | Dim: 10h-16h</p>
+                                <h4 class="font-semibold text-white editable" data-field="contact_hours_label">Horaires</h4>
+                                <p class="text-gray-300 editable" data-field="contact_hours">Lun-Sam: 9h-19h | Dim: 10h-16h</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="https://wa.me/22900000000?text=Bonjour, je souhaite prendre rendez-vous dans votre salon premium." 
-                           class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl text-center" 
+                           class="bg-whatsapp-dynamic hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl text-center" 
                            target="_blank">
-                            <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+                            <i class="fab fa-whatsapp mr-2"></i><span class="editable" data-field="contact_whatsapp_button">WhatsApp</span>
                         </a>
                         <a href="tel:+22900000000" 
-                           class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl text-center">
-                            <i class="fas fa-phone mr-2"></i>Appeler
+                           class="bg-primary-dynamic hover:opacity-90 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl text-center">
+                            <i class="fas fa-phone mr-2"></i><span class="editable" data-field="contact_call_button">Appeler</span>
                         </a>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-3xl p-8 shadow-2xl text-center">
                     <div class="space-y-6">
-                        <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-6">
+                        <h3 class="text-2xl font-serif font-bold text-secondary-900 mb-6 editable" data-field="qr_title">
                             Réservez votre RDV
                         </h3>
 
-                        <!-- QR Code Simple et Compact -->
                         <div class="flex flex-col items-center space-y-4">
                             <div class="relative">
-                                <!-- QR Code simple avec bordure -->
                                 <div class="bg-primary-50 p-4 rounded-2xl">
                                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://wa.me/22900000000?text=Bonjour,%20je%20souhaite%20prendre%20rendez-vous%20dans%20votre%20salon%20premium." 
                                          alt="QR Code WhatsApp" 
                                          class="w-32 h-32 mx-auto rounded-lg">
                                 </div>
 
-                                <!-- Icône WhatsApp compacte -->
                                 <div class="absolute -bottom-1 -right-1 bg-green-500 rounded-full p-2 shadow-lg">
                                     <i class="fab fa-whatsapp text-white text-sm"></i>
                                 </div>
                             </div>
 
-                            <!-- Instructions compactes -->
                             <div class="space-y-2">
-                                <h4 class="text-lg font-semibold text-secondary-900">
+                                <h4 class="text-lg font-semibold text-secondary-900 editable" data-field="qr_instruction">
                                     Scannez pour réserver
                                 </h4>
                             </div>
 
-                            <!-- Bouton alternatif -->
                             <div class="w-full pt-4">
                                 <a href="https://wa.me/22900000000?text=Bonjour, je souhaite prendre rendez-vous dans votre salon premium." 
                                    class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-block" 
                                    target="_blank">
-                                    <i class="fab fa-whatsapp mr-2"></i>Ouvrir WhatsApp
+                                    <i class="fab fa-whatsapp mr-2"></i><span class="editable" data-field="qr_button">Ouvrir WhatsApp</span>
                                 </a>
                             </div>
                         </div>
@@ -785,12 +802,12 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-secondary-800 py-8" data-editable="true">
+    <footer class="bg-secondary-800 py-8">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center">
                 <div class="flex justify-center items-center mb-4">
-                    <h3 class="text-2xl font-serif font-bold text-white mr-4" data-editable="text">
-                        <i class="fas fa-cut mr-2"></i>Salon Premium
+                    <h3 class="text-2xl font-serif font-bold text-white mr-4">
+                        <i class="fas fa-cut mr-2"></i><span class="editable" data-field="footer_logo">Salon Premium</span>
                     </h3>
                     <div class="flex space-x-4">
                         <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300">
@@ -804,17 +821,14 @@
                         </a>
                     </div>
                 </div>
-                <p class="text-gray-400" data-editable="text">
+                <p class="text-gray-400 editable" data-field="footer_copyright">
                     © 2025 Salon Premium. Tous droits réservés. | Créé avec passion pour l'excellence
                 </p>
             </div>
         </div>
     </footer>
 
-    <!-- Chargement du contenu dynamique -->
-    <script src="content-loader.js"></script>
-
-    <!-- Système d'édition intégré (toujours visible) -->
+    <!-- Système d'édition intégré -->
     <div id="adminMode">
         <!-- Bouton flottant d'édition -->
         <button id="editModeBtn" class="fixed bottom-20 right-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-4 rounded-full shadow-2xl z-50 transition-all duration-300 transform hover:scale-110 font-semibold">
@@ -822,117 +836,176 @@
             <span class="hidden sm:inline">Éditer</span>
         </button>
 
-        <!-- Panneau d'édition -->
-        <div id="editPanel" class="fixed top-0 right-0 w-96 h-full bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto hidden">
+        <!-- Panneau d'édition élargi -->
+        <div id="editPanel" class="fixed top-0 right-0 h-full bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto hidden">
             <div class="p-6">
                 <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-xl font-bold text-gray-800">
-                        <i class="fas fa-palette mr-2"></i>Personnaliser le Site
-                    </h2>
-                    <p class="text-sm text-gray-600 mt-1">Modifiez le contenu pour votre client</p>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800">
+                            <i class="fas fa-palette mr-2"></i>Personnaliser le Site
+                        </h2>
+                        <p class="text-sm text-gray-600 mt-1">Modifiez le contenu pour votre client</p>
+                    </div>
                     <button id="closeEditPanel" class="text-gray-500 hover:text-gray-700">
                         <i class="fas fa-times text-xl"></i>
                     </button>
                 </div>
 
                 <div class="space-y-6">
-                    <!-- Site Info -->
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <h3 class="font-semibold mb-3 text-gray-700">
-                            <i class="fas fa-globe mr-2"></i>Informations du Site
-                        </h3>
-                        <div class="space-y-3">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Titre du site</label>
-                                <input type="text" id="edit_site_title" class="w-full px-3 py-2 border rounded-md text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Nom du salon (logo)</label>
-                                <input type="text" id="edit_logo_text" class="w-full px-3 py-2 border rounded-md text-sm">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Thème -->
+                    <!-- Thème & Couleurs -->
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <h3 class="font-semibold mb-3 text-gray-700">
                             <i class="fas fa-palette mr-2"></i>Thème & Couleurs
                         </h3>
                         <div class="space-y-3">
                             <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Couleur principale du site</label>
-                                <input type="color" id="edit_primary_color" class="w-full h-10 border rounded-md">
-                                <p class="text-xs text-gray-500 mt-1">Applique la couleur aux boutons, liens, et éléments principaux</p>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Couleur principale</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="color" id="edit_primary_color" class="w-12 h-10 border rounded-md cursor-pointer" value="#ec7014">
+                                    <input type="text" id="edit_primary_color_hex" class="flex-1 px-3 py-2 border rounded-md text-sm" value="#ec7014" readonly>
+                                    <div class="color-indicator bg-primary-dynamic"></div>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-1">Couleur des boutons, liens et éléments principaux</p>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-600 mb-1">Couleur WhatsApp</label>
-                                <input type="color" id="edit_accent_color" class="w-full h-10 border rounded-md">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Style des sections</label>
-                                <select id="edit_section_style" class="w-full px-3 py-2 border rounded-md text-sm">
-                                    <option value="modern">Moderne (dégradés)</option>
-                                    <option value="classic">Classique (couleurs unies)</option>
-                                    <option value="elegant">Élégant (transparence)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Forme des boutons</label>
-                                <select id="edit_button_style" class="w-full px-3 py-2 border rounded-md text-sm">
-                                    <option value="rounded">Arrondis</option>
-                                    <option value="square">Carrés</option>
-                                    <option value="pill">Capsule</option>
-                                </select>
+                                <div class="flex items-center space-x-2">
+                                    <input type="color" id="edit_whatsapp_color" class="w-12 h-10 border rounded-md cursor-pointer" value="#25d366">
+                                    <input type="text" id="edit_whatsapp_color_hex" class="flex-1 px-3 py-2 border rounded-md text-sm" value="#25d366" readonly>
+                                    <div class="color-indicator bg-whatsapp-dynamic"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Hero Section -->
+                    <!-- Images de fond -->
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <h3 class="font-semibold mb-3 text-gray-700">
-                            <i class="fas fa-star mr-2"></i>Section Principale
+                            <i class="fas fa-image mr-2"></i>Images de fond
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-2">Image Hero (Accueil)</label>
+                                <div class="image-upload-preview" data-target="hero-bg">
+                                    <i class="fas fa-camera text-gray-400 text-2xl"></i>
+                                </div>
+                                <input type="file" id="hero_bg_upload" accept="image/*" class="hidden">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-2">Image Services</label>
+                                <div class="image-upload-preview" data-target="services-bg">
+                                    <i class="fas fa-camera text-gray-400 text-2xl"></i>
+                                </div>
+                                <input type="file" id="services_bg_upload" accept="image/*" class="hidden">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-2">Image À propos</label>
+                                <div class="image-upload-preview" data-target="about-bg">
+                                    <i class="fas fa-camera text-gray-400 text-2xl"></i>
+                                </div>
+                                <input type="file" id="about_bg_upload" accept="image/*" class="hidden">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-2">Image Tarifs</label>
+                                <div class="image-upload-preview" data-target="pricing-bg">
+                                    <i class="fas fa-camera text-gray-400 text-2xl"></i>
+                                </div>
+                                <input type="file" id="pricing_bg_upload" accept="image/*" class="hidden">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-2">Image Témoignages</label>
+                                <div class="image-upload-preview" data-target="testimonials-bg">
+                                    <i class="fas fa-camera text-gray-400 text-2xl"></i>
+                                </div>
+                                <input type="file" id="testimonials_bg_upload" accept="image/*" class="hidden">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photos d'équipe -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-3 text-gray-700">
+                            <i class="fas fa-users mr-2"></i>Photos d'équipe
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-2">Membre 1</label>
+                                <div class="image-upload-preview rounded-full" data-target="team-1">
+                                    <i class="fas fa-user text-gray-400 text-2xl"></i>
+                                </div>
+                                <input type="file" id="team1_upload" accept="image/*" class="hidden">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-2">Membre 2</label>
+                                <div class="image-upload-preview rounded-full" data-target="team-2">
+                                    <i class="fas fa-user text-gray-400 text-2xl"></i>
+                                </div>
+                                <input type="file" id="team2_upload" accept="image/*" class="hidden">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-2">Membre 3</label>
+                                <div class="image-upload-preview rounded-full" data-target="team-3">
+                                    <i class="fas fa-user text-gray-400 text-2xl"></i>
+                                </div>
+                                <input type="file" id="team3_upload" accept="image/*" class="hidden">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Icônes de services -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-3 text-gray-700">
+                            <i class="fas fa-cut mr-2"></i>Icônes de services
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-2">Icône Ciseaux</label>
+                                <div class="image-upload-preview" data-target="icon-scissors">
+                                    <i class="fas fa-cut text-gray-400 text-2xl"></i>
+                                </div>
+                                <input type="file" id="icon_scissors_upload" accept="image/*" class="hidden">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-2">Icône Rasoir</label>
+                                <div class="image-upload-preview" data-target="icon-razor">
+                                    <i class="fas fa-cut text-gray-400 text-2xl"></i>
+                                </div>
+                                <input type="file" id="icon_razor_upload" accept="image/*" class="hidden">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-2">Icône Brosse</label>
+                                <div class="image-upload-preview" data-target="icon-brush">
+                                    <i class="fas fa-cut text-gray-400 text-2xl"></i>
+                                </div>
+                                <input type="file" id="icon_brush_upload" accept="image/*" class="hidden">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-2">Icône Tondeuse</label>
+                                <div class="image-upload-preview" data-target="icon-clipper">
+                                    <i class="fas fa-cut text-gray-400 text-2xl"></i>
+                                </div>
+                                <input type="file" id="icon_clipper_upload" accept="image/*" class="hidden">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contenu textuel -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-3 text-gray-700">
+                            <i class="fas fa-edit mr-2"></i>Contenu textuel
                         </h3>
                         <div class="space-y-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Nom du salon</label>
+                                <input type="text" id="edit_logo_text" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="Salon Premium">
+                            </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-600 mb-1">Titre principal</label>
-                                <input type="text" id="edit_hero_title" class="w-full px-3 py-2 border rounded-md text-sm">
+                                <input type="text" id="edit_hero_title" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="L'Excellence en Coiffure">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Description</label>
-                                <textarea id="edit_hero_subtitle" rows="3" class="w-full px-3 py-2 border rounded-md text-sm"></textarea>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Texte bouton principal</label>
-                                <input type="text" id="edit_cta_button" class="w-full px-3 py-2 border rounded-md text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Texte bouton WhatsApp</label>
-                                <input type="text" id="edit_whatsapp_button" class="w-full px-3 py-2 border rounded-md text-sm">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Services -->
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <h3 class="font-semibold mb-3 text-gray-700">
-                            <i class="fas fa-cut mr-2"></i>Services & Tarifs
-                        </h3>
-                        <div class="space-y-3">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Service 1 (nom)</label>
-                                <input type="text" id="edit_service1_name" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="Coupe Classique">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Service 1 (prix)</label>
-                                <input type="text" id="edit_service1_price" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="39€">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Service 2 (nom)</label>
-                                <input type="text" id="edit_service2_name" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="Rasage Premium">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Service 2 (prix)</label>
-                                <input type="text" id="edit_service2_price" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="27€">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Description hero</label>
+                                <textarea id="edit_hero_description" rows="3" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="Description principale..."></textarea>
                             </div>
                         </div>
                     </div>
@@ -940,7 +1013,7 @@
                     <!-- Contact -->
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <h3 class="font-semibold mb-3 text-gray-700">
-                            <i class="fas fa-phone mr-2"></i>Contact
+                            <i class="fas fa-phone mr-2"></i>Informations de contact
                         </h3>
                         <div class="space-y-3">
                             <div>
@@ -949,48 +1022,15 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-600 mb-1">Téléphone</label>
-                                <input type="text" id="edit_phone" class="w-full px-3 py-2 border rounded-md text-sm">
+                                <input type="text" id="edit_phone" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="+229 00 00 00 00">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-600 mb-1">Adresse</label>
-                                <input type="text" id="edit_address" class="w-full px-3 py-2 border rounded-md text-sm">
+                                <input type="text" id="edit_address" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="123 Avenue des Champs, 75001 Paris">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-600 mb-1">Horaires</label>
-                                <input type="text" id="edit_hours" class="w-full px-3 py-2 border rounded-md text-sm">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Apparence -->
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <h3 class="font-semibold mb-3 text-gray-700">
-                            <i class="fas fa-brush mr-2"></i>Apparence
-                        </h3>
-                        <div class="space-y-3">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Taille des titres</label>
-                                <select id="edit_title_size" class="w-full px-3 py-2 border rounded-md text-sm">
-                                    <option value="normal">Normale</option>
-                                    <option value="large">Grande</option>
-                                    <option value="extra-large">Très grande</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Style des animations</label>
-                                <select id="edit_animation_style" class="w-full px-3 py-2 border rounded-md text-sm">
-                                    <option value="subtle">Subtiles</option>
-                                    <option value="dynamic">Dynamiques</option>
-                                    <option value="none">Aucune</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Espacement des sections</label>
-                                <select id="edit_spacing" class="w-full px-3 py-2 border rounded-md text-sm">
-                                    <option value="compact">Compact</option>
-                                    <option value="normal">Normal</option>
-                                    <option value="spacious">Espacé</option>
-                                </select>
+                                <input type="text" id="edit_hours" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="Lun-Sam: 9h-19h | Dim: 10h-16h">
                             </div>
                         </div>
                     </div>
@@ -1001,8 +1041,11 @@
                     <button id="applyChanges" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold">
                         <i class="fas fa-check mr-2"></i>Appliquer les Modifications
                     </button>
-                    <button id="exportSite" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold">
-                        <i class="fas fa-download mr-2"></i>Télécharger le Site Final
+                    <button id="previewChanges" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold">
+                        <i class="fas fa-eye mr-2"></i>Aperçu
+                    </button>
+                    <button id="exportSite" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold">
+                        <i class="fas fa-download mr-2"></i>Télécharger le Site
                     </button>
                     <button id="resetChanges" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold">
                         <i class="fas fa-undo mr-2"></i>Réinitialiser
@@ -1015,145 +1058,493 @@
         <div id="editOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
     </div>
 
-    <!-- JavaScript pour le menu mobile et les animations -->
+    <!-- Scripts -->
     <script>
         // Attendre que le DOM soit complètement chargé
         document.addEventListener('DOMContentLoaded', function() {
-            // Menu mobile avec vérification de l'élément
+            console.log('🚀 Initialisation du template');
+
+            // Menu mobile
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            if (mobileMenuBtn) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
                 mobileMenuBtn.addEventListener('click', function() {
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    if (mobileMenu) {
-                        mobileMenu.classList.toggle('hidden');
-                    }
+                    mobileMenu.classList.toggle('hidden');
                 });
             }
 
-        // Navigation smooth scroll robuste et fiable
-        function initSmoothScroll() {
+            // Navigation smooth scroll
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+                anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
-
-                    // Vérification spéciale pour les sections principales
-                    let target = document.querySelector(targetId);
-
-                    // Si la section n'est pas trouvée, essayer des alternatives
-                    if (!target) {
-                        // Mapping des sections pour résoudre les problèmes d'ancrage
-                        const sectionMap = {
-                            '#pricing': '#pricing',
-                            '#testimonials': '#testimonials',
-                            '#home': '#home',
-                            '#services': '#services',
-                            '#about': '#about',
-                            '#team': '#team',
-                            '#contact': '#contact'
-                        };
-
-                        if (sectionMap[targetId]) {
-                            target = document.querySelector(sectionMap[targetId]);
-                        }
-                    }
-
+                    const target = document.querySelector(targetId);
+                    
                     if (target) {
-                        // Calculer l'offset pour la navbar fixe
                         const navbar = document.getElementById('navbar');
                         const navbarHeight = navbar ? navbar.offsetHeight : 80;
                         const targetPosition = target.offsetTop - navbarHeight - 10;
 
-                        // Scroll avec animation fluide
                         window.scrollTo({
                             top: Math.max(0, targetPosition),
                             behavior: 'smooth'
                         });
 
-                        // Fermer le menu mobile si ouvert
-                        const mobileMenu = document.getElementById('mobile-menu');
+                        // Fermer le menu mobile
                         if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
                             mobileMenu.classList.add('hidden');
                         }
 
-                        // Mettre en surbrillance le lien actif
-// Add debugging and ensure sections are properly detected
-            // Détecter la section active en utilisant getBoundingClientRect
-            let activeSection = null;
-            sections.forEach(sectionId => {
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    const rect = section.getBoundingClientRect();
-                    // Ajuster la condition pour tenir compte de la hauteur de la navbar
-                    if (rect.top <= 100 && rect.bottom >= 100) {
-                        activeSection = `#${sectionId}`;
+                        // Mettre à jour le lien actif
+                        updateActiveNavLink(targetId);
                     }
+                });
+            });
+
+            // Mettre à jour le lien de navigation actif
+            function updateActiveNavLink(targetId) {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('text-primary-dynamic');
+                });
+
+                const activeLink = document.querySelector(`a[href="${targetId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('text-primary-dynamic');
                 }
-            });
-
-            // Mettre à jour la navigation active
-            if (activeSection) {
-                updateActiveNavLink(activeSection);
             }
+
+            // Système d'édition
+            initEditSystem();
         });
 
-        // Mettre à jour le lien de navigation actif
-        function updateActiveNavLink(targetId) {
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('text-primary-600');
+        // Initialisation du système d'édition
+        function initEditSystem() {
+            const editModeBtn = document.getElementById('editModeBtn');
+            const editPanel = document.getElementById('editPanel');
+            const editOverlay = document.getElementById('editOverlay');
+            const closeEditPanel = document.getElementById('closeEditPanel');
+
+            if (!editModeBtn || !editPanel || !editOverlay || !closeEditPanel) {
+                console.error('❌ Éléments du système d\'édition manquants');
+                return;
+            }
+
+            // Ouvrir le panneau d'édition
+            editModeBtn.addEventListener('click', function() {
+                editPanel.classList.remove('hidden');
+                editOverlay.classList.remove('hidden');
+                editPanel.style.transform = 'translateX(0)';
+                loadCurrentValues();
             });
 
-            const activeLink = document.querySelector(`a[href="${targetId}"]`);
-            if (activeLink) {
-                activeLink.classList.add('text-primary-600');
+            // Fermer le panneau d'édition
+            function closePanel() {
+                editPanel.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    editPanel.classList.add('hidden');
+                    editOverlay.classList.add('hidden');
+                }, 300);
+            }
+
+            closeEditPanel.addEventListener('click', closePanel);
+            editOverlay.addEventListener('click', closePanel);
+
+            // Gestion des couleurs
+            setupColorHandlers();
+            
+            // Gestion des images
+            setupImageHandlers();
+
+            // Actions du panneau
+            setupPanelActions();
+        }
+
+        // Configuration des gestionnaires de couleurs
+        function setupColorHandlers() {
+            const primaryColorInput = document.getElementById('edit_primary_color');
+            const primaryColorHex = document.getElementById('edit_primary_color_hex');
+            const whatsappColorInput = document.getElementById('edit_whatsapp_color');
+            const whatsappColorHex = document.getElementById('edit_whatsapp_color_hex');
+
+            if (primaryColorInput && primaryColorHex) {
+                primaryColorInput.addEventListener('input', function() {
+                    const color = this.value;
+                    primaryColorHex.value = color;
+                    document.documentElement.style.setProperty('--primary-color', color);
+                    
+                    // Calculer une couleur plus sombre pour le hover
+                    const rgb = hexToRgb(color);
+                    const darkerColor = `rgb(${Math.max(0, rgb.r - 30)}, ${Math.max(0, rgb.g - 30)}, ${Math.max(0, rgb.b - 30)})`;
+                    document.documentElement.style.setProperty('--primary-dark', darkerColor);
+                });
+            }
+
+            if (whatsappColorInput && whatsappColorHex) {
+                whatsappColorInput.addEventListener('input', function() {
+                    const color = this.value;
+                    whatsappColorHex.value = color;
+                    document.documentElement.style.setProperty('--whatsapp-color', color);
+                });
             }
         }
 
-        // Initialiser le smooth scroll
-        initSmoothScroll();
+        // Configuration des gestionnaires d'images
+        function setupImageHandlers() {
+            // Gestionnaire pour les aperçus d'upload d'images
+            document.querySelectorAll('.image-upload-preview').forEach(preview => {
+                preview.addEventListener('click', function() {
+                    const target = this.dataset.target;
+                    const fileInput = document.getElementById(target.replace('-', '_') + '_upload');
+                    if (fileInput) {
+                        fileInput.click();
+                    }
+                });
+            });
 
-        });
+            // Gestionnaires d'upload
+            setupImageUpload('hero_bg_upload', updateHeroBackground);
+            setupImageUpload('services_bg_upload', updateServicesBackground);
+            setupImageUpload('about_bg_upload', updateAboutBackground);
+            setupImageUpload('pricing_bg_upload', updatePricingBackground);
+            setupImageUpload('testimonials_bg_upload', updateTestimonialsBackground);
+            setupImageUpload('team1_upload', (src) => updateTeamPhoto(1, src));
+            setupImageUpload('team2_upload', (src) => updateTeamPhoto(2, src));
+            setupImageUpload('team3_upload', (src) => updateTeamPhoto(3, src));
+            setupImageUpload('icon_scissors_upload', (src) => updateServiceIcon('scissors', src));
+            setupImageUpload('icon_razor_upload', (src) => updateServiceIcon('razor', src));
+            setupImageUpload('icon_brush_upload', (src) => updateServiceIcon('brush', src));
+            setupImageUpload('icon_clipper_upload', (src) => updateServiceIcon('clipper', src));
+        }
 
-        // Système d'édition
-        const editModeBtn = document.getElementById('editModeBtn');
-        const editPanel = document.getElementById('editPanel');
-        const editOverlay = document.getElementById('editOverlay');
-        const closeEditPanel = document.getElementById('closeEditPanel');
+        // Configuration d'un upload d'image
+        function setupImageUpload(inputId, callback) {
+            const input = document.getElementById(inputId);
+            if (input) {
+                input.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            callback(e.target.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        }
 
-        // Ouvrir le panneau d'édition
-        editModeBtn.addEventListener('click', function() {
-            editPanel.classList.remove('hidden');
-            editOverlay.classList.remove('hidden');
-            editPanel.style.transform = 'translateX(0)';
-        });
+        // Fonctions de mise à jour des images
+        function updateHeroBackground(src) {
+            const heroSection = document.getElementById('home');
+            if (heroSection) {
+                heroSection.style.background = `linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.7)), url('${src}')`;
+                heroSection.style.backgroundSize = 'cover';
+                heroSection.style.backgroundPosition = 'center';
+                heroSection.dataset.bgImage = src;
+            }
+        }
 
-        // Fermer le panneau d'édition
-        function closePanel() {
-            editPanel.style.transform = 'translateX(100%)';
+        function updateServicesBackground(src) {
+            const servicesSection = document.getElementById('services');
+            if (servicesSection) {
+                servicesSection.style.background = `linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)), url('${src}')`;
+                servicesSection.style.backgroundSize = 'cover';
+                servicesSection.style.backgroundPosition = 'center';
+                servicesSection.dataset.bgImage = src;
+            }
+        }
+
+        function updateAboutBackground(src) {
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+                aboutSection.style.background = `linear-gradient(135deg, rgba(248, 250, 252, 0.95), rgba(241, 245, 249, 0.9)), url('${src}')`;
+                aboutSection.style.backgroundSize = 'cover';
+                aboutSection.style.backgroundPosition = 'center';
+                aboutSection.dataset.bgImage = src;
+            }
+        }
+
+        function updatePricingBackground(src) {
+            const pricingSection = document.getElementById('pricing');
+            if (pricingSection) {
+                pricingSection.style.background = `linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8)), url('${src}')`;
+                pricingSection.style.backgroundSize = 'cover';
+                pricingSection.style.backgroundPosition = 'center';
+                pricingSection.dataset.bgImage = src;
+            }
+        }
+
+        function updateTestimonialsBackground(src) {
+            const testimonialsSection = document.getElementById('testimonials');
+            if (testimonialsSection) {
+                testimonialsSection.style.background = `linear-gradient(135deg, rgba(248, 250, 252, 0.95), rgba(241, 245, 249, 0.9)), url('${src}')`;
+                testimonialsSection.style.backgroundSize = 'cover';
+                testimonialsSection.style.backgroundPosition = 'center';
+                testimonialsSection.dataset.bgImage = src;
+            }
+        }
+
+        function updateTeamPhoto(memberNumber, src) {
+            const teamPhoto = document.querySelector(`.team-photo[data-member="${memberNumber}"]`);
+            if (teamPhoto) {
+                teamPhoto.style.backgroundImage = `url('${src}')`;
+                teamPhoto.style.backgroundSize = 'cover';
+                teamPhoto.style.backgroundPosition = 'center';
+                teamPhoto.innerHTML = ''; // Enlever l'icône par défaut
+            }
+        }
+
+        function updateServiceIcon(iconType, src) {
+            const serviceIcon = document.querySelector(`.service-icon[data-icon="${iconType}"]`);
+            if (serviceIcon) {
+                serviceIcon.src = src;
+            }
+        }
+
+        // Configuration des actions du panneau
+        function setupPanelActions() {
+            const applyChanges = document.getElementById('applyChanges');
+            const previewChanges = document.getElementById('previewChanges');
+            const exportSite = document.getElementById('exportSite');
+            const resetChanges = document.getElementById('resetChanges');
+
+            if (applyChanges) {
+                applyChanges.addEventListener('click', function() {
+                    applyAllChanges();
+                    showNotification('Modifications appliquées avec succès !', 'success');
+                });
+            }
+
+            if (previewChanges) {
+                previewChanges.addEventListener('click', function() {
+                    showNotification('Mode aperçu activé', 'info');
+                });
+            }
+
+            if (exportSite) {
+                exportSite.addEventListener('click', function() {
+                    exportWebsite();
+                });
+            }
+
+            if (resetChanges) {
+                resetChanges.addEventListener('click', function() {
+                    if (confirm('Êtes-vous sûr de vouloir réinitialiser toutes les modifications ?')) {
+                        resetAllChanges();
+                        showNotification('Modifications réinitialisées', 'info');
+                    }
+                });
+            }
+        }
+
+        // Charger les valeurs actuelles
+        function loadCurrentValues() {
+            // Charger les valeurs des champs de texte
+            const logoText = document.querySelector('[data-field="logo_text"]');
+            if (logoText) {
+                const logoInput = document.getElementById('edit_logo_text');
+                if (logoInput) logoInput.value = logoText.textContent;
+            }
+
+            const heroTitle = document.querySelector('[data-field="hero_title"]');
+            if (heroTitle) {
+                const heroInput = document.getElementById('edit_hero_title');
+                if (heroInput) heroInput.value = heroTitle.textContent;
+            }
+
+            const heroDescription = document.querySelector('[data-field="hero_description"]');
+            if (heroDescription) {
+                const heroDescInput = document.getElementById('edit_hero_description');
+                if (heroDescInput) heroDescInput.value = heroDescription.textContent;
+            }
+
+            // Charger les informations de contact
+            const phone = document.querySelector('[data-field="contact_phone"]');
+            if (phone) {
+                const phoneInput = document.getElementById('edit_phone');
+                if (phoneInput) phoneInput.value = phone.textContent;
+            }
+
+            const address = document.querySelector('[data-field="contact_address"]');
+            if (address) {
+                const addressInput = document.getElementById('edit_address');
+                if (addressInput) addressInput.value = address.textContent;
+            }
+
+            const hours = document.querySelector('[data-field="contact_hours"]');
+            if (hours) {
+                const hoursInput = document.getElementById('edit_hours');
+                if (hoursInput) hoursInput.value = hours.textContent;
+            }
+        }
+
+        // Appliquer toutes les modifications
+        function applyAllChanges() {
+            // Appliquer les modifications de texte
+            applyTextChanges();
+            
+            // Sauvegarder les modifications
+            saveChangesToLocalStorage();
+        }
+
+        // Appliquer les modifications de texte
+        function applyTextChanges() {
+            const logoInput = document.getElementById('edit_logo_text');
+            if (logoInput && logoInput.value.trim()) {
+                const logoElements = document.querySelectorAll('[data-field="logo_text"]');
+                logoElements.forEach(el => el.textContent = logoInput.value.trim());
+            }
+
+            const heroInput = document.getElementById('edit_hero_title');
+            if (heroInput && heroInput.value.trim()) {
+                const heroElements = document.querySelectorAll('[data-field="hero_title"]');
+                heroElements.forEach(el => el.textContent = heroInput.value.trim());
+            }
+
+            const heroDescInput = document.getElementById('edit_hero_description');
+            if (heroDescInput && heroDescInput.value.trim()) {
+                const heroDescElements = document.querySelectorAll('[data-field="hero_description"]');
+                heroDescElements.forEach(el => el.textContent = heroDescInput.value.trim());
+            }
+
+            const phoneInput = document.getElementById('edit_phone');
+            if (phoneInput && phoneInput.value.trim()) {
+                const phoneElements = document.querySelectorAll('[data-field="contact_phone"]');
+                phoneElements.forEach(el => el.textContent = phoneInput.value.trim());
+            }
+
+            const addressInput = document.getElementById('edit_address');
+            if (addressInput && addressInput.value.trim()) {
+                const addressElements = document.querySelectorAll('[data-field="contact_address"]');
+                addressElements.forEach(el => el.textContent = addressInput.value.trim());
+            }
+
+            const hoursInput = document.getElementById('edit_hours');
+            if (hoursInput && hoursInput.value.trim()) {
+                const hoursElements = document.querySelectorAll('[data-field="contact_hours"]');
+                hoursElements.forEach(el => el.textContent = hoursInput.value.trim());
+            }
+
+            const whatsappInput = document.getElementById('edit_whatsapp_number');
+            if (whatsappInput && whatsappInput.value.trim()) {
+                updateWhatsAppLinks(whatsappInput.value.trim());
+            }
+        }
+
+        // Mettre à jour tous les liens WhatsApp
+        function updateWhatsAppLinks(number) {
+            const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+            whatsappLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                const newHref = href.replace(/wa\.me\/\d+/, `wa.me/${number}`);
+                link.setAttribute('href', newHref);
+            });
+        }
+
+        // Sauvegarder les modifications
+        function saveChangesToLocalStorage() {
+            const settings = {
+                primaryColor: document.documentElement.style.getPropertyValue('--primary-color'),
+                whatsappColor: document.documentElement.style.getPropertyValue('--whatsapp-color'),
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('salonSettings', JSON.stringify(settings));
+        }
+
+        // Réinitialiser toutes les modifications
+        function resetAllChanges() {
+            // Réinitialiser les couleurs
+            document.documentElement.style.setProperty('--primary-color', '#ec7014');
+            document.documentElement.style.setProperty('--whatsapp-color', '#25d366');
+            
+            // Réinitialiser les champs
+            const colorInputs = document.querySelectorAll('#editPanel input[type="color"]');
+            colorInputs.forEach(input => {
+                if (input.id === 'edit_primary_color') input.value = '#ec7014';
+                if (input.id === 'edit_whatsapp_color') input.value = '#25d366';
+            });
+
+            // Effacer le localStorage
+            localStorage.removeItem('salonSettings');
+            
+            // Recharger la page pour remettre les valeurs par défaut
             setTimeout(() => {
-                editPanel.classList.add('hidden');
-                editOverlay.classList.add('hidden');
-            }, 300);
+                location.reload();
+            }, 1000);
         }
 
-        closeEditPanel.addEventListener('click', closePanel);
-        editOverlay.addEventListener('click', closePanel);
+        // Exporter le site web
+        function exportWebsite() {
+            showNotification('Préparation du téléchargement...', 'info');
+            
+            // Créer une version complète du HTML
+            const htmlContent = document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'salon-premium-website.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showNotification('Site téléchargé avec succès !', 'success');
+        }
 
-        // Fonctions d'édition
-        const applyChanges = document.getElementById('applyChanges');
-        const resetChanges = document.getElementById('resetChanges');
+        // Afficher une notification
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg transition-all duration-300 ${
+                type === 'success' ? 'bg-green-500 text-white' :
+                type === 'error' ? 'bg-red-500 text-white' :
+                'bg-blue-500 text-white'
+            }`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
 
-        applyChanges.addEventListener('click', function() {
-            // Ici vous pouvez ajouter la logique pour appliquer les modifications
-            alert('Modifications appliquées ! (Fonctionnalité en développement)');
-        });
+        // Utilitaire pour convertir hex en RGB
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
 
-        resetChanges.addEventListener('click', function() {
-            if (confirm('Êtes-vous sûr de vouloir réinitialiser toutes les modifications ?')) {
-                // Ici vous pouvez ajouter la logique pour réinitialiser
-                alert('Modifications réinitialisées ! (Fonctionnalité en développement)');
+        // Charger les paramètres sauvegardés au démarrage
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedSettings = localStorage.getItem('salonSettings');
+            if (savedSettings) {
+                try {
+                    const settings = JSON.parse(savedSettings);
+                    if (settings.primaryColor) {
+                        document.documentElement.style.setProperty('--primary-color', settings.primaryColor);
+                    }
+                    if (settings.whatsappColor) {
+                        document.documentElement.style.setProperty('--whatsapp-color', settings.whatsappColor);
+                    }
+                } catch (e) {
+                    console.error('Erreur lors du chargement des paramètres:', e);
+                }
             }
         });
+
+        console.log('✅ Template initialisé avec succès');
     </script>
 </body>
 </html>

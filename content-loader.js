@@ -1,56 +1,60 @@
 
-// Content Loader - Gestion dynamique du contenu
-(function() {
-    'use strict';
+// Content Loader simplifié et optimisé
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('✅ Content Loader initialisé');
     
-    // Configuration par défaut
-    const defaultContent = {
-        site: {
-            title: "Salon Premium - Coiffure Professionnelle",
-            logo: "Salon Premium"
-        },
-        loaded: true
-    };
-
-    // Charger le contenu sauvegardé ou utiliser les valeurs par défaut
+    // Fonction pour charger le contenu depuis le localStorage
     function loadContent() {
-        try {
-            const savedContent = localStorage.getItem('salon_content');
-            if (savedContent && savedContent.trim() !== '') {
-                const parsed = JSON.parse(savedContent);
-                if (parsed && typeof parsed === 'object' && parsed.loaded) {
-                    return parsed;
-                }
-            }
-        } catch (error) {
-            console.warn('Erreur lors du chargement du contenu sauvegardé:', error);
-            // Nettoyer le localStorage en cas d'erreur
+        const savedContent = localStorage.getItem('salonContent');
+        if (savedContent) {
             try {
-                localStorage.removeItem('salon_content');
-            } catch (removeError) {
-                console.warn('Impossible de nettoyer le localStorage:', removeError);
+                const content = JSON.parse(savedContent);
+                applyContentToPage(content);
+            } catch (e) {
+                console.error('Erreur lors du chargement du contenu:', e);
             }
         }
-        return { ...defaultContent };
     }
-
+    
+    // Appliquer le contenu à la page
+    function applyContentToPage(content) {
+        Object.keys(content).forEach(key => {
+            const elements = document.querySelectorAll(`[data-field="${key}"]`);
+            elements.forEach(element => {
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.value = content[key];
+                } else {
+                    element.textContent = content[key];
+                }
+            });
+        });
+    }
+    
     // Sauvegarder le contenu
-    function saveContent(content) {
-        try {
-            localStorage.setItem('salon_content', JSON.stringify(content));
-            return true;
-        } catch (error) {
-            console.warn('Erreur lors de la sauvegarde:', error);
-            return false;
-        }
+    function saveContent() {
+        const content = {};
+        const editableElements = document.querySelectorAll('[data-field]');
+        
+        editableElements.forEach(element => {
+            const field = element.dataset.field;
+            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                content[field] = element.value;
+            } else {
+                content[field] = element.textContent;
+            }
+        });
+        
+        localStorage.setItem('salonContent', JSON.stringify(content));
+        return content;
     }
-
+    
     // Exposer les fonctions globalement
-    window.ContentLoader = {
+    window.salonContentLoader = {
         load: loadContent,
         save: saveContent,
-        default: defaultContent
+        apply: applyContentToPage
     };
-
-    console.log('✅ Content Loader initialisé');
-})();
+    
+    // Charger le contenu au démarrage
+    loadContent();
+});
