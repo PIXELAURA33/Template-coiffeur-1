@@ -1244,28 +1244,33 @@ Message: ${message || 'Aucun message supplémentaire'}`;
             }
 
             loadCurrentContent() {
-                // Charger le contenu actuel dans les champs d'édition
-                document.getElementById('edit_site_title').value = this.content.site.title;
-                document.getElementById('edit_logo_text').value = this.content.site.logo.text;
-                document.getElementById('edit_primary_color').value = this.content.theme.primaryColor;
-                document.getElementById('edit_accent_color').value = this.content.theme.accentColor;
-                document.getElementById('edit_section_style').value = this.content.theme.sectionStyle;
-                document.getElementById('edit_button_style').value = this.content.theme.buttonStyle;
-                document.getElementById('edit_hero_title').value = this.content.hero.title;
-                document.getElementById('edit_hero_subtitle').value = this.content.hero.subtitle;
-                document.getElementById('edit_cta_button').value = this.content.hero.ctaButton;
-                document.getElementById('edit_whatsapp_button').value = this.content.hero.whatsappButton;
-                document.getElementById('edit_service1_name').value = this.content.services.service1.name;
-                document.getElementById('edit_service1_price').value = this.content.services.service1.price;
-                document.getElementById('edit_service2_name').value = this.content.services.service2.name;
-                document.getElementById('edit_service2_price').value = this.content.services.service2.price;
-                document.getElementById('edit_whatsapp_number').value = this.content.contact.whatsappNumber;
-                document.getElementById('edit_phone').value = this.content.contact.phone;
-                document.getElementById('edit_address').value = this.content.contact.address;
-                document.getElementById('edit_hours').value = this.content.contact.hours;
-                document.getElementById('edit_title_size').value = this.content.appearance.titleSize;
-                document.getElementById('edit_animation_style').value = this.content.appearance.animationStyle;
-                document.getElementById('edit_spacing').value = this.content.appearance.spacing;
+                // Charger le contenu actuel dans les champs d'édition avec vérification
+                const setValueSafely = (id, value) => {
+                    const element = document.getElementById(id);
+                    if (element) element.value = value;
+                };
+
+                setValueSafely('edit_site_title', this.content.site.title);
+                setValueSafely('edit_logo_text', this.content.site.logo.text);
+                setValueSafely('edit_primary_color', this.content.theme.primaryColor);
+                setValueSafely('edit_accent_color', this.content.theme.accentColor);
+                setValueSafely('edit_section_style', this.content.theme.sectionStyle);
+                setValueSafely('edit_button_style', this.content.theme.buttonStyle);
+                setValueSafely('edit_hero_title', this.content.hero.title);
+                setValueSafely('edit_hero_subtitle', this.content.hero.subtitle);
+                setValueSafely('edit_cta_button', this.content.hero.ctaButton);
+                setValueSafely('edit_whatsapp_button', this.content.hero.whatsappButton);
+                setValueSafely('edit_service1_name', this.content.services.service1.name);
+                setValueSafely('edit_service1_price', this.content.services.service1.price);
+                setValueSafely('edit_service2_name', this.content.services.service2.name);
+                setValueSafely('edit_service2_price', this.content.services.service2.price);
+                setValueSafely('edit_whatsapp_number', this.content.contact.whatsappNumber);
+                setValueSafely('edit_phone', this.content.contact.phone);
+                setValueSafely('edit_address', this.content.contact.address);
+                setValueSafely('edit_hours', this.content.contact.hours);
+                setValueSafely('edit_title_size', this.content.appearance.titleSize);
+                setValueSafely('edit_animation_style', this.content.appearance.animationStyle);
+                setValueSafely('edit_spacing', this.content.appearance.spacing);
             }
 
             bindEvents() {
@@ -1301,11 +1306,15 @@ Message: ${message || 'Aucun message supplémentaire'}`;
                     }
                 });
 
-                // Aperçu en temps réel
-                const inputs = document.querySelectorAll('#editPanel input, #editPanel textarea');
+                // Aperçu en temps réel avec gestion d'erreurs
+                const inputs = document.querySelectorAll('#editPanel input, #editPanel textarea, #editPanel select');
                 inputs.forEach(input => {
                     input.addEventListener('input', () => {
-                        this.previewChanges();
+                        try {
+                            this.previewChanges();
+                        } catch (error) {
+                            console.warn('Erreur lors de l\'aperçu:', error);
+                        }
                     });
                 });
             }
@@ -1332,68 +1341,82 @@ Message: ${message || 'Aucun message supplémentaire'}`;
             }
 
             updateContentFromForm() {
-                this.content.site.title = document.getElementById('edit_site_title').value;
-                this.content.site.logo.text = document.getElementById('edit_logo_text').value;
-                this.content.theme.primaryColor = document.getElementById('edit_primary_color').value;
-                this.content.theme.accentColor = document.getElementById('edit_accent_color').value;
-                this.content.theme.sectionStyle = document.getElementById('edit_section_style').value;
-                this.content.theme.buttonStyle = document.getElementById('edit_button_style').value;
-                this.content.hero.title = document.getElementById('edit_hero_title').value;
-                this.content.hero.subtitle = document.getElementById('edit_hero_subtitle').value;
-                this.content.hero.ctaButton = document.getElementById('edit_cta_button').value;
-                this.content.hero.whatsappButton = document.getElementById('edit_whatsapp_button').value;
-                this.content.services.service1.name = document.getElementById('edit_service1_name').value;
-                this.content.services.service1.price = document.getElementById('edit_service1_price').value;
-                this.content.services.service2.name = document.getElementById('edit_service2_name').value;
-                this.content.services.service2.price = document.getElementById('edit_service2_price').value;
-                this.content.contact.whatsappNumber = document.getElementById('edit_whatsapp_number').value;
-                this.content.contact.phone = document.getElementById('edit_phone').value;
-                this.content.contact.address = document.getElementById('edit_address').value;
-                this.content.contact.hours = document.getElementById('edit_hours').value;
-                this.content.appearance.titleSize = document.getElementById('edit_title_size').value;
-                this.content.appearance.animationStyle = document.getElementById('edit_animation_style').value;
-                this.content.appearance.spacing = document.getElementById('edit_spacing').value;
+                const getValueSafely = (id, defaultValue = '') => {
+                    const element = document.getElementById(id);
+                    return element ? element.value : defaultValue;
+                };
+
+                this.content.site.title = getValueSafely('edit_site_title', this.content.site.title);
+                this.content.site.logo.text = getValueSafely('edit_logo_text', this.content.site.logo.text);
+                this.content.theme.primaryColor = getValueSafely('edit_primary_color', this.content.theme.primaryColor);
+                this.content.theme.accentColor = getValueSafely('edit_accent_color', this.content.theme.accentColor);
+                this.content.theme.sectionStyle = getValueSafely('edit_section_style', this.content.theme.sectionStyle);
+                this.content.theme.buttonStyle = getValueSafely('edit_button_style', this.content.theme.buttonStyle);
+                this.content.hero.title = getValueSafely('edit_hero_title', this.content.hero.title);
+                this.content.hero.subtitle = getValueSafely('edit_hero_subtitle', this.content.hero.subtitle);
+                this.content.hero.ctaButton = getValueSafely('edit_cta_button', this.content.hero.ctaButton);
+                this.content.hero.whatsappButton = getValueSafely('edit_whatsapp_button', this.content.hero.whatsappButton);
+                this.content.services.service1.name = getValueSafely('edit_service1_name', this.content.services.service1.name);
+                this.content.services.service1.price = getValueSafely('edit_service1_price', this.content.services.service1.price);
+                this.content.services.service2.name = getValueSafely('edit_service2_name', this.content.services.service2.name);
+                this.content.services.service2.price = getValueSafely('edit_service2_price', this.content.services.service2.price);
+                this.content.contact.whatsappNumber = getValueSafely('edit_whatsapp_number', this.content.contact.whatsappNumber);
+                this.content.contact.phone = getValueSafely('edit_phone', this.content.contact.phone);
+                this.content.contact.address = getValueSafely('edit_address', this.content.contact.address);
+                this.content.contact.hours = getValueSafely('edit_hours', this.content.contact.hours);
+                this.content.appearance.titleSize = getValueSafely('edit_title_size', this.content.appearance.titleSize);
+                this.content.appearance.animationStyle = getValueSafely('edit_animation_style', this.content.appearance.animationStyle);
+                this.content.appearance.spacing = getValueSafely('edit_spacing', this.content.appearance.spacing);
             }
 
             applyToDOM() {
-                // Titre du site
-                document.title = this.content.site.title;
-
-                // Logo
-                const navLogo = document.querySelector('nav h1');
-                if (navLogo) {
-                    navLogo.innerHTML = `<i class="fas fa-cut mr-2"></i>${this.content.site.logo.text}`;
-                }
-
-                // Titre héro
-                const heroTitle = document.querySelector('#home h1');
-                if (heroTitle) {
-                    const parts = this.content.hero.title.split(' ');
-                    const lastWord = parts.pop();
-                    heroTitle.innerHTML = `${parts.join(' ')} <span class="text-primary-400">${lastWord}</span>`;
-                }
-
-                                // Sous-titre héro
-                const heroSubtitle = document.querySelector('#home p[data-editable="text"]');
-                if (heroSubtitle) {
-                    heroSubtitle.textContent = this.content.hero.subtitle;
-                }
-
-                // Boutons
-                const ctaButtons = document.querySelectorAll('a[href="#contact"]:not([target="_blank"])');
-                ctaButtons.forEach(btn => {
-                    if (btn.textContent.includes('Prendre RDV') || btn.textContent.includes('Réserver')) {
-                        btn.innerHTML = btn.innerHTML.replace(/Prendre RDV|Réserver/g, this.content.hero.ctaButton);
+                try {
+                    // Titre du site
+                    if (this.content.site.title) {
+                        document.title = this.content.site.title;
                     }
-                });
 
-                // Couleurs
-                this.applyTheme();
+                    // Logo
+                    const navLogo = document.querySelector('nav h1');
+                    if (navLogo && this.content.site.logo.text) {
+                        navLogo.innerHTML = `<i class="fas fa-cut mr-2"></i>${this.content.site.logo.text}`;
+                    }
 
-                // Contact
-                this.applyContactInfo();
+                    // Titre héro
+                    const heroTitle = document.querySelector('#home h1');
+                    if (heroTitle && this.content.hero.title) {
+                        const parts = this.content.hero.title.split(' ');
+                        if (parts.length > 0) {
+                            const lastWord = parts.pop();
+                            heroTitle.innerHTML = `${parts.join(' ')} <span class="text-primary-400">${lastWord}</span>`;
+                        }
+                    }
 
-                this.showNotification('Aperçu mis à jour !', 'info');
+                    // Sous-titre héro
+                    const heroSubtitle = document.querySelector('#home p[data-editable="text"]');
+                    if (heroSubtitle && this.content.hero.subtitle) {
+                        heroSubtitle.textContent = this.content.hero.subtitle;
+                    }
+
+                    // Boutons
+                    const ctaButtons = document.querySelectorAll('a[href="#contact"]:not([target="_blank"])');
+                    ctaButtons.forEach(btn => {
+                        if (btn.textContent && (btn.textContent.includes('Prendre RDV') || btn.textContent.includes('Réserver'))) {
+                            btn.innerHTML = btn.innerHTML.replace(/Prendre RDV|Réserver/g, this.content.hero.ctaButton);
+                        }
+                    });
+
+                    // Couleurs
+                    this.applyTheme();
+
+                    // Contact
+                    this.applyContactInfo();
+
+                    this.showNotification('Aperçu mis à jour !', 'info');
+                } catch (error) {
+                    console.error('Erreur lors de l\'application des modifications:', error);
+                    this.showNotification('Erreur lors de la mise à jour', 'error');
+                }
             }
 
             applyTheme() {
@@ -1512,19 +1535,33 @@ Message: ${message || 'Aucun message supplémentaire'}`;
             }
 
             applyServicesContent() {
-                // Mettre à jour les services dans la section tarifs
-                const priceItems = document.querySelectorAll('#pricing [data-editable="price-item"]');
-                if (priceItems[0]) {
-                    const service1Price = priceItems[0].querySelector('.text-6xl');
-                    const service1Name = priceItems[0].querySelector('h3');
-                    if (service1Price) service1Price.textContent = this.content.services.service1.price;
-                    if (service1Name) service1Name.textContent = this.content.services.service1.name;
-                }
-                if (priceItems[1]) {
-                    const service2Price = priceItems[1].querySelector('.text-6xl');
-                    const service2Name = priceItems[1].querySelector('h3');
-                    if (service2Price) service2Price.textContent = this.content.services.service2.price;
-                    if (service2Name) service2Name.textContent = this.content.services.service2.name;
+                try {
+                    // Mettre à jour les services dans la section tarifs
+                    const priceItems = document.querySelectorAll('#pricing [data-editable="price-item"]');
+                    
+                    if (priceItems[0] && this.content.services.service1) {
+                        const service1Price = priceItems[0].querySelector('.text-6xl');
+                        const service1Name = priceItems[0].querySelector('h3');
+                        if (service1Price && this.content.services.service1.price) {
+                            service1Price.textContent = this.content.services.service1.price;
+                        }
+                        if (service1Name && this.content.services.service1.name) {
+                            service1Name.textContent = this.content.services.service1.name;
+                        }
+                    }
+                    
+                    if (priceItems[1] && this.content.services.service2) {
+                        const service2Price = priceItems[1].querySelector('.text-6xl');
+                        const service2Name = priceItems[1].querySelector('h3');
+                        if (service2Price && this.content.services.service2.price) {
+                            service2Price.textContent = this.content.services.service2.price;
+                        }
+                        if (service2Name && this.content.services.service2.name) {
+                            service2Name.textContent = this.content.services.service2.name;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Erreur lors de la mise à jour des services:', error);
                 }
             }
 

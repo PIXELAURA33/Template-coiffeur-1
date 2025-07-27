@@ -18,14 +18,20 @@
             const savedContent = localStorage.getItem('salon_content');
             if (savedContent && savedContent.trim() !== '') {
                 const parsed = JSON.parse(savedContent);
-                return parsed && typeof parsed === 'object' ? parsed : defaultContent;
+                if (parsed && typeof parsed === 'object' && parsed.loaded) {
+                    return parsed;
+                }
             }
         } catch (error) {
             console.warn('Erreur lors du chargement du contenu sauvegardé:', error);
             // Nettoyer le localStorage en cas d'erreur
-            localStorage.removeItem('salon_content');
+            try {
+                localStorage.removeItem('salon_content');
+            } catch (removeError) {
+                console.warn('Impossible de nettoyer le localStorage:', removeError);
+            }
         }
-        return defaultContent;
+        return { ...defaultContent };
     }
 
     // Sauvegarder le contenu
