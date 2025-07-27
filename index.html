@@ -674,62 +674,33 @@
                             Réservez votre RDV
                         </h3>
 
-                        <!-- QR Code Container -->
-                        <div class="flex flex-col items-center space-y-6">
+                        <!-- QR Code Simple et Compact -->
+                        <div class="flex flex-col items-center space-y-4">
                             <div class="relative">
-                                <!-- QR Code avec bordure stylée -->
-                                <div class="bg-gradient-to-br from-primary-50 to-primary-100 p-6 rounded-3xl shadow-inner">
-                                    <div class="bg-white p-4 rounded-2xl shadow-lg">
-                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/22900000000?text=Bonjour,%20je%20souhaite%20prendre%20rendez-vous%20dans%20votre%20salon%20premium." 
-                                             alt="QR Code WhatsApp" 
-                                             class="w-48 h-48 mx-auto rounded-xl">
-                                    </div>
+                                <!-- QR Code simple avec bordure -->
+                                <div class="bg-primary-50 p-4 rounded-2xl">
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://wa.me/22900000000?text=Bonjour,%20je%20souhaite%20prendre%20rendez-vous%20dans%20votre%20salon%20premium." 
+                                         alt="QR Code WhatsApp" 
+                                         class="w-32 h-32 mx-auto rounded-lg">
                                 </div>
                                 
-                                <!-- Icône WhatsApp en overlay -->
-                                <div class="absolute -bottom-2 -right-2 bg-green-500 rounded-full p-3 shadow-xl">
-                                    <i class="fab fa-whatsapp text-white text-2xl"></i>
+                                <!-- Icône WhatsApp compacte -->
+                                <div class="absolute -bottom-1 -right-1 bg-green-500 rounded-full p-2 shadow-lg">
+                                    <i class="fab fa-whatsapp text-white text-sm"></i>
                                 </div>
                             </div>
 
-                            <!-- Instructions -->
-                            <div class="space-y-4">
-                                <h4 class="text-xl font-semibold text-secondary-900">
+                            <!-- Instructions compactes -->
+                            <div class="space-y-2">
+                                <h4 class="text-lg font-semibold text-secondary-900">
                                     Scannez pour réserver
                                 </h4>
-                                <p class="text-secondary-600 max-w-md mx-auto leading-relaxed">
-                                    Utilisez l'appareil photo de votre téléphone pour scanner ce QR code et accéder directement à notre WhatsApp pour prendre rendez-vous.
-                                </p>
-                            </div>
-
-                            <!-- Services disponibles -->
-                            <div class="bg-primary-50 rounded-2xl p-6 w-full">
-                                <h5 class="font-semibold text-secondary-900 mb-4">Nos Services</h5>
-                                <div class="grid grid-cols-2 gap-3 text-sm">
-                                    <div class="flex items-center justify-between bg-white rounded-lg p-3">
-                                        <span class="text-secondary-700">Coupe Classique</span>
-                                        <span class="font-bold text-primary-600">39€</span>
-                                    </div>
-                                    <div class="flex items-center justify-between bg-white rounded-lg p-3">
-                                        <span class="text-secondary-700">Rasage Premium</span>
-                                        <span class="font-bold text-primary-600">27€</span>
-                                    </div>
-                                    <div class="flex items-center justify-between bg-white rounded-lg p-3">
-                                        <span class="text-secondary-700">Moustache</span>
-                                        <span class="font-bold text-primary-600">20€</span>
-                                    </div>
-                                    <div class="flex items-center justify-between bg-white rounded-lg p-3">
-                                        <span class="text-secondary-700">Taille Barbe</span>
-                                        <span class="font-bold text-primary-600">15€</span>
-                                    </div>
-                                </div>
                             </div>
 
                             <!-- Bouton alternatif -->
-                            <div class="w-full border-t border-gray-200 pt-6">
-                                <p class="text-sm text-secondary-500 mb-4">Vous ne pouvez pas scanner ?</p>
+                            <div class="w-full pt-4">
                                 <a href="https://wa.me/22900000000?text=Bonjour, je souhaite prendre rendez-vous dans votre salon premium." 
-                                   class="w-full bg-green-500 hover:bg-green-600 text-white py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg inline-block" 
+                                   class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-block" 
                                    target="_blank">
                                     <i class="fab fa-whatsapp mr-2"></i>Ouvrir WhatsApp
                                 </a>
