@@ -814,16 +814,33 @@
                     <!-- Thème -->
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <h3 class="font-semibold mb-3 text-gray-700">
-                            <i class="fas fa-palette mr-2"></i>Couleurs du Thème
+                            <i class="fas fa-palette mr-2"></i>Thème & Couleurs
                         </h3>
                         <div class="space-y-3">
                             <div>
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Couleur principale</label>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Couleur principale du site</label>
                                 <input type="color" id="edit_primary_color" class="w-full h-10 border rounded-md">
+                                <p class="text-xs text-gray-500 mt-1">Applique la couleur aux boutons, liens, et éléments principaux</p>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-600 mb-1">Couleur WhatsApp</label>
                                 <input type="color" id="edit_accent_color" class="w-full h-10 border rounded-md">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Style des sections</label>
+                                <select id="edit_section_style" class="w-full px-3 py-2 border rounded-md text-sm">
+                                    <option value="modern">Moderne (dégradés)</option>
+                                    <option value="classic">Classique (couleurs unies)</option>
+                                    <option value="elegant">Élégant (transparence)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Forme des boutons</label>
+                                <select id="edit_button_style" class="w-full px-3 py-2 border rounded-md text-sm">
+                                    <option value="rounded">Arrondis</option>
+                                    <option value="square">Carrés</option>
+                                    <option value="pill">Capsule</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -853,6 +870,31 @@
                         </div>
                     </div>
 
+                    <!-- Services -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-3 text-gray-700">
+                            <i class="fas fa-cut mr-2"></i>Services & Tarifs
+                        </h3>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Service 1 (nom)</label>
+                                <input type="text" id="edit_service1_name" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="Coupe Classique">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Service 1 (prix)</label>
+                                <input type="text" id="edit_service1_price" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="39€">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Service 2 (nom)</label>
+                                <input type="text" id="edit_service2_name" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="Rasage Premium">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Service 2 (prix)</label>
+                                <input type="text" id="edit_service2_price" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="27€">
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Contact -->
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <h3 class="font-semibold mb-3 text-gray-700">
@@ -874,6 +916,39 @@
                             <div>
                                 <label class="block text-sm font-medium text-gray-600 mb-1">Horaires</label>
                                 <input type="text" id="edit_hours" class="w-full px-3 py-2 border rounded-md text-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Apparence -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-3 text-gray-700">
+                            <i class="fas fa-brush mr-2"></i>Apparence
+                        </h3>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Taille des titres</label>
+                                <select id="edit_title_size" class="w-full px-3 py-2 border rounded-md text-sm">
+                                    <option value="normal">Normale</option>
+                                    <option value="large">Grande</option>
+                                    <option value="extra-large">Très grande</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Style des animations</label>
+                                <select id="edit_animation_style" class="w-full px-3 py-2 border rounded-md text-sm">
+                                    <option value="subtle">Subtiles</option>
+                                    <option value="dynamic">Dynamiques</option>
+                                    <option value="none">Aucune</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Espacement des sections</label>
+                                <select id="edit_spacing" class="w-full px-3 py-2 border rounded-md text-sm">
+                                    <option value="compact">Compact</option>
+                                    <option value="normal">Normal</option>
+                                    <option value="spacious">Espacé</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -1039,18 +1114,32 @@ Message: ${message || 'Aucun message supplémentaire'}`;
             constructor() {
                 this.content = {
                     site: { title: "Salon Premium", logo: { text: "Salon Premium" } },
-                    theme: { primaryColor: "#ec7014", accentColor: "#22c55e" },
+                    theme: { 
+                        primaryColor: "#ec7014", 
+                        accentColor: "#22c55e",
+                        sectionStyle: "modern",
+                        buttonStyle: "rounded"
+                    },
                     hero: { 
                         title: "L'Excellence en Coiffure", 
                         subtitle: "Découvrez une expérience unique dans notre salon premium. Nos experts transforment votre vision en réalité avec passion et professionnalisme.",
                         ctaButton: "Prendre RDV",
                         whatsappButton: "WhatsApp"
                     },
+                    services: {
+                        service1: { name: "Coupe Classique", price: "39€" },
+                        service2: { name: "Rasage Premium", price: "27€" }
+                    },
                     contact: { 
                         whatsappNumber: "22900000000", 
                         phone: "+229 00 00 00 00", 
                         address: "123 Avenue des Champs, 75001 Paris",
                         hours: "Lun-Sam: 9h-19h | Dim: 10h-16h"
+                    },
+                    appearance: {
+                        titleSize: "normal",
+                        animationStyle: "subtle",
+                        spacing: "normal"
                     }
                 };
                 this.init();
@@ -1077,14 +1166,23 @@ Message: ${message || 'Aucun message supplémentaire'}`;
                 document.getElementById('edit_logo_text').value = this.content.site.logo.text;
                 document.getElementById('edit_primary_color').value = this.content.theme.primaryColor;
                 document.getElementById('edit_accent_color').value = this.content.theme.accentColor;
+                document.getElementById('edit_section_style').value = this.content.theme.sectionStyle;
+                document.getElementById('edit_button_style').value = this.content.theme.buttonStyle;
                 document.getElementById('edit_hero_title').value = this.content.hero.title;
                 document.getElementById('edit_hero_subtitle').value = this.content.hero.subtitle;
                 document.getElementById('edit_cta_button').value = this.content.hero.ctaButton;
                 document.getElementById('edit_whatsapp_button').value = this.content.hero.whatsappButton;
+                document.getElementById('edit_service1_name').value = this.content.services.service1.name;
+                document.getElementById('edit_service1_price').value = this.content.services.service1.price;
+                document.getElementById('edit_service2_name').value = this.content.services.service2.name;
+                document.getElementById('edit_service2_price').value = this.content.services.service2.price;
                 document.getElementById('edit_whatsapp_number').value = this.content.contact.whatsappNumber;
                 document.getElementById('edit_phone').value = this.content.contact.phone;
                 document.getElementById('edit_address').value = this.content.contact.address;
                 document.getElementById('edit_hours').value = this.content.contact.hours;
+                document.getElementById('edit_title_size').value = this.content.appearance.titleSize;
+                document.getElementById('edit_animation_style').value = this.content.appearance.animationStyle;
+                document.getElementById('edit_spacing').value = this.content.appearance.spacing;
             }
 
             bindEvents() {
@@ -1155,14 +1253,23 @@ Message: ${message || 'Aucun message supplémentaire'}`;
                 this.content.site.logo.text = document.getElementById('edit_logo_text').value;
                 this.content.theme.primaryColor = document.getElementById('edit_primary_color').value;
                 this.content.theme.accentColor = document.getElementById('edit_accent_color').value;
+                this.content.theme.sectionStyle = document.getElementById('edit_section_style').value;
+                this.content.theme.buttonStyle = document.getElementById('edit_button_style').value;
                 this.content.hero.title = document.getElementById('edit_hero_title').value;
                 this.content.hero.subtitle = document.getElementById('edit_hero_subtitle').value;
                 this.content.hero.ctaButton = document.getElementById('edit_cta_button').value;
                 this.content.hero.whatsappButton = document.getElementById('edit_whatsapp_button').value;
+                this.content.services.service1.name = document.getElementById('edit_service1_name').value;
+                this.content.services.service1.price = document.getElementById('edit_service1_price').value;
+                this.content.services.service2.name = document.getElementById('edit_service2_name').value;
+                this.content.services.service2.price = document.getElementById('edit_service2_price').value;
                 this.content.contact.whatsappNumber = document.getElementById('edit_whatsapp_number').value;
                 this.content.contact.phone = document.getElementById('edit_phone').value;
                 this.content.contact.address = document.getElementById('edit_address').value;
                 this.content.contact.hours = document.getElementById('edit_hours').value;
+                this.content.appearance.titleSize = document.getElementById('edit_title_size').value;
+                this.content.appearance.animationStyle = document.getElementById('edit_animation_style').value;
+                this.content.appearance.spacing = document.getElementById('edit_spacing').value;
             }
 
             applyToDOM() {
@@ -1207,18 +1314,135 @@ Message: ${message || 'Aucun message supplémentaire'}`;
             }
 
             applyTheme() {
-                const { primaryColor, accentColor } = this.content.theme;
+                const { primaryColor, accentColor, buttonStyle, sectionStyle } = this.content.theme;
 
-                // Appliquer aux éléments avec classes Tailwind
-                const primaryElements = document.querySelectorAll('.bg-primary-600, .hover\\:bg-primary-700');
-                primaryElements.forEach(el => {
-                    el.style.backgroundColor = primaryColor;
+                // Créer un style personnalisé pour application uniforme
+                let customStyle = document.getElementById('dynamic-theme-style');
+                if (!customStyle) {
+                    customStyle = document.createElement('style');
+                    customStyle.id = 'dynamic-theme-style';
+                    document.head.appendChild(customStyle);
+                }
+
+                // Couleurs uniformes pour tous les éléments principaux
+                const css = `
+                    /* Application uniforme de la couleur principale */
+                    .bg-primary-600, .hover\\:bg-primary-700:hover,
+                    .text-primary-600, .text-primary-400,
+                    .border-primary-600, .bg-gradient-to-br:first-child {
+                        background-color: ${primaryColor} !important;
+                        color: ${primaryColor} !important;
+                        border-color: ${primaryColor} !important;
+                    }
+                    
+                    /* Boutons principaux */
+                    .bg-primary-600 {
+                        background-color: ${primaryColor} !important;
+                    }
+                    
+                    /* Textes et liens principaux */
+                    .text-primary-600, .text-primary-400, 
+                    h1 span.text-primary-400, nav a:hover {
+                        color: ${primaryColor} !important;
+                    }
+                    
+                    /* Logos et icônes */
+                    nav h1, .navbar-brand {
+                        color: ${primaryColor} !important;
+                    }
+                    
+                    /* WhatsApp elements */
+                    .bg-green-500, .hover\\:bg-green-600:hover {
+                        background-color: ${accentColor} !important;
+                    }
+                    
+                    /* Style des boutons selon la sélection */
+                    ${buttonStyle === 'square' ? `
+                        .rounded-full, .rounded-xl, .rounded-lg {
+                            border-radius: 0.375rem !important;
+                        }
+                    ` : buttonStyle === 'pill' ? `
+                        .rounded-full, .rounded-xl, .rounded-lg {
+                            border-radius: 9999px !important;
+                        }
+                    ` : ''}
+                    
+                    /* Style des sections selon la sélection */
+                    ${sectionStyle === 'classic' ? `
+                        .bg-white\\/10, .bg-white\\/20 {
+                            background-color: rgba(255,255,255,0.95) !important;
+                            color: #1f2937 !important;
+                        }
+                    ` : sectionStyle === 'elegant' ? `
+                        .bg-white\\/10 {
+                            background-color: rgba(255,255,255,0.1) !important;
+                            backdrop-filter: blur(20px) !important;
+                        }
+                    ` : ''}
+                `;
+
+                customStyle.textContent = css;
+
+                // Applications spéciales pour l'apparence
+                this.applyAppearanceSettings();
+                this.applyServicesContent();
+            }
+
+            applyAppearanceSettings() {
+                const { titleSize, spacing, animationStyle } = this.content.appearance;
+                
+                // Taille des titres
+                const titles = document.querySelectorAll('h1, h2, h3');
+                titles.forEach(title => {
+                    if (titleSize === 'large') {
+                        title.style.fontSize = '1.2em';
+                    } else if (titleSize === 'extra-large') {
+                        title.style.fontSize = '1.4em';
+                    } else {
+                        title.style.fontSize = '';
+                    }
                 });
 
-                const accentElements = document.querySelectorAll('.bg-green-500, .hover\\:bg-green-600');
-                accentElements.forEach(el => {
-                    el.style.backgroundColor = accentColor;
+                // Espacement des sections
+                const sections = document.querySelectorAll('section');
+                sections.forEach(section => {
+                    if (spacing === 'compact') {
+                        section.style.paddingTop = '3rem';
+                        section.style.paddingBottom = '3rem';
+                    } else if (spacing === 'spacious') {
+                        section.style.paddingTop = '8rem';
+                        section.style.paddingBottom = '8rem';
+                    } else {
+                        section.style.paddingTop = '';
+                        section.style.paddingBottom = '';
+                    }
                 });
+
+                // Animations
+                if (animationStyle === 'none') {
+                    document.body.style.setProperty('--animation-duration', '0s');
+                } else if (animationStyle === 'dynamic') {
+                    document.body.style.setProperty('--animation-duration', '1s');
+                } else {
+                    document.body.style.setProperty('--animation-duration', '0.3s');
+                }
+            }
+
+            applyServicesContent() {
+                // Mettre à jour les services dans la section tarifs
+                const priceItems = document.querySelectorAll('#pricing [data-editable="price-item"]');
+                if (priceItems[0]) {
+                    const service1Price = priceItems[0].querySelector('.text-6xl');
+                    const service1Name = priceItems[0].querySelector('h3');
+                    if (service1Price) service1Price.textContent = this.content.services.service1.price;
+                    if (service1Name) service1Name.textContent = this.content.services.service1.name;
+                }
+                if (priceItems[1]) {
+                    const service2Price = priceItems[1].querySelector('.text-6xl');
+                    const service2Name = priceItems[1].querySelector('h3');
+                    if (service2Price) service2Price.textContent = this.content.services.service2.price;
+                    if (service2Name) service2Name.textContent = this.content.services.service2.name;
+                }
             }
 
             applyContactInfo() {
