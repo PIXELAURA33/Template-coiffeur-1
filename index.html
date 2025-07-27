@@ -88,28 +88,35 @@
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.7)), url('./img/intro-bg-01.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: scroll;
         }
 
         .about-bg {
             background: linear-gradient(135deg, rgba(248, 250, 252, 0.95), rgba(241, 245, 249, 0.9)), url('./img/info-bg-01.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: scroll;
         }
 
         .price-bg {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8)), url('./img/sec-bg-02.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: scroll;
         }
 
         .testimonial-bg {
             background: linear-gradient(135deg, rgba(248, 250, 252, 0.95), rgba(241, 245, 249, 0.9)), url('./img/sec-bg-03.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: scroll;
+        }
+
+        /* Amélioration responsive */
+        @media (max-width: 768px) {
+            .hero-bg, .about-bg, .price-bg, .testimonial-bg {
+                background-attachment: scroll;
+            }
         }
 
         /* Animations d'entrée */
@@ -887,12 +894,12 @@
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const target = document.querySelector(targetId);
-                
+
                 if (target) {
                     // Calculer l'offset pour la navbar fixe
                     const navbarHeight = document.getElementById('navbar').offsetHeight;
                     const targetPosition = target.offsetTop - navbarHeight - 20;
-                    
+
                     window.scrollTo({
                         top: targetPosition,
                         behavior: 'smooth'

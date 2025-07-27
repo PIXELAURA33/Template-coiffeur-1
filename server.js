@@ -1,8 +1,16 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs').promises; // Import the promises version of fs
 
 const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware pour servir les fichiers statiques
+app.use(express.static('.'));
+
+// Route principale
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 const PORT = process.env.PORT || 5000;
 
 // Middleware pour parser les données de formulaire
@@ -48,23 +56,25 @@ app.get('/editor', (req, res) => {
 // Routes pour les assets
 app.get('/css/*', (req, res) => {
     res.sendFile(path.join(__dirname, req.path));
-});
-
-app.get('/js/*', (req, res) => {
-    res.sendFile(path.join(__dirname, req.path));
-});
-
-app.get('/img/*', (req, res) => {
-    res.sendFile(path.join(__dirname, req.path));
-});
-
-app.get('/font-awesome/*', (req, res) => {
-    res.sendFile(path.join(__dirname, req.path));
-});
-
-// Gestion des erreurs 404
+}// Gestion des erreurs 404
 app.use((req, res) => {
-    res.status(404).send('Page non trouvée');
+    res.status(404).send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Page non trouvée</title>
+            <style>
+                body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+                h1 { color: #ec7014; }
+            </style>
+        </head>
+        <body>
+            <h1>404 - Page non trouvée</h1>
+            <p>La page que vous recherchez n'existe pas.</p>
+            <a href="/" style="color: #ec7014;">Retour à l'accueil</a>
+        </body>
+        </html>
+    `);
 });
 
 // Gestion des erreurs globales
@@ -74,11 +84,7 @@ app.use((err, req, res, next) => {
 });
 
 // Démarrer le serveur
-app.listen(PORT, '0.0.0.0', (err) => {
-    if (err) {
-        console.error('Erreur lors du démarrage du serveur:', err);
-        process.exit(1);
-    }
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`✅ Serveur démarré avec succès sur http://0.0.0.0:${PORT}`);
     console.log(`🌐 Votre site est accessible à l'adresse: http://0.0.0.0:${PORT}`);
 });
@@ -92,4 +98,5 @@ process.on('SIGTERM', () => {
 process.on('SIGINT', () => {
     console.log('Arrêt du serveur...');
     process.exit(0);
+});rocess.exit(0);
 });
