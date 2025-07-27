@@ -56,37 +56,6 @@
     </script>
     
     <style>
-        .hero-bg {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8)), url('img/intro-bg-01.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        
-        .service-bg {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)), url('img/sec-bg-01.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .about-bg {
-            background: linear-gradient(135deg, rgba(248, 250, 252, 0.98), rgba(241, 245, 249, 0.95)), url('img/sec-bg-02.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .price-bg {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8)), url('img/sec-bg-03.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .testimonial-bg {
-            background: linear-gradient(135deg, rgba(248, 250, 252, 0.98), rgba(241, 245, 249, 0.95)), url('img/sec-bg-04.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        
         .floating-whatsapp {
             position: fixed;
             bottom: 2rem;
@@ -102,6 +71,17 @@
         
         .scroll-smooth {
             scroll-behavior: smooth;
+        }
+        
+        /* Assurer la visibilité des sections */
+        section {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Améliorer la lisibilité */
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
     </style>
 </head>
@@ -216,55 +196,55 @@
     </section>
 
     <!-- Section Services -->
-    <section id="services" class="service-bg py-20" data-editable="true">
-        <div class="container mx-auto px-4 lg:px-8">
+    <section id="services" class="py-20 relative" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)), url('img/sec-bg-01.jpg'); background-size: cover; background-position: center; background-attachment: fixed;" data-editable="true">
+        <div class="container mx-auto px-4 lg:px-8 relative z-10">
             <div class="text-center mb-16">
                 <h2 class="text-4xl lg:text-5xl font-serif font-bold text-white mb-6" data-editable="text">
                     Nos Services Premium
                 </h2>
-                <p class="text-xl text-gray-200 max-w-3xl mx-auto" data-editable="text">
-                    Découvrez notre gamme complète de services professionnels, conçus pour révéler votre beauté naturelle
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed" data-editable="text">
+                    Découvrez notre gamme complète de services professionnels, conçus pour révéler votre beauté naturelle avec expertise et passion
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl" data-editable="service-item">
-                    <div class="bg-primary-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <img src="img/icons/scissors.png" alt="Coupe" class="w-10 h-10 filter invert">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20" data-editable="service-item">
+                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
+                        <img src="img/icons/scissors.png" alt="Coupe" class="w-10 h-10 filter brightness-0 invert">
                     </div>
                     <h3 class="text-2xl font-serif font-bold text-white mb-4" data-editable="text">Coupe Scissor</h3>
-                    <p class="text-gray-200 leading-relaxed" data-editable="text">
-                        Coupe précise aux ciseaux pour un résultat parfaitement adapté à votre morphologie
+                    <p class="text-gray-200 leading-relaxed text-base" data-editable="text">
+                        Coupe précise aux ciseaux pour un résultat parfaitement adapté à votre morphologie et style personnel
                     </p>
                 </div>
                 
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl" data-editable="service-item">
-                    <div class="bg-primary-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <img src="img/icons/razor-1.png" alt="Rasoir" class="w-10 h-10 filter invert">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20" data-editable="service-item">
+                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
+                        <img src="img/icons/razor-1.png" alt="Rasoir" class="w-10 h-10 filter brightness-0 invert">
                     </div>
                     <h3 class="text-2xl font-serif font-bold text-white mb-4" data-editable="text">Coupe Razor</h3>
-                    <p class="text-gray-200 leading-relaxed" data-editable="text">
-                        Technique au rasoir pour des coupes texturées et un style moderne unique
+                    <p class="text-gray-200 leading-relaxed text-base" data-editable="text">
+                        Technique au rasoir pour des coupes texturées et un style moderne unique qui met en valeur votre personnalité
                     </p>
                 </div>
                 
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl" data-editable="service-item">
-                    <div class="bg-primary-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <img src="img/icons/brush.png" alt="Rasage" class="w-10 h-10 filter invert">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20" data-editable="service-item">
+                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
+                        <img src="img/icons/brush.png" alt="Rasage" class="w-10 h-10 filter brightness-0 invert">
                     </div>
                     <h3 class="text-2xl font-serif font-bold text-white mb-4" data-editable="text">Rasage Complet</h3>
-                    <p class="text-gray-200 leading-relaxed" data-editable="text">
-                        Rasage traditionnel à l'ancienne pour une peau parfaitement lisse
+                    <p class="text-gray-200 leading-relaxed text-base" data-editable="text">
+                        Rasage traditionnel à l'ancienne pour une peau parfaitement lisse avec soins personnalisés
                     </p>
                 </div>
                 
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl" data-editable="service-item">
-                    <div class="bg-primary-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <img src="img/icons/hair-clip.png" alt="Tondeuse" class="w-10 h-10 filter invert">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20" data-editable="service-item">
+                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
+                        <img src="img/icons/hair-clip.png" alt="Tondeuse" class="w-10 h-10 filter brightness-0 invert">
                     </div>
                     <h3 class="text-2xl font-serif font-bold text-white mb-4" data-editable="text">Coupe Clipper</h3>
-                    <p class="text-gray-200 leading-relaxed" data-editable="text">
-                        Dégradés précis et coupes modernes réalisés avec expertise
+                    <p class="text-gray-200 leading-relaxed text-base" data-editable="text">
+                        Dégradés précis et coupes modernes réalisés avec expertise et attention aux détails
                     </p>
                 </div>
             </div>
