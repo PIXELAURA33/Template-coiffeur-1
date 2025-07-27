@@ -1,16 +1,9 @@
+
 const express = require('express');
 const path = require('path');
+const fs = require('fs').promises;
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Middleware pour servir les fichiers statiques
-app.use(express.static('.'));
-
-// Route principale
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
 const PORT = process.env.PORT || 5000;
 
 // Middleware pour parser les données de formulaire
@@ -56,7 +49,21 @@ app.get('/editor', (req, res) => {
 // Routes pour les assets
 app.get('/css/*', (req, res) => {
     res.sendFile(path.join(__dirname, req.path));
-}// Gestion des erreurs 404
+});
+
+app.get('/js/*', (req, res) => {
+    res.sendFile(path.join(__dirname, req.path));
+});
+
+app.get('/img/*', (req, res) => {
+    res.sendFile(path.join(__dirname, req.path));
+});
+
+app.get('/font-awesome/*', (req, res) => {
+    res.sendFile(path.join(__dirname, req.path));
+});
+
+// Gestion des erreurs 404
 app.use((req, res) => {
     res.status(404).send(`
         <!DOCTYPE html>
@@ -98,5 +105,4 @@ process.on('SIGTERM', () => {
 process.on('SIGINT', () => {
     console.log('Arrêt du serveur...');
     process.exit(0);
-});rocess.exit(0);
 });
