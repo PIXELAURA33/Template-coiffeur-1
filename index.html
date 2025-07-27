@@ -348,6 +348,32 @@
         .main-logo {
             filter: sepia(100%) saturate(200%) hue-rotate(25deg) brightness(1.2) drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
+
+        /* Styles for 3D cards */
+        .card-3d {
+            transition: all 0.3s ease;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-5px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Styles for service icon container */
+        .service-icon-container {
+            transition: transform 0.3s ease;
+        }
+
+        .card-3d:hover .service-icon-container {
+            transform: rotate(360deg);
+        }
+
+        /* Glass card effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
     </style>
 </head>
 
@@ -486,8 +512,8 @@
             </div>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20">
-                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
+                <div class="glass-card rounded-2xl p-8 text-center shadow-2xl border border-white/20 card-3d">
+                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg service-icon-container">
                         <img src="./img/icons/scissors.png" alt="Coupe" class="w-10 h-10 filter brightness-0 invert service-icon" data-icon="scissors">
                     </div>
                     <h3 class="text-2xl font-serif font-bold text-white mb-4 editable" data-field="service1_name">Coupe Scissor</h3>
@@ -496,8 +522,8 @@
                     </p>
                 </div>
 
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20">
-                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
+                <div class="glass-card rounded-2xl p-8 text-center shadow-2xl border border-white/20 card-3d">
+                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg service-icon-container">
                         <img src="./img/icons/razor-1.png" alt="Rasoir" class="w-10 h-10 filter brightness-0 invert service-icon" data-icon="razor">
                     </div>
                     <h3 class="text-2xl font-serif font-bold text-white mb-4 editable" data-field="service2_name">Coupe Razor</h3>
@@ -506,8 +532,8 @@
                     </p>
                 </div>
 
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20">
-                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
+                <div class="glass-card rounded-2xl p-8 text-center shadow-2xl border border-white/20 card-3d">
+                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg service-icon-container">
                         <img src="./img/icons/brush.png" alt="Rasage" class="w-10 h-10 filter brightness-0 invert service-icon" data-icon="brush">
                     </div>
                     <h3 class="text-2xl font-serif font-bold text-white mb-4 editable" data-field="service3_name">Rasage Complet</h3>
@@ -516,8 +542,8 @@
                     </p>
                 </div>
 
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20">
-                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg transform hover:rotate-12 transition-transform duration-300">
+                <div class="glass-card rounded-2xl p-8 text-center shadow-2xl border border-white/20 card-3d">
+                    <div class="bg-gradient-to-br from-primary-500 to-primary-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg service-icon-container">
                         <img src="./img/icons/hair-clip.png" alt="Tondeuse" class="w-10 h-10 filter brightness-0 invert service-icon" data-icon="clipper">
                     </div>
                     <h3 class="text-2xl font-serif font-bold text-white mb-4 editable" data-field="service4_name">Coupe Clipper</h3>
@@ -601,7 +627,7 @@
 
     <!-- Section Notre Équipe -->
     <section id="team" class="py-20 bg-secondary-900">
-        <div class="container mx-auto px-4 lg:px-8">
+                <div class="container mx-auto px-4 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl lg:text-5xl font-serif font-bold text-white mb-6 editable" data-field="team_title">
                     Notre Équipe d'Experts
@@ -1424,11 +1450,11 @@
                 btn.addEventListener('click', function() {
                     const style = this.dataset.style;
                     applyPresetStyle(style);
-                    
+
                     // Mettre à jour l'état actif
                     document.querySelectorAll('.preset-style-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
-                    
+
                     showNotification(`Style "${style}" appliqué avec succès !`, 'success');
                 });
             });
@@ -1443,7 +1469,7 @@
                     const rgb = hexToRgb(color);
                     const darkerColor = `rgb(${Math.max(0, rgb.r - 30)}, ${Math.max(0, rgb.g - 30)}, ${Math.max(0, rgb.b - 30)})`;
                     document.documentElement.style.setProperty('--primary-dark', darkerColor);
-                    
+
                     // Forcer la mise à jour des éléments
                     updateAllColorElements();
                 });
@@ -1486,7 +1512,7 @@
 
             // Appliquer les gradients aux sections
             applyStyleGradients(style);
-            
+
             // Forcer la mise à jour des éléments avec les nouvelles couleurs
             updateAllColorElements();
         }
@@ -1530,7 +1556,7 @@
                 }
             `;
             document.head.appendChild(style);
-            
+
             // Supprimer le style temporaire après un délai
             setTimeout(() => {
                 document.head.removeChild(style);
@@ -1935,7 +1961,7 @@
                     this.style.display = 'block';
                     this.nextElementSibling.style.display = 'none';
                 };
-                
+
                 mainLogo.onerror = function() {
                     console.log('⚠️ Erreur de chargement du logo, affichage du logo de secours');
                     this.style.display = 'none';
