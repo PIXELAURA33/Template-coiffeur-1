@@ -239,7 +239,10 @@
 
         .main-logo {
             transition: all 0.3s ease;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            filter: sepia(100%) saturate(200%) hue-rotate(25deg) brightness(1.2) drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            max-height: 80px;
+            width: auto;
+            object-fit: contain;
         }
 
         .main-logo:hover {
@@ -309,7 +312,10 @@
                 <!-- Logo et Slogan -->
                 <div class="flex items-center space-x-6">
                     <div class="logo-container">
-                        <img id="main-logo" src="img/logo.png" alt="Logo Salon Premium" class="h-20 w-auto object-contain main-logo" style="filter: sepia(100%) saturate(200%) hue-rotate(25deg) brightness(1.2);">
+                        <img id="main-logo" src="./img/logo.png" alt="Logo Salon Premium" class="h-20 w-auto object-contain main-logo" style="filter: sepia(100%) saturate(200%) hue-rotate(25deg) brightness(1.2); max-width: 200px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="backup-logo" style="display: none; color: var(--primary-color); font-size: 2rem; font-weight: bold; font-family: serif;">
+                            <i class="fas fa-cut mr-2"></i>Salon Premium
+                        </div>
                     </div>
                     <div class="slogan-container hidden lg:block">
                         <p class="text-base italic font-medium text-primary-dynamic max-w-md leading-relaxed editable" data-field="main_slogan">
