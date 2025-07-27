@@ -149,6 +149,42 @@
         .gradient-overlay {
             background: linear-gradient(45deg, rgba(236, 112, 20, 0.1), rgba(221, 86, 10, 0.1));
         }
+
+        /* Styles pour les effets de verre et de survol élégant */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .elegant-hover:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .elegant-border {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .elegant-gradient {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.7)); /* Ajustez les couleurs selon vos besoins */
+        }
+
+        /* Animation de slide-up */
+        .animate-slide-up {
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
@@ -403,14 +439,16 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <!-- Membre 1 -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20 card-hover" data-editable="team-member">
-                    <div class="relative mb-6">
-                        <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shadow-xl">
-                            <i class="fas fa-user text-5xl text-white"></i>
+                <div class="glass-effect rounded-3xl p-8 text-center elegant-hover shadow-2xl elegant-border animate-slide-up" data-editable="team-member">
+                    <div class="relative mb-6 group">
+                        <div class="w-32 h-32 mx-auto rounded-full elegant-gradient flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300">
+                            <i class="fas fa-user text-5xl text-white group-hover:scale-110 transition-transform duration-300"></i>
                         </div>
-                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary-600 rounded-full p-2">
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary-600 rounded-full p-2 elegant-hover">
                             <i class="fas fa-cut text-white text-sm"></i>
                         </div>
+                        <!-- Effet de brillance au hover -->
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                     <h3 class="text-2xl font-serif font-bold text-white mb-2" data-editable="text">Sophie Martin</h3>
                     <p class="text-primary-400 font-medium mb-4" data-editable="text">Coiffeuse Senior</p>
@@ -428,14 +466,16 @@
                 </div>
 
                 <!-- Membre 2 -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20 card-hover" data-editable="team-member">
-                    <div class="relative mb-6">
-                        <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shadow-xl">
-                            <i class="fas fa-user text-5xl text-white"></i>
+                <div class="glass-effect rounded-3xl p-8 text-center elegant-hover shadow-2xl elegant-border animate-slide-up" data-editable="team-member">
+                    <div class="relative mb-6 group">
+                        <div class="w-32 h-32 mx-auto rounded-full elegant-gradient flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300">
+                            <i class="fas fa-user text-5xl text-white group-hover:scale-110 transition-transform duration-300"></i>
                         </div>
-                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary-600 rounded-full p-2">
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary-600 rounded-full p-2 elegant-hover">
                             <i class="fas fa-cut text-white text-sm"></i>
                         </div>
+                        <!-- Effet de brillance au hover -->
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                     <h3 class="text-2xl font-serif font-bold text-white mb-2" data-editable="text">Alexandre Durand</h3>
                     <p class="text-primary-400 font-medium mb-4" data-editable="text">Barbier Expert</p>
@@ -453,14 +493,16 @@
                 </div>
 
                 <!-- Membre 3 -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 text-center hover:bg-white/20 transition-all duration-500 transform hover:scale-105 shadow-2xl border border-white/20 card-hover" data-editable="team-member">
-                    <div class="relative mb-6">
-                        <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shadow-xl">
-                            <i class="fas fa-user text-5xl text-white"></i>
+                <div class="glass-effect rounded-3xl p-8 text-center elegant-hover shadow-2xl elegant-border animate-slide-up" data-editable="team-member">
+                    <div class="relative mb-6 group">
+                        <div class="w-32 h-32 mx-auto rounded-full elegant-gradient flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300">
+                            <i class="fas fa-user text-5xl text-white group-hover:scale-110 transition-transform duration-300"></i>
                         </div>
-                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary-600 rounded-full p-2">
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-primary-600 rounded-full p-2 elegant-hover">
                             <i class="fas fa-cut text-white text-sm"></i>
                         </div>
+                        <!-- Effet de brillance au hover -->
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                     <h3 class="text-2xl font-serif font-bold text-white mb-2" data-editable="text">Émilie Rousseau</h3>
                     <p class="text-primary-400 font-medium mb-4" data-editable="text">Styliste Coloriste</p>
@@ -1037,12 +1079,12 @@
             // Détecter la section active
             const sections = document.querySelectorAll('section[id]');
             const navLinks = document.querySelectorAll('.nav-link');
-            
+
             let currentSection = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop - 150;
                 const sectionHeight = section.offsetHeight;
-                
+
                 if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
                     currentSection = section.getAttribute('id');
                 }
@@ -1051,7 +1093,7 @@
             navLinks.forEach(link => {
                 link.classList.remove('text-primary-600');
                 link.classList.add('text-secondary-700');
-                
+
                 if (link.getAttribute('href') === '#' + currentSection) {
                     link.classList.remove('text-secondary-700');
                     link.classList.add('text-primary-600');
@@ -1334,28 +1376,28 @@ Message: ${message || 'Aucun message supplémentaire'}`;
                         color: ${primaryColor} !important;
                         border-color: ${primaryColor} !important;
                     }
-                    
+
                     /* Boutons principaux */
                     .bg-primary-600 {
                         background-color: ${primaryColor} !important;
                     }
-                    
+
                     /* Textes et liens principaux */
                     .text-primary-600, .text-primary-400, 
                     h1 span.text-primary-400, nav a:hover {
                         color: ${primaryColor} !important;
                     }
-                    
+
                     /* Logos et icônes */
                     nav h1, .navbar-brand {
                         color: ${primaryColor} !important;
                     }
-                    
+
                     /* WhatsApp elements */
                     .bg-green-500, .hover\\:bg-green-600:hover {
                         background-color: ${accentColor} !important;
                     }
-                    
+
                     /* Style des boutons selon la sélection */
                     ${buttonStyle === 'square' ? `
                         .rounded-full, .rounded-xl, .rounded-lg {
@@ -1366,7 +1408,7 @@ Message: ${message || 'Aucun message supplémentaire'}`;
                             border-radius: 9999px !important;
                         }
                     ` : ''}
-                    
+
                     /* Style des sections selon la sélection */
                     ${sectionStyle === 'classic' ? `
                         .bg-white\\/10, .bg-white\\/20 {
@@ -1390,7 +1432,7 @@ Message: ${message || 'Aucun message supplémentaire'}`;
 
             applyAppearanceSettings() {
                 const { titleSize, spacing, animationStyle } = this.content.appearance;
-                
+
                 // Taille des titres
                 const titles = document.querySelectorAll('h1, h2, h3');
                 titles.forEach(title => {
