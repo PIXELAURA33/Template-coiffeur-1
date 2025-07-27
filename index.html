@@ -733,7 +733,7 @@
                     </div>
                 </div>
                 <p class="text-gray-400" data-editable="text">
-                    © 2024 Salon Premium. Tous droits réservés. | Créé avec passion pour l'excellence
+                    © 2025 Salon Premium. Tous droits réservés. | Créé avec passion pour l'excellence
                 </p>
             </div>
         </div>
@@ -800,29 +800,32 @@
             observer.observe(el);
         });
 
-        // Gestion du formulaire de contact
-        document.querySelector('#contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Gestion du formulaire de contact (si présent)
+        const contactForm = document.querySelector('#contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
 
-            // Récupérer les données du formulaire
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const phone = formData.get('phone');
-            const service = formData.get('service');
-            const message = formData.get('message');
+                // Récupérer les données du formulaire
+                const formData = new FormData(this);
+                const name = formData.get('name');
+                const phone = formData.get('phone');
+                const service = formData.get('service');
+                const message = formData.get('message');
 
-            // Créer le message WhatsApp
-            const whatsappMessage = `Bonjour, je souhaite prendre rendez-vous :
+                // Créer le message WhatsApp
+                const whatsappMessage = `Bonjour, je souhaite prendre rendez-vous :
 
 Nom: ${name}
 Téléphone: ${phone}
 Service: ${service}
 Message: ${message || 'Aucun message supplémentaire'}`;
 
-            // Rediriger vers WhatsApp
-            const whatsappUrl = `https://wa.me/22900000000?text=${encodeURIComponent(whatsappMessage)}`;
-            window.open(whatsappUrl, '_blank');
-        });
+                // Rediriger vers WhatsApp
+                const whatsappUrl = `https://wa.me/22900000000?text=${encodeURIComponent(whatsappMessage)}`;
+                window.open(whatsappUrl, '_blank');
+            });
+        }
 
         // Effet de parallaxe subtil pour les sections avec background
         window.addEventListener('scroll', function() {
