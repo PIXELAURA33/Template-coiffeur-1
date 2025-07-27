@@ -994,6 +994,28 @@ Message: ${message || 'Aucun message supplémentaire'}`;
                 document.getElementById('adminMode').classList.remove('hidden');
                 this.loadCurrentContent();
                 this.bindEvents();
+
+                // Afficher une notification de bienvenue en mode admin
+                setTimeout(() => {
+                    this.showNotification('🔧 Mode administrateur activé ! Cliquez sur le bouton d\'édition pour modifier le contenu.', 'success');
+                }, 1000);
+
+                // Ajouter un indicateur visuel en haut de la page
+                const adminIndicator = document.createElement('div');
+                adminIndicator.id = 'adminIndicator';
+                adminIndicator.className = 'fixed top-0 left-0 w-full bg-blue-600 text-white text-center py-2 z-50 text-sm font-medium';
+                adminIndicator.innerHTML = '<i class="fas fa-cog mr-2"></i>Mode Administrateur - Cliquez sur le bouton flottant pour éditer';
+                document.body.appendChild(adminIndicator);
+
+                // Ajuster la position du navbar
+                const navbar = document.getElementById('navbar');
+                if (navbar) {
+                    navbar.style.top = '40px';
+                    navbar.style.position = 'fixed';
+                }
+
+                // Ajuster le body pour compenser la barre admin
+                document.body.style.paddingTop = '40px';
             }
 
             loadCurrentContent() {
@@ -1108,7 +1130,7 @@ Message: ${message || 'Aucun message supplémentaire'}`;
                     heroTitle.innerHTML = `${parts.join(' ')} <span class="text-primary-400">${lastWord}</span>`;
                 }
 
-                // Sous-titre héro
+                                // Sous-titre héro
                 const heroSubtitle = document.querySelector('#home p[data-editable="text"]');
                 if (heroSubtitle) {
                     heroSubtitle.textContent = this.content.hero.subtitle;
@@ -1133,7 +1155,7 @@ Message: ${message || 'Aucun message supplémentaire'}`;
 
             applyTheme() {
                 const { primaryColor, accentColor } = this.content.theme;
-                
+
                 // Appliquer aux éléments avec classes Tailwind
                 const primaryElements = document.querySelectorAll('.bg-primary-600, .hover\\:bg-primary-700');
                 primaryElements.forEach(el => {
@@ -1182,7 +1204,7 @@ Message: ${message || 'Aucun message supplémentaire'}`;
 
                 // Générer le HTML propre
                 const cleanHTML = this.generateCleanHTML();
-                
+
                 // Créer et télécharger le fichier
                 const blob = new Blob([cleanHTML], { type: 'text/html' });
                 const url = URL.createObjectURL(blob);
@@ -1200,7 +1222,7 @@ Message: ${message || 'Aucun message supplémentaire'}`;
             generateCleanHTML() {
                 // Cloner le document actuel
                 const docClone = document.cloneNode(true);
-                
+
                 // Supprimer tous les éléments d'édition
                 const adminMode = docClone.getElementById('adminMode');
                 if (adminMode) adminMode.remove();
@@ -1268,7 +1290,7 @@ Message: ${message || 'Aucun message supplémentaire'}`;
                         ${message}
                     </div>
                 `;
-                
+
                 document.body.appendChild(notification);
                 setTimeout(() => notification.remove(), 3000);
             }
