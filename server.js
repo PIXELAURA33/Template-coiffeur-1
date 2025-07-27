@@ -36,31 +36,53 @@ app.get('/api/load-content', async (req, res) => {
     }
 });
 
+// Middleware de logging pour déboguer les requêtes
+app.use((req, res, next) => {
+    console.log(`📍 ${req.method} ${req.url} - ${new Date().toISOString()}`);
+    next();
+});
+
 // Route principale
 app.get('/', (req, res) => {
+    console.log('✅ Serving index.html');
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Route pour l'éditeur
+// Route pour l'éditeur (optionnelle)
 app.get('/editor', (req, res) => {
+    console.log('✅ Serving editor.html');
     res.sendFile(path.join(__dirname, 'editor.html'));
 });
 
-// Routes pour les assets
+// Routes pour tous les fichiers statiques
 app.get('/css/*', (req, res) => {
-    res.sendFile(path.join(__dirname, req.path));
+    const filePath = path.join(__dirname, req.path);
+    console.log(`📄 CSS file requested: ${filePath}`);
+    res.sendFile(filePath);
 });
 
 app.get('/js/*', (req, res) => {
-    res.sendFile(path.join(__dirname, req.path));
+    const filePath = path.join(__dirname, req.path);
+    console.log(`📄 JS file requested: ${filePath}`);
+    res.sendFile(filePath);
 });
 
 app.get('/img/*', (req, res) => {
-    res.sendFile(path.join(__dirname, req.path));
+    const filePath = path.join(__dirname, req.path);
+    console.log(`📄 Image file requested: ${filePath}`);
+    res.sendFile(filePath);
 });
 
 app.get('/font-awesome/*', (req, res) => {
-    res.sendFile(path.join(__dirname, req.path));
+    const filePath = path.join(__dirname, req.path);
+    console.log(`📄 Font file requested: ${filePath}`);
+    res.sendFile(filePath);
+});
+
+// Route catch-all pour servir index.html pour toutes les autres routes
+app.get('*', (req, res) => {
+    console.log(`🔄 Fallback route for: ${req.url}`);
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Gestion des erreurs 404
