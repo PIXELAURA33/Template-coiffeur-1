@@ -295,6 +295,55 @@
             }
         }
 
+        /* Styles pour les boutons de styles prédéfinis */
+        .preset-style-btn {
+            width: 100%;
+            padding: 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .preset-style-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .preset-preview {
+            width: 100%;
+            height: 60px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .preset-style-btn:hover .preset-preview {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+        }
+
+        .preset-style-btn.active .preset-preview {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.7);
+        }
+
+        /* Variables CSS pour les styles dynamiques */
+        .bg-accent-dynamic {
+            background-color: var(--accent-color, #374151);
+        }
+
+        .text-accent-dynamic {
+            color: var(--accent-color, #374151);
+        }
+
+        .border-accent-dynamic {
+            border-color: var(--accent-color, #374151);
+        }
+
         /* Amélioration du filtre couleur pour le logo */
         .main-logo {
             filter: sepia(100%) saturate(200%) hue-rotate(25deg) brightness(1.2) drop-shadow(0 2px 4px rgba(0,0,0,0.1));
@@ -927,10 +976,56 @@
                 </div>
 
                 <div class="space-y-6">
-                    <!-- Thème & Couleurs -->
+                    <!-- Styles Prédéfinis -->
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <h3 class="font-semibold mb-3 text-gray-700">
-                            <i class="fas fa-palette mr-2"></i>Thème & Couleurs
+                            <i class="fas fa-magic mr-2"></i>Styles Prédéfinis
+                        </h3>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <button class="preset-style-btn" data-style="luxe">
+                                <div class="preset-preview" style="background: linear-gradient(45deg, #000000 0%, #1a1a1a 50%, #333333 100%); color: #ffd700; border: 2px solid #ffd700;">
+                                    <i class="fas fa-crown text-sm"></i>
+                                    <span class="text-xs font-bold">Luxe</span>
+                                </div>
+                            </button>
+                            <button class="preset-style-btn" data-style="moderne">
+                                <div class="preset-preview" style="background: linear-gradient(45deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%); color: white;">
+                                    <i class="fas fa-rocket text-sm"></i>
+                                    <span class="text-xs font-bold">Moderne</span>
+                                </div>
+                            </button>
+                            <button class="preset-style-btn" data-style="nature">
+                                <div class="preset-preview" style="background: linear-gradient(45deg, #065f46 0%, #059669 50%, #10b981 100%); color: white;">
+                                    <i class="fas fa-leaf text-sm"></i>
+                                    <span class="text-xs font-bold">Nature</span>
+                                </div>
+                            </button>
+                            <button class="preset-style-btn" data-style="passion">
+                                <div class="preset-preview" style="background: linear-gradient(45deg, #991b1b 0%, #dc2626 50%, #ef4444 100%); color: white;">
+                                    <i class="fas fa-heart text-sm"></i>
+                                    <span class="text-xs font-bold">Passion</span>
+                                </div>
+                            </button>
+                            <button class="preset-style-btn" data-style="elegant">
+                                <div class="preset-preview" style="background: linear-gradient(45deg, #581c87 0%, #7c3aed 50%, #a855f7 100%); color: white;">
+                                    <i class="fas fa-gem text-sm"></i>
+                                    <span class="text-xs font-bold">Élégant</span>
+                                </div>
+                            </button>
+                            <button class="preset-style-btn" data-style="classique">
+                                <div class="preset-preview" style="background: linear-gradient(45deg, #b45309 0%, #ea580c 50%, #f97316 100%); color: white;">
+                                    <i class="fas fa-star text-sm"></i>
+                                    <span class="text-xs font-bold">Classique</span>
+                                </div>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500 text-center">Cliquez sur un style pour l'appliquer instantanément</p>
+                    </div>
+
+                    <!-- Thème & Couleurs Personnalisées -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold mb-3 text-gray-700">
+                            <i class="fas fa-palette mr-2"></i>Personnalisation Avancée
                         </h3>
                         <div class="space-y-3">
                             <div>
@@ -1253,12 +1348,90 @@
             setupPanelActions();
         }
 
+        // Définition des styles prédéfinis
+        const presetStyles = {
+            luxe: {
+                primary: '#ffd700',
+                whatsapp: '#25d366',
+                accent: '#b8860b',
+                gradients: {
+                    hero: 'linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(26, 26, 26, 0.8))',
+                    services: 'linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(26, 26, 26, 0.9))',
+                    pricing: 'linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(26, 26, 26, 0.8))'
+                }
+            },
+            moderne: {
+                primary: '#3b82f6',
+                whatsapp: '#25d366',
+                accent: '#1e40af',
+                gradients: {
+                    hero: 'linear-gradient(135deg, rgba(30, 64, 175, 0.8), rgba(59, 130, 246, 0.7))',
+                    services: 'linear-gradient(135deg, rgba(30, 64, 175, 0.95), rgba(59, 130, 246, 0.9))',
+                    pricing: 'linear-gradient(135deg, rgba(30, 64, 175, 0.9), rgba(59, 130, 246, 0.8))'
+                }
+            },
+            nature: {
+                primary: '#10b981',
+                whatsapp: '#25d366',
+                accent: '#065f46',
+                gradients: {
+                    hero: 'linear-gradient(135deg, rgba(6, 95, 70, 0.8), rgba(5, 150, 105, 0.7))',
+                    services: 'linear-gradient(135deg, rgba(6, 95, 70, 0.95), rgba(5, 150, 105, 0.9))',
+                    pricing: 'linear-gradient(135deg, rgba(6, 95, 70, 0.9), rgba(5, 150, 105, 0.8))'
+                }
+            },
+            passion: {
+                primary: '#dc2626',
+                whatsapp: '#25d366',
+                accent: '#991b1b',
+                gradients: {
+                    hero: 'linear-gradient(135deg, rgba(153, 27, 27, 0.8), rgba(220, 38, 38, 0.7))',
+                    services: 'linear-gradient(135deg, rgba(153, 27, 27, 0.95), rgba(220, 38, 38, 0.9))',
+                    pricing: 'linear-gradient(135deg, rgba(153, 27, 27, 0.9), rgba(220, 38, 38, 0.8))'
+                }
+            },
+            elegant: {
+                primary: '#7c3aed',
+                whatsapp: '#25d366',
+                accent: '#581c87',
+                gradients: {
+                    hero: 'linear-gradient(135deg, rgba(88, 28, 135, 0.8), rgba(124, 58, 237, 0.7))',
+                    services: 'linear-gradient(135deg, rgba(88, 28, 135, 0.95), rgba(124, 58, 237, 0.9))',
+                    pricing: 'linear-gradient(135deg, rgba(88, 28, 135, 0.9), rgba(124, 58, 237, 0.8))'
+                }
+            },
+            classique: {
+                primary: '#ea580c',
+                whatsapp: '#25d366',
+                accent: '#b45309',
+                gradients: {
+                    hero: 'linear-gradient(135deg, rgba(180, 83, 9, 0.8), rgba(234, 88, 12, 0.7))',
+                    services: 'linear-gradient(135deg, rgba(180, 83, 9, 0.95), rgba(234, 88, 12, 0.9))',
+                    pricing: 'linear-gradient(135deg, rgba(180, 83, 9, 0.9), rgba(234, 88, 12, 0.8))'
+                }
+            }
+        };
+
         // Configuration des gestionnaires de couleurs
         function setupColorHandlers() {
             const primaryColorInput = document.getElementById('edit_primary_color');
             const primaryColorHex = document.getElementById('edit_primary_color_hex');
             const whatsappColorInput = document.getElementById('edit_whatsapp_color');
             const whatsappColorHex = document.getElementById('edit_whatsapp_color_hex');
+
+            // Gestionnaires pour les styles prédéfinis
+            document.querySelectorAll('.preset-style-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const style = this.dataset.style;
+                    applyPresetStyle(style);
+                    
+                    // Mettre à jour l'état actif
+                    document.querySelectorAll('.preset-style-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    showNotification(`Style "${style}" appliqué avec succès !`, 'success');
+                });
+            });
 
             if (primaryColorInput && primaryColorHex) {
                 primaryColorInput.addEventListener('input', function() {
@@ -1279,6 +1452,61 @@
                     whatsappColorHex.value = color;
                     document.documentElement.style.setProperty('--whatsapp-color', color);
                 });
+            }
+        }
+
+        // Appliquer un style prédéfini
+        function applyPresetStyle(styleName) {
+            const style = presetStyles[styleName];
+            if (!style) return;
+
+            // Appliquer les couleurs CSS
+            document.documentElement.style.setProperty('--primary-color', style.primary);
+            document.documentElement.style.setProperty('--whatsapp-color', style.whatsapp);
+            document.documentElement.style.setProperty('--accent-color', style.accent);
+
+            // Calculer une couleur plus sombre pour le hover
+            const rgb = hexToRgb(style.primary);
+            const darkerColor = `rgb(${Math.max(0, rgb.r - 30)}, ${Math.max(0, rgb.g - 30)}, ${Math.max(0, rgb.b - 30)})`;
+            document.documentElement.style.setProperty('--primary-dark', darkerColor);
+
+            // Mettre à jour les champs de couleur
+            const primaryColorInput = document.getElementById('edit_primary_color');
+            const primaryColorHex = document.getElementById('edit_primary_color_hex');
+            const whatsappColorInput = document.getElementById('edit_whatsapp_color');
+            const whatsappColorHex = document.getElementById('edit_whatsapp_color_hex');
+
+            if (primaryColorInput) primaryColorInput.value = style.primary;
+            if (primaryColorHex) primaryColorHex.value = style.primary;
+            if (whatsappColorInput) whatsappColorInput.value = style.whatsapp;
+            if (whatsappColorHex) whatsappColorHex.value = style.whatsapp;
+
+            // Appliquer les gradients aux sections
+            applyStyleGradients(style);
+        }
+
+        // Appliquer les gradients de style
+        function applyStyleGradients(style) {
+            const heroSection = document.getElementById('home');
+            const servicesSection = document.getElementById('services');
+            const pricingSection = document.getElementById('pricing');
+
+            if (heroSection && heroSection.dataset.bgImage) {
+                heroSection.style.background = `${style.gradients.hero}, url('${heroSection.dataset.bgImage}')`;
+                heroSection.style.backgroundSize = 'cover';
+                heroSection.style.backgroundPosition = 'center';
+            }
+
+            if (servicesSection && servicesSection.dataset.bgImage) {
+                servicesSection.style.background = `${style.gradients.services}, url('${servicesSection.dataset.bgImage}')`;
+                servicesSection.style.backgroundSize = 'cover';
+                servicesSection.style.backgroundPosition = 'center';
+            }
+
+            if (pricingSection && pricingSection.dataset.bgImage) {
+                pricingSection.style.background = `${style.gradients.pricing}, url('${pricingSection.dataset.bgImage}')`;
+                pricingSection.style.backgroundSize = 'cover';
+                pricingSection.style.backgroundPosition = 'center';
             }
         }
 
@@ -1561,6 +1789,8 @@
             const settings = {
                 primaryColor: document.documentElement.style.getPropertyValue('--primary-color'),
                 whatsappColor: document.documentElement.style.getPropertyValue('--whatsapp-color'),
+                accentColor: document.documentElement.style.getPropertyValue('--accent-color'),
+                activeStyle: document.querySelector('.preset-style-btn.active')?.dataset.style || 'classique',
                 timestamp: new Date().toISOString()
             };
 
@@ -1651,6 +1881,19 @@
                     }
                     if (settings.whatsappColor) {
                         document.documentElement.style.setProperty('--whatsapp-color', settings.whatsappColor);
+                    }
+                    if (settings.accentColor) {
+                        document.documentElement.style.setProperty('--accent-color', settings.accentColor);
+                    }
+                    if (settings.activeStyle) {
+                        // Réappliquer le style prédéfini
+                        setTimeout(() => {
+                            applyPresetStyle(settings.activeStyle);
+                            const activeBtn = document.querySelector(`[data-style="${settings.activeStyle}"]`);
+                            if (activeBtn) {
+                                activeBtn.classList.add('active');
+                            }
+                        }, 100);
                     }
                 } catch (e) {
                     console.error('Erreur lors du chargement des paramètres:', e);
