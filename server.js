@@ -1,6 +1,6 @@
-
 const express = require('express');
 const path = require('path');
+const fs = require('fs').promises; // Import the promises version of fs
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -9,17 +9,40 @@ const PORT = process.env.PORT || 5000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Servir les fichiers statiques depuis le répertoire racine
+// Servir les fichiers statiques
 app.use(express.static(path.join(__dirname)));
+
+// Route API pour sauvegarder le contenu
+app.post('/api/save-content', async (req, res) => {
+    try {
+        const content = req.body;
+        await fs.writeFile('content.json', JSON.stringify(content, null, 2));
+        res.json({ success: true, message: 'Contenu sauvegardé avec succès' });
+    } catch (error) {
+        console.error('Erreur lors de la sauvegarde:', error);
+        res.status(500).json({ success: false, message: 'Erreur lors de la sauvegarde' });
+    }
+});
+
+// Route API pour charger le contenu
+app.get('/api/load-content', async (req, res) => {
+    try {
+        const data = await fs.readFile('content.json', 'utf8');
+        res.json(JSON.parse(data));
+    } catch (error) {
+        console.error('Erreur lors du chargement:', error);
+        res.status(500).json({ success: false, message: 'Erreur lors du chargement' });
+    }
+});
 
 // Route principale
 app.get('/', (req, res) => {
-    try {
-        res.sendFile(path.join(__dirname, 'index.html'));
-    } catch (error) {
-        console.error('Erreur lors du chargement de la page:', error);
-        res.status(500).send('Erreur serveur');
-    }
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Route pour l'éditeur
+app.get('/editor', (req, res) => {
+    res.sendFile(path.join(__dirname, 'editor.html'));
 });
 
 // Routes pour les assets
