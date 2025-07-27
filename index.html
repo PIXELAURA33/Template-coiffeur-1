@@ -248,14 +248,34 @@
         }
 
         .slogan-container {
-            border-left: 2px solid var(--primary-color);
-            padding-left: 1rem;
+            border-left: 3px solid var(--primary-color);
+            padding-left: 1.5rem;
+            margin-left: 0.5rem;
         }
 
+        /* Navigation plus haute */
+        #navbar {
+            min-height: 100px;
+        }
+
+        /* Ajustement pour mobile */
         @media (max-width: 1024px) {
             .slogan-container {
                 display: none !important;
             }
+            
+            #navbar {
+                min-height: 80px;
+            }
+            
+            .logo-container img {
+                height: 4rem !important;
+            }
+        }
+
+        /* Amélioration du filtre couleur pour le logo */
+        .main-logo {
+            filter: sepia(100%) saturate(200%) hue-rotate(25deg) brightness(1.2) drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
     </style>
 </head>
@@ -273,14 +293,14 @@
     <!-- Navigation -->
     <nav id="navbar" class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm shadow-lg transition-all duration-300">
         <div class="container mx-auto px-4 lg:px-8">
-            <div class="flex justify-between items-center py-6">
+            <div class="flex justify-between items-center py-8">
                 <!-- Logo et Slogan -->
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-6">
                     <div class="logo-container">
-                        <img id="main-logo" src="./img/logo.png" alt="Logo" class="h-16 w-auto object-contain main-logo">
+                        <img id="main-logo" src="img/logo.png" alt="Logo Salon Premium" class="h-20 w-auto object-contain main-logo" style="filter: sepia(100%) saturate(200%) hue-rotate(25deg) brightness(1.2);">
                     </div>
                     <div class="slogan-container hidden lg:block">
-                        <p class="text-sm italic text-gray-600 max-w-xs leading-relaxed editable" data-field="main_slogan">
+                        <p class="text-base italic font-medium text-primary-dynamic max-w-md leading-relaxed editable" data-field="main_slogan">
                             Le style, c'est une signature. La vôtre commence ici.
                         </p>
                     </div>
@@ -329,7 +349,7 @@
     </nav>
 
     <!-- Section Hero -->
-    <section id="home" class="hero-bg min-h-screen flex items-center relative" data-bg-image="./img/intro-bg-01.jpg">
+    <section id="home" class="hero-bg min-h-screen flex items-center relative pt-24" data-bg-image="./img/intro-bg-01.jpg">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="text-white space-y-8">
@@ -1130,8 +1150,8 @@
                     
                     if (target) {
                         const navbar = document.getElementById('navbar');
-                        const navbarHeight = navbar ? navbar.offsetHeight : 80;
-                        const targetPosition = target.offsetTop - navbarHeight - 10;
+                        const navbarHeight = navbar ? navbar.offsetHeight : 100;
+                        const targetPosition = target.offsetTop - navbarHeight - 15;
 
                         window.scrollTo({
                             top: Math.max(0, targetPosition),
@@ -1287,6 +1307,8 @@
             const mainLogo = document.getElementById('main-logo');
             if (mainLogo) {
                 mainLogo.src = src;
+                // Appliquer le filtre couleur orange
+                mainLogo.style.filter = 'sepia(100%) saturate(200%) hue-rotate(25deg) brightness(1.2) drop-shadow(0 2px 4px rgba(0,0,0,0.1))';
                 // Mettre à jour aussi l'aperçu dans le panneau d'édition
                 const preview = document.querySelector('.image-upload-preview[data-target="main-logo"] img');
                 if (preview) {
