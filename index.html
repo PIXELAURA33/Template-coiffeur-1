@@ -498,8 +498,7 @@
                 <h2 class="text-4xl lg:text-5xl font-serif font-bold text-white mb-6" data-editable="text">
                     Nos Tarifs Premium
                 </h2>
-                <p class="text-xl text-gray-200 max-w-3xl mx-auto" data-editable="text">
-                    Des prix transparents pour des services d'exception
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto" data-editable="text">                    Des prix transparents pour des services d'exception
                 </p>
             </div>
 
@@ -683,7 +682,7 @@
                                          alt="QR Code WhatsApp" 
                                          class="w-32 h-32 mx-auto rounded-lg">
                                 </div>
-                                
+
                                 <!-- Icône WhatsApp compacte -->
                                 <div class="absolute -bottom-1 -right-1 bg-green-500 rounded-full p-2 shadow-lg">
                                     <i class="fab fa-whatsapp text-white text-sm"></i>
@@ -741,11 +740,18 @@
 
     <!-- JavaScript pour le menu mobile et les animations -->
     <script>
-        // Menu mobile
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
+        // Attendre que le DOM soit complètement chargé
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu mobile avec vérification de l'élément
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (mobileMenu) {
+                        mobileMenu.classList.toggle('hidden');
+                    }
+                });
+            }
 
         // Navigation smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -837,6 +843,7 @@ Message: ${message || 'Aucun message supplémentaire'}`;
                 el.style.transform = `translateY(${scrolled * speed}px)`;
             });
         });
+    });
     </script>
 
 </body>
