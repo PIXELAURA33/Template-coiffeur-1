@@ -1,6 +1,3 @@
-I will replace the specified code snippet in the original code to address the issue of the "Tarifs" link leading to a blank page. I'll also add some debugging code to help in identifying the active section.
-</tool_code>
-```replit_final_file
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -516,8 +513,7 @@ I will replace the specified code snippet in the original code to address the is
                         <a href="#" class="w-10 h-10 bg-primary-600 hover:bg-primary-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
                             <i class="fab fa-instagram text-white text-sm"></i>
                         </a>
-                        <a href="#" class="w-1Adding more robust section detection and debugging to the scroll event listener.
-</tool_code>0 h-10 bg-primary-600 hover:bg-primary-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                        <a href="#" class="w-10 h-10 bg-primary-600 hover:bg-primary-700 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110">
                             <i class="fab fa-facebook-f text-white text-sm"></i>
                         </a>
                     </div>
@@ -1082,3 +1078,82 @@ I will replace the specified code snippet in the original code to address the is
 
                         // Mettre en surbrillance le lien actif
 // Add debugging and ensure sections are properly detected
+            // Détecter la section active en utilisant getBoundingClientRect
+            let activeSection = null;
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    // Ajuster la condition pour tenir compte de la hauteur de la navbar
+                    if (rect.top <= 100 && rect.bottom >= 100) {
+                        activeSection = `#${sectionId}`;
+                    }
+                }
+            });
+
+            // Mettre à jour la navigation active
+            if (activeSection) {
+                updateActiveNavLink(activeSection);
+            }
+        });
+
+        // Mettre à jour le lien de navigation actif
+        function updateActiveNavLink(targetId) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-primary-600');
+            });
+
+            const activeLink = document.querySelector(`a[href="${targetId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('text-primary-600');
+            }
+        }
+
+        // Initialiser le smooth scroll
+        initSmoothScroll();
+
+        });
+
+        // Système d'édition
+        const editModeBtn = document.getElementById('editModeBtn');
+        const editPanel = document.getElementById('editPanel');
+        const editOverlay = document.getElementById('editOverlay');
+        const closeEditPanel = document.getElementById('closeEditPanel');
+
+        // Ouvrir le panneau d'édition
+        editModeBtn.addEventListener('click', function() {
+            editPanel.classList.remove('hidden');
+            editOverlay.classList.remove('hidden');
+            editPanel.style.transform = 'translateX(0)';
+        });
+
+        // Fermer le panneau d'édition
+        function closePanel() {
+            editPanel.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                editPanel.classList.add('hidden');
+                editOverlay.classList.add('hidden');
+            }, 300);
+        }
+
+        closeEditPanel.addEventListener('click', closePanel);
+        editOverlay.addEventListener('click', closePanel);
+
+        // Fonctions d'édition
+        const applyChanges = document.getElementById('applyChanges');
+        const resetChanges = document.getElementById('resetChanges');
+
+        applyChanges.addEventListener('click', function() {
+            // Ici vous pouvez ajouter la logique pour appliquer les modifications
+            alert('Modifications appliquées ! (Fonctionnalité en développement)');
+        });
+
+        resetChanges.addEventListener('click', function() {
+            if (confirm('Êtes-vous sûr de vouloir réinitialiser toutes les modifications ?')) {
+                // Ici vous pouvez ajouter la logique pour réinitialiser
+                alert('Modifications réinitialisées ! (Fonctionnalité en développement)');
+            }
+        });
+    </script>
+</body>
+</html>
